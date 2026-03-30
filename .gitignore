@@ -64,3 +64,9 @@ Thumbs.db
 *.pem
 *.key
 credentials.json
+
+# GSD Planning
+.planning/
+
+# Claude
+CLAUDE.md
