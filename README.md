@@ -22,7 +22,7 @@ aihero/
 │   ├── owasp_homework.ipynb   # OWASP LLM Top 10 analysis
 │   └── pyproject.toml         # Same dependencies as course/
 │
-└── .planning/           # GSD workflow artifacts (optional reading)
+└── .planning/           # Planning documentation (optional reading)
 ```
 
 **course/**: Follows the AI Hero course structure, reproducing the taught patterns with DataTalks FAQ and Evidently AI docs repositories.
