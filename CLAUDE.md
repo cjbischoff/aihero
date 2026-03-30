@@ -329,6 +329,16 @@ skips = ["B101"]  # Allow assert in tests
 
 Notebooks live in `notebooks/` and serve two distinct purposes:
 
+**`course/` (Course Reproductions)**
+
+- Course implementations following external course materials (e.g., AI Hero RAG course)
+- Course-quality code (learning focus, not production-grade)
+- Not required to follow `notebooks/exploratory/` or `notebooks/reports/` structure
+- Basic error handling sufficient; no comprehensive security/quality gates
+- Focus on understanding concepts through implementation
+- Engineering standards in this document apply to `project/` folder work, not `course/`
+- Reference: PROJECT.md constraint
+
 **`notebooks/exploratory/`**
 
 - Scratch space for analysis and experimentation
@@ -470,3 +480,178 @@ markers = [
 ]
 addopts = "--strict-markers -ra"
 ```
+
+<!-- GSD:project-start source:PROJECT.md -->
+## Project
+
+**AI Hero - RAG Course Project**
+
+A hands-on course project following the AI Hero crash course on building intelligent systems that understand and interact with data. The end goal is a conversational agent that can answer questions about any GitHub repository - similar to DeepWiki but tailored to GitHub repos. This project focuses on learning RAG (Retrieval Augmented Generation) patterns through practical implementation.
+
+**Core Value:** Successfully implement Day 1: a working GitHub data ingestion system that downloads repositories and extracts structured documentation ready for indexing.
+
+### Constraints
+
+- **Python Version**: 3.10 or higher (course requirement)
+- **Package Manager**: uv (modern, fast alternative to pip/poetry)
+- **Code Quality**: Course-quality code (learning focus, not production)
+  - Jupyter notebooks are primary artifacts
+  - Basic error handling sufficient
+  - No need for comprehensive tests or security scans
+  - Engineering standards in CLAUDE.md apply to future `project/` folder, not `course/`
+- **Dependencies**: Minimal - only what course specifies (requests, python-frontmatter, jupyter)
+- **Learning Style**: Implement with explanations - understand concepts, don't just copy code
+<!-- GSD:project-end -->
+
+<!-- GSD:stack-start source:research/STACK.md -->
+## Technology Stack
+
+## Recommended Stack
+### Core Technologies
+| Technology | Version | Purpose | Why Recommended |
+|------------|---------|---------|-----------------|
+| **Python** | 3.10+ | Runtime | Minimum version for LangChain/LlamaIndex; 3.12 recommended for latest type hints and performance improvements |
+| **LlamaIndex** | 0.14.19 | RAG Orchestration | Best for document-heavy RAG with 150+ data connectors; simplest API for pure retrieval tasks; 35% retrieval accuracy boost in 2025; winner for most RAG use cases where focus is document Q&A |
+| **ChromaDB** | 1.5.5 | Vector Store | Best for local/embedded RAG with built-in persistence; production-ready for 10k-200k vectors; great metadata filtering; zero-config DuckDB+Parquet backend |
+| **sentence-transformers** | 5.3.0 | Embeddings | Industry-standard for local embeddings; MTEB leaderboard leader; models like BGE and E5 outperform OpenAI text-embedding-3-small on many tasks |
+| **python-frontmatter** | 1.1.0 | Frontmatter Parsing | Standard library for YAML/TOML frontmatter extraction from markdown; used by Jekyll, Hugo, Next.js docs |
+### Supporting Libraries
+| Library | Version | Purpose | When to Use |
+|---------|---------|---------|-------------|
+| **PyGithub** | 2.9.0 | GitHub API Access | For downloading repos, accessing metadata, authentication; typed API wrapper for GitHub REST API v3 |
+| **langchain-text-splitters** | 0.4.12 | Document Chunking | Use when moving beyond basic splitting; RecursiveCharacterTextSplitter for markdown; MarkdownHeaderTextSplitter for structure-aware chunking |
+| **faiss-cpu** | 1.13.2 | High-Performance Vector Search | When scaling beyond 200k vectors or need GPU acceleration; 1000x faster than ChromaDB for large-scale; use with persistence layer |
+| **unstructured** | 0.16.9 | Document Parsing | For complex document types beyond markdown (PDF, DOCX, HTML); extract tables, images, structured content |
+| **llama-index-readers-github** | 0.2.8 | GitHub Integration | Purpose-built GitHub loader for LlamaIndex; handles repo cloning, branch filtering, file type filtering |
+### Development Tools
+| Tool | Purpose | Notes |
+|------|---------|-------|
+| **uv** | Package Manager | Modern pip alternative; 10-100x faster installs; project requirement per PROJECT.md |
+| **Jupyter** | Notebook Environment | Primary artifact format for course work; use Lab or VS Code integration |
+| **pytest** | Testing | Standard Python testing; use with pytest-asyncio for async RAG pipelines |
+## Installation
+# Core RAG stack
+# GitHub data access
+# Document processing
+# Optional: High-performance vector search (if scaling beyond 200k vectors)
+# Optional: Advanced document parsing
+# Dev dependencies
+## Alternatives Considered
+| Recommended | Alternative | When to Use Alternative |
+|-------------|-------------|-------------------------|
+| **LlamaIndex** | **LangChain** | Use LangChain when building complex agentic workflows beyond RAG; need 50k+ integrations; rapid prototyping (3x faster); LangGraph for multi-step reasoning |
+| **LlamaIndex** | **Haystack** | Use Haystack for production NLP pipelines in regulated industries; need fine-grained control; proven stability; enterprise hybrid search; ~40% lower framework overhead |
+| **ChromaDB** | **FAISS** | Use FAISS when: >200k vectors, need GPU acceleration, maximum raw speed (1000x faster setup), willing to implement own persistence layer |
+| **ChromaDB** | **Pinecone** | Use Pinecone for fully managed cloud service; serverless auto-scaling; real-time indexing; sub-100ms at billions of vectors; budget for cloud costs |
+| **sentence-transformers** | **OpenAI Embeddings** | Use OpenAI when: need best context understanding (88.8% vs 75-78%); budget for API costs ($0.03/1M tokens for small, $0.15/1M for large) |
+| **PyGithub** | **requests** | Use raw requests for features not exposed by PyGithub; downloading archives (zip/tarball); webhook handling; GraphQL API v4 access |
+## What NOT to Use
+| Avoid | Why | Use Instead |
+|-------|-----|-------------|
+| **GitPython** | For local Git repos only; maintenance mode; leaks system resources in long-running processes; NOT for GitHub API | **PyGithub** for GitHub API; requests for zip downloads |
+| **LangChain alone** | 2x higher token usage (~2.4k vs ~1.6k); higher framework overhead (~10ms vs ~6ms); overkill for pure RAG without agents | **LlamaIndex** for document Q&A; Haystack for production |
+| **text-embedding-ada-002** | Deprecated OpenAI model; outperformed by open-source (nomic-embed-text, BGE, mxbai-embed-large) | **sentence-transformers** with BGE-M3 or E5-Mistral-7B |
+| **Naive chunk splitting** | Fixed-size splitting breaks context; 70% accuracy loss vs semantic chunking | **RecursiveCharacterTextSplitter** (balanced) or semantic chunking (best accuracy) |
+| **Chroma for >1M vectors** | Performance degrades significantly; not designed for billion-vector scale | **FAISS** with IVF/HNSW indexes or **Pinecone** cloud |
+## Stack Patterns by Variant
+- Use LlamaIndex + ChromaDB + sentence-transformers
+- Because: Simplest setup; great for 10k-200k documents; local-first; zero API costs; fastest to working prototype
+- Embedding: BAAI/bge-small-en-v1.5 (384 dim, fast) or BAAI/bge-base-en-v1.5 (768 dim, balanced)
+- Chunking: RecursiveCharacterTextSplitter with 400-512 tokens, 10-20% overlap
+- Use Haystack + ChromaDB/Qdrant + sentence-transformers
+- Because: Production-ready pipelines; evaluation nodes; reproducible; hybrid search
+- Embedding: BAAI/bge-large-en-v1.5 or E5-Mistral-7B
+- Chunking: Semantic chunking with metadata filtering
+- Use LangChain/LangGraph + Pinecone + OpenAI embeddings
+- Because: Extensive integrations; agentic capabilities; managed vector store; best context understanding
+- Embedding: text-embedding-3-large (3072 dim)
+- Chunking: Hierarchical with contextual retrieval
+- Use Haystack + Milvus/Pinecone + custom embeddings
+- Because: Handles billions of vectors; distributed architecture; sub-100ms latency at scale
+- Embedding: Domain-tuned fine-tuned model or E5-Mistral-7B
+- Chunking: Recursive + semantic hybrid with 10-20% overlap
+## Version Compatibility
+| Package A | Compatible With | Notes |
+|-----------|-----------------|-------|
+| llama-index@0.14.19 | Python 3.10-3.12 | 3.13 support pending; use 3.12 for best performance |
+| sentence-transformers@5.3.0 | transformers>=4.41.0 | Pin transformers to avoid breaking changes |
+| chromadb@1.5.5 | Python 3.10-3.12 | Requires SQLite 3.35+; macOS/Linux native; Windows via WSL recommended |
+| faiss-cpu@1.13.2 | Python 3.10-3.14 | Use faiss-gpu for CUDA acceleration; incompatible with ARM until 1.14+ |
+| PyGithub@2.9.0 | Python 3.9+ | Fully compatible with GitHub API v3; use personal access tokens (not passwords) |
+| langchain-text-splitters@0.4.12 | langchain-core>=0.3.0 | Can use independently without full LangChain install |
+## Embedding Model Decision Matrix
+| Model | Dimensions | Speed | Accuracy | Use Case |
+|-------|-----------|-------|----------|----------|
+| **BAAI/bge-small-en-v1.5** | 384 | Fast | Good | MVP, prototypes, <50k docs |
+| **BAAI/bge-base-en-v1.5** | 768 | Medium | Better | Production, 50k-500k docs |
+| **BAAI/bge-large-en-v1.5** | 1024 | Slow | Best (OSS) | High-accuracy production |
+| **E5-Mistral-7B** | 4096 | Slowest | Best (OSS) | Enterprise, complex queries |
+| **nomic-embed-text-v1.5** | 768 | Medium | Better | Long context (8192 tokens) |
+| **text-embedding-3-small** | 1536 | API | Good | Quick start, budget API |
+| **text-embedding-3-large** | 3072 | API | Best | Best context understanding |
+## Chunking Strategy Decision Matrix
+| Strategy | Accuracy | Speed | Complexity | Use Case |
+|----------|----------|-------|------------|----------|
+| **Fixed-size** | Low | Fast | Simple | Avoid; breaks context |
+| **Recursive** | Medium | Fast | Simple | Default for most cases |
+| **Semantic** | High (+70%) | Slow | Medium | Knowledge bases, technical docs |
+| **Structure-aware (Markdown)** | High | Fast | Medium | Docs with clear hierarchy |
+| **Hierarchical** | Highest | Slow | Complex | Mixed-structure docs |
+## Common Anti-Patterns to Avoid
+| Anti-Pattern | Impact | Prevention |
+|--------------|--------|------------|
+| **Increasing complexity without evaluation** | 90% of teams add complexity that doesn't improve performance | Establish eval metrics first; measure baseline before adding re-ranking/hybrid search |
+| **Insufficient data quality focus** | Poor retrieval accuracy despite complex architecture | Focus on high-quality, relevant documents over massive quantities; clean and standardize data |
+| **Lack of task breakdown** | Using full RAG pipeline for simple queries | Implement intent classification; route simple queries (metadata lookup) to specialized handlers |
+| **Incomplete evaluation strategies** | Missing false negatives; only evaluating retrieved docs | Examine docs that should have been retrieved but weren't; evaluate if retrieved docs fully answer query |
+| **The "perfect system" trap** | Months building without user feedback | Ship 70% solution, iterate based on real feedback |
+| **Ignoring user experience** | 95% accurate but 30-second response time | Balance accuracy vs latency; 85% accurate + 3 seconds often better than 95% + 30 seconds |
+## Sources
+- PyPI Package Pages — Verified latest versions and release dates (March 2026)
+- [LlamaIndex Documentation](https://docs.llamaindex.ai/) — Core RAG patterns and integrations
+- [ChromaDB Official Docs](https://docs.trychroma.com/) — Vector store setup and performance characteristics
+- [Sentence-Transformers Documentation](https://www.sbert.net/) — Embedding model selection and MTEB benchmarks
+- [LangChain vs LlamaIndex 2025: Complete RAG Framework Comparison - Latenode Blog](https://latenode.com/blog/platform-comparisons-alternatives/automation-platform-comparisons/langchain-vs-llamaindex-2025-complete-rag-framework-comparison)
+- [Best RAG Frameworks 2025: LangChain vs LlamaIndex vs Haystack vs RAGFlow](https://langcopilot.com/posts/2025-09-18-top-rag-frameworks-2024-complete-guide)
+- [Best Vector Databases for RAG: Complete 2025 Comparison Guide - Latenode Blog](https://latenode.com/blog/ai-frameworks-technical-infrastructure/vector-databases-embeddings/best-vector-databases-for-rag-complete-2025-comparison-guide)
+- [Best Embedding Models for RAG: Complete Guide to Free and Open Source Options - Latenode Blog](https://latenode.com/blog/ai-frameworks-technical-infrastructure/vector-databases-embeddings/best-embedding-models-for-rag-complete-guide-to-free-and-open-source-options)
+- [9 Best Embedding Models for RAG to Try This Year - ZenML Blog](https://www.zenml.io/blog/best-embedding-models-for-rag)
+- [ChromaDB vs FAISS: A Comprehensive Guide for Vector Search and AI Applications](https://mohamedbakrey094.medium.com/chromadb-vs-faiss-a-comprehensive-guide-for-vector-search-and-ai-applications-39762ed1326f)
+- [Document Chunking for RAG: 9 Strategies Tested (70% Accuracy Boost 2025)](https://langcopilot.com/posts/2025-10-11-document-chunking-for-rag-practical-guide)
+- [The RAG Mistakes That Are Killing Your AI (Skylar Payne)](https://jxnl.co/writing/2025/09/11/the-rag-mistakes-that-are-killing-your-ai-skylar-payne/)
+- [Evaluating Open-Source vs. OpenAI Embeddings for RAG | Tiger Data](https://www.tigerdata.com/blog/open-source-vs-openai-embeddings-for-rag)
+- [Vector Databases Performance Comparison: ChromaDB vs Pinecone vs FAISS — Real Benchmarks](https://pub.towardsai.net/vector-databases-performance-comparison-chromadb-vs-pinecone-vs-faiss-real-benchmarks-that-will-3eb83027c584)
+- [LangChain vs LlamaIndex vs Haystack: What Two Weeks in Production Actually Taught Me](https://dev.to/synsun/langchain-vs-llamaindex-vs-haystack-what-two-weeks-in-production-actually-taught-me-1kl6)
+<!-- GSD:stack-end -->
+
+<!-- GSD:conventions-start source:CONVENTIONS.md -->
+## Conventions
+
+Conventions not yet established. Will populate as patterns emerge during development.
+<!-- GSD:conventions-end -->
+
+<!-- GSD:architecture-start source:ARCHITECTURE.md -->
+## Architecture
+
+Architecture not yet mapped. Follow existing patterns found in the codebase.
+<!-- GSD:architecture-end -->
+
+<!-- GSD:workflow-start source:GSD defaults -->
+## GSD Workflow Enforcement
+
+Before using Edit, Write, or other file-changing tools, start work through a GSD command so planning artifacts and execution context stay in sync.
+
+Use these entry points:
+- `/gsd:quick` for small fixes, doc updates, and ad-hoc tasks
+- `/gsd:debug` for investigation and bug fixing
+- `/gsd:execute-phase` for planned phase work
+
+Do not make direct repo edits outside a GSD workflow unless the user explicitly asks to bypass it.
+<!-- GSD:workflow-end -->
+
+<!-- GSD:profile-start -->
+## Developer Profile
+
+> Profile not yet configured. Run `/gsd:profile-user` to generate your developer profile.
+> This section is managed by `generate-claude-profile` -- do not edit manually.
+<!-- GSD:profile-end -->
