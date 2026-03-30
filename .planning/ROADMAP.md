@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Environment Setup** - Verify Python 3.10+, install uv, create folder structure
 - [x] **Phase 2: Course Project Initialization** - Initialize uv project in course/ folder with dependencies
 - [x] **Phase 3: Core Implementation** - Implement read_repo_data() with frontmatter parsing in Jupyter notebook (completed 2026-03-30)
-- [ ] **Phase 4: Course Validation** - Test with DataTalks FAQ and Evidently docs repositories
+- [x] **Phase 4: Course Validation** - Test with DataTalks FAQ and Evidently docs repositories (completed 2026-03-30)
 - [ ] **Phase 5: Project Homework** - Apply patterns to OWASP LLM Top 10 repository
 - [ ] **Phase 6: Documentation & Reflection** - Document learnings and challenges
 
@@ -82,7 +82,7 @@ Plans:
 - [x] 04-02-PLAN.md — Execute notebook from fresh kernel and commit outputs (gap closure)
 
 ### Phase 5: Project Homework
-**Goal**: Demonstrated ability to apply learned patterns to different repository structure
+**Goal**: Apply learned GitHub ingestion patterns to OWASP LLM Top 10 repository with engineering standards
 **Depends on**: Phase 4
 **Requirements**: PROJ-01, PROJ-02, PROJ-03, PROJ-04, PROJ-05, PROJ-06, PROJ-07, PROJ-08
 **Success Criteria** (what must be TRUE):
@@ -92,8 +92,10 @@ Plans:
   4. Parser extracts all markdown documentation from OWASP repo structure
   5. Verification confirms data extraction works despite different repo organization
   6. Notebook displays sample outputs from OWASP repository showing parsed content
-**Plans**: TBD
-**UI hint**: yes
+**Plans**: 1 plan
+
+Plans:
+- [x] 05-01-PLAN.md — Initialize project environment and create OWASP homework notebook
 
 ### Phase 6: Documentation & Reflection
 **Goal**: Documented learnings and differences between course reproduction and project homework
@@ -104,7 +106,10 @@ Plans:
   2. Project notebook documents any differences or challenges compared to course repos
   3. Both notebooks are fully executable from top to bottom with fresh kernel
   4. Documentation explains why certain implementation choices were made
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 06-01-PLAN.md — Add learnings summary to course notebook
 
 ## Progress
 
@@ -116,6 +121,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Environment Setup | 1/1 | Complete | 2026-03-30 |
 | 2. Course Project Initialization | 1/1 | Complete | 2026-03-30 |
 | 3. Core Implementation | 1/1 | Complete   | 2026-03-30 |
-| 4. Course Validation | 1/2 | In progress | - |
-| 5. Project Homework | 0/? | Not started | - |
-| 6. Documentation & Reflection | 0/? | Not started | - |
+| 4. Course Validation | 2/2 | Complete | 2026-03-30 |
+| 5. Project Homework | 1/1 | Complete | 2026-03-30 |
+| 6. Documentation & Reflection | 0/1 | Not started | - |
