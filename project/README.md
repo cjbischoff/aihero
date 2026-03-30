@@ -32,7 +32,7 @@ The same implementation works across all repositories because:
 3. **Good abstractions are universal** - Same function works for 95 or 1,285 or 542 files
 
 **Pipeline Architecture:**
-See [Data Flow Diagram](../docs/diagrams/phase-03-data-flow.md) for a visual representation of how the ingestion pipeline transforms GitHub repositories into structured documentation.
+See [Data Flow Diagram](../docs/diagrams/github-ingestion-pipeline.md) for a visual representation of how the ingestion pipeline transforms GitHub repositories into structured documentation.
 
 ### Running the Notebook
 

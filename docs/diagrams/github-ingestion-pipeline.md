@@ -1,6 +1,6 @@
-# Phase 3: GitHub Ingestion Data Flow
+# GitHub Ingestion Pipeline Data Flow
 
-This diagram shows the data transformation pipeline implemented in Phase 3 (Core Implementation). The `read_repo_data()` function orchestrates multiple helper functions to transform a GitHub repository into structured documentation ready for RAG indexing.
+This diagram shows the data transformation pipeline that powers the `read_repo_data()` function. It orchestrates multiple helper functions to transform a GitHub repository into structured documentation ready for RAG indexing.
 
 ## Pipeline Architecture
 
@@ -133,4 +133,4 @@ LLM Response
 
 ---
 
-*Last Updated: 2026-03-30 | Phase 3 Complete*
+*Last Updated: 2026-03-30*

@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Core Implementation** - Implement read_repo_data() with frontmatter parsing in Jupyter notebook (completed 2026-03-30)
 - [x] **Phase 4: Course Validation** - Test with DataTalks FAQ and Evidently docs repositories (completed 2026-03-30)
 - [ ] **Phase 5: Project Homework** - Apply patterns to OWASP LLM Top 10 repository
-- [ ] **Phase 6: Documentation & Reflection** - Document learnings and challenges
+- [x] **Phase 6: Documentation & Reflection** - Document learnings and challenges (completed 2026-03-30)
 
 ## Phase Details
 
@@ -109,7 +109,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 06-01-PLAN.md — Add learnings summary to course notebook
+- [x] 06-01-PLAN.md — Add learnings summary to course notebook
 
 ## Progress
 
@@ -123,4 +123,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 3. Core Implementation | 1/1 | Complete   | 2026-03-30 |
 | 4. Course Validation | 2/2 | Complete | 2026-03-30 |
 | 5. Project Homework | 1/1 | Complete | 2026-03-30 |
-| 6. Documentation & Reflection | 0/1 | Not started | - |
+| 6. Documentation & Reflection | 0/1 | Complete    | 2026-03-30 |

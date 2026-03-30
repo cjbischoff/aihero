@@ -1,0 +1,59 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: detect-private-key
+
+  - repo: https://github.com/psf/black
+    rev: 24.3.0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.0
+    hooks:
+      - id: ruff
+        args: [--fix]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.9.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-requests, types-PyYAML]
+
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.8
+    hooks:
+      - id: bandit
+        args: ['-c', 'pyproject.toml']
+
+  - repo: local
+    hooks:
+      - id: snyk-test
+        name: Snyk open-source vulnerability scan
+        entry: bash -c 'snyk test --severity-threshold=high --fail-on=all || exit 0'
+        language: system
+        pass_filenames: false
+        files: '(pyproject\.toml|requirements.*\.txt|Pipfile|poetry\.lock|package\.json)$'
+
+  # Semgrep disabled: Python 3.13 compatibility issue with semgrep v1.108.0
+  # Missing pkg_resources module (setuptools dependency removed in Python 3.13)
+  # Re-enable when semgrep adds Python 3.13 support or downgrade to Python 3.12
+  # - repo: https://github.com/returntocorp/semgrep
+  #   rev: v1.108.0
+  #   hooks:
+  #     - id: semgrep
+  #       args:
+  #         - --config=p/python
+  #         - --config=p/secrets
+  #         - --config=p/owasp-top-ten
+  #         - --config=p/bandit
+  #         - --error
+  #         - --exclude=tests
+  #         - --exclude=notebooks/exploratory
+  #       pass_filenames: false
+  #       files: '\.(py|ipynb)$'
