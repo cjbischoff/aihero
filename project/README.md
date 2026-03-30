@@ -60,6 +60,65 @@ Unlike `course/`, this folder applies full engineering standards:
 
 See `.pre-commit-config.yaml` and `pyproject.toml` for toolchain configuration.
 
+### Development Setup
+
+**Initial Setup (after cloning):**
+
+```bash
+cd project/
+uv sync                                           # Install dependencies
+uv run pre-commit install                         # Install pre-commit hooks
+uv run pre-commit install --hook-type pre-push    # Install pre-push hooks
+```
+
+**Code Quality Gates:**
+
+This project has **automated quality gates** that run at different stages:
+
+| Stage | What Runs | When It Blocks |
+|-------|-----------|----------------|
+| **Pre-commit** | ruff, black, mypy, bandit, snyk | Before commit succeeds |
+| **Pre-push** | CodeRabbit CLI review | Before push completes |
+
+**Workflow:**
+
+1. Make changes to code
+2. `git add` + `git commit`
+   - Pre-commit hooks run automatically (ruff, black, mypy, bandit, snyk)
+   - Fix any issues, commit succeeds ✅
+3. `git push`
+   - Pre-push hook runs CodeRabbit CLI review automatically
+   - Reviews uncommitted changes against project standards
+   - **Blocks push** if critical or major issues found ❌
+   - **Allows push** if no blocking issues ✅
+
+**CodeRabbit Review:**
+
+- Uses `cr --plain --config ../CLAUDE.md --type uncommitted`
+- Applies project engineering standards from CLAUDE.md
+- Critical/major findings = blocking (must fix before push)
+- Minor/nit findings = non-blocking (informational only)
+- Output saved to `/tmp/cr-output.txt` for review
+
+**Manual Review (optional):**
+
+```bash
+# Run CodeRabbit manually before committing
+cr --plain --config ../CLAUDE.md --type uncommitted
+
+# Run all pre-commit hooks manually
+uv run pre-commit run --all-files
+```
+
+**Emergency Override (use sparingly):**
+
+If CodeRabbit is down or you need to push urgently:
+```bash
+git push --no-verify
+```
+
+⚠️ **Warning:** This bypasses code review. Run `cr --plain --config ../CLAUDE.md` manually after pushing.
+
 ### What You'll Learn
 
 **Repository Adaptability:**

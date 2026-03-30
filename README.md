@@ -107,7 +107,8 @@ This project follows the [AI Hero](https://www.ai-hero.com/) crash course on bui
 ## Notes
 
 - **Course-quality code**: `course/` prioritizes learning over production rigor (no comprehensive tests, type hints optional)
-- **Engineering standards**: `project/` applies stricter standards (type hints, docstrings, pre-commit hooks)
+- **Engineering standards**: `project/` applies stricter standards (type hints, docstrings, pre-commit hooks, CodeRabbit review)
+- **Code quality gates**: `project/` has automated pre-push hooks that run CodeRabbit CLI review before allowing pushes (see `project/README.md` for setup)
 - **Jupyter notebooks**: The primary artifacts - all implementation is in .ipynb files with inline explanations
 
 ## Next Steps
