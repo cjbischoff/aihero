@@ -22,6 +22,8 @@ dev = [
 [tool.ruff]
 line-length = 100
 target-version = "py313"
+
+[tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B", "SIM"]
 ignore = ["E501"]
 
@@ -35,5 +37,5 @@ strict = true
 ignore_missing_imports = false
 
 [tool.bandit]
-exclude_dirs = ["tests", "notebooks", "*.ipynb"]
+exclude_dirs = ["tests", "notebooks"]
 skips = ["B101"]

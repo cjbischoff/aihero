@@ -65,7 +65,7 @@ Thumbs.db
 *.key
 credentials.json
 
-# GSD Planniyesng
+# GSD Planning
 .planning/
 
 # Claude

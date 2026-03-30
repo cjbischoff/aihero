@@ -35,7 +35,7 @@ repos:
     hooks:
       - id: snyk-test
         name: Snyk open-source vulnerability scan
-        entry: bash -c 'snyk test --severity-threshold=high --fail-on=all || exit 0'
+        entry: snyk test --severity-threshold=high --fail-on=all
         language: system
         pass_filenames: false
         files: '(pyproject\.toml|requirements.*\.txt|Pipfile|poetry\.lock|package\.json)$'
