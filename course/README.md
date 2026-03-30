@@ -22,6 +22,9 @@ Implements a complete GitHub ingestion pipeline:
 **Main Function:**
 - `read_repo_data(repo_owner, repo_name)` - Orchestrates the complete workflow
 
+**Architecture:**
+See [Pipeline Data Flow Diagram](../docs/diagrams/phase-03-data-flow.md) for a visual representation of how data transforms through the pipeline.
+
 ### Test Repositories
 
 The notebook validates the implementation with two real-world repositories:
