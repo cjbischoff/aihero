@@ -18,11 +18,9 @@ aihero/
 │   ├── day1.ipynb       # Main implementation notebook
 │   └── pyproject.toml   # Dependencies (requests, python-frontmatter, jupyter)
 │
-├── project/             # Homework implementation
-│   ├── owasp_homework.ipynb   # OWASP LLM Top 10 analysis
-│   └── pyproject.toml         # Same dependencies as course/
-│
-└── .planning/           # Planning documentation (optional reading)
+└── project/             # Homework implementation
+    ├── owasp_homework.ipynb   # OWASP LLM Top 10 analysis
+    └── pyproject.toml         # Same dependencies as course/
 ```
 
 **course/**: Follows the AI Hero course structure, reproducing the taught patterns with DataTalks FAQ and Evidently AI docs repositories.
