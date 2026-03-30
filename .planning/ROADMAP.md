@@ -75,10 +75,11 @@ Plans:
   2. Function successfully downloads and processes Evidently AI docs repository
   3. Notebook displays sample outputs showing parsed data structure with content and metadata
   4. Both test cases execute without errors and return expected data formats
-**Plans**: 1 plan
+**Plans**: 2 plans
 
 Plans:
 - [x] 04-01-PLAN.md — Test implementation with DataTalks FAQ and Evidently docs repositories
+- [x] 04-02-PLAN.md — Execute notebook from fresh kernel and commit outputs (gap closure)
 
 ### Phase 5: Project Homework
 **Goal**: Demonstrated ability to apply learned patterns to different repository structure
@@ -115,6 +116,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Environment Setup | 1/1 | Complete | 2026-03-30 |
 | 2. Course Project Initialization | 1/1 | Complete | 2026-03-30 |
 | 3. Core Implementation | 1/1 | Complete   | 2026-03-30 |
-| 4. Course Validation | 0/1 | Not started | - |
+| 4. Course Validation | 1/2 | In progress | - |
 | 5. Project Homework | 0/? | Not started | - |
 | 6. Documentation & Reflection | 0/? | Not started | - |
