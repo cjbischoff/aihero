@@ -12,9 +12,9 @@ This roadmap delivers Day 1 of the AI Hero RAG course: a working GitHub data ing
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Environment Setup** - Verify Python 3.10+, install uv, create folder structure
-- [ ] **Phase 2: Course Project Initialization** - Initialize uv project in course/ folder with dependencies
-- [ ] **Phase 3: Core Implementation** - Implement read_repo_data() with frontmatter parsing in Jupyter notebook
+- [x] **Phase 1: Environment Setup** - Verify Python 3.10+, install uv, create folder structure
+- [x] **Phase 2: Course Project Initialization** - Initialize uv project in course/ folder with dependencies
+- [x] **Phase 3: Core Implementation** - Implement read_repo_data() with frontmatter parsing in Jupyter notebook (completed 2026-03-30)
 - [ ] **Phase 4: Course Validation** - Test with DataTalks FAQ and Evidently docs repositories
 - [ ] **Phase 5: Project Homework** - Apply patterns to OWASP LLM Top 10 repository
 - [ ] **Phase 6: Documentation & Reflection** - Document learnings and challenges
@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 1 plan
 
 Plans:
-- [ ] 01-01-PLAN.md — Verify Python/uv installation and create folder structure
+- [x] 01-01-PLAN.md — Verify Python/uv installation and create folder structure
 
 ### Phase 2: Course Project Initialization
 **Goal**: Working uv project in course/ folder with all required dependencies installed
@@ -44,7 +44,10 @@ Plans:
   2. Dependencies installed: requests, python-frontmatter, and jupyter (dev)
   3. Developer can start jupyter notebook server from course/ folder
   4. Python can import requests and frontmatter modules without errors
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [x] 02-01-PLAN.md — Initialize uv project and install dependencies
 
 ### Phase 3: Core Implementation
 **Goal**: Working read_repo_data() function that downloads GitHub repos and parses markdown with frontmatter
@@ -58,8 +61,10 @@ Plans:
   5. Function parses YAML frontmatter from each markdown file and returns structured data
   6. Notebook includes inline explanations of frontmatter concept and zip processing approach
   7. Code includes comments explaining key technical decisions
-**Plans**: TBD
-**UI hint**: yes
+**Plans**: 1 plan
+
+Plans:
+- [x] 03-01-PLAN.md — Implement read_repo_data() function in Jupyter notebook
 
 ### Phase 4: Course Validation
 **Goal**: Verified that implementation works correctly with both course-provided test repositories
@@ -70,7 +75,10 @@ Plans:
   2. Function successfully downloads and processes Evidently AI docs repository
   3. Notebook displays sample outputs showing parsed data structure with content and metadata
   4. Both test cases execute without errors and return expected data formats
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [x] 04-01-PLAN.md — Test implementation with DataTalks FAQ and Evidently docs repositories
 
 ### Phase 5: Project Homework
 **Goal**: Demonstrated ability to apply learned patterns to different repository structure
@@ -104,9 +112,9 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Environment Setup | 0/1 | Not started | - |
-| 2. Course Project Initialization | 0/? | Not started | - |
-| 3. Core Implementation | 0/? | Not started | - |
-| 4. Course Validation | 0/? | Not started | - |
+| 1. Environment Setup | 1/1 | Complete | 2026-03-30 |
+| 2. Course Project Initialization | 1/1 | Complete | 2026-03-30 |
+| 3. Core Implementation | 1/1 | Complete   | 2026-03-30 |
+| 4. Course Validation | 0/1 | Not started | - |
 | 5. Project Homework | 0/? | Not started | - |
 | 6. Documentation & Reflection | 0/? | Not started | - |
