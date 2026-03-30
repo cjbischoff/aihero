@@ -57,3 +57,11 @@ repos:
   #         - --exclude=notebooks/exploratory
   #       pass_filenames: false
   #       files: '\.(py|ipynb)$'
+
+      - id: coderabbit-review
+        name: CodeRabbit CLI review (pre-push gate)
+        entry: bash -c 'echo "Running CodeRabbit review..." && cr --plain --config ../CLAUDE.md --type uncommitted 2>&1 | tee /tmp/cr-output.txt && if grep -iE "(critical|major)" /tmp/cr-output.txt | grep -v "0 critical" | grep -v "0 major" >/dev/null 2>&1; then echo "❌ CodeRabbit found blocking issues (critical or major). Fix before pushing."; exit 1; else echo "✅ CodeRabbit review passed"; exit 0; fi'
+        language: system
+        stages: [push]
+        pass_filenames: false
+        always_run: true
