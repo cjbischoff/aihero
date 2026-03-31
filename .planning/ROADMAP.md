@@ -70,7 +70,7 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 - SUPPORT-04: Provide helper functions for manual inspection and analysis of chunk quality
 
 **Plans:** 2 plans
-- [ ] 08-01-PLAN.md -- Implement paragraph and section chunking functions
+- [x] 08-01-PLAN.md -- Implement paragraph and section chunking functions
 - [ ] 08-02-PLAN.md -- Implement comparison framework and quality inspection helpers
 
 **Success Criteria:**
