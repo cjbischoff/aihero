@@ -1,38 +1,56 @@
-# Project: OWASP LLM Top 10 - Homework Application
+# Project: OWASP LLM Top 10 - Engineering Implementation
 
-This folder contains the homework implementation applying Day 1 course patterns to a different repository structure. The notebook demonstrates adaptability of the ingestion pipeline across diverse documentation conventions.
+This folder contains engineering-quality implementations of Days 1 & 2 course work applied to the OWASP LLM Top 10 repository. The notebook demonstrates full engineering standards (type hints, docstrings, pre-commit hooks) and includes analysis specific to security documentation.
 
 ## Notebook: owasp_homework.ipynb
 
-### What It Does
+### What It Contains
 
-Applies the `read_repo_data()` pattern from the course to the OWASP LLM Top 10 repository - a security documentation project with a completely different structure and NO frontmatter.
+**Day 1: GitHub Data Ingestion**
+- Applies `read_repo_data()` to OWASP repository
+- 542 markdown documents with nested folder structure
+- Handles documents with NO frontmatter (539 of 542 files)
+- Tests pipeline adaptability across different documentation conventions
+
+**Day 2: Document Chunking**
+- All four chunking strategies tested on OWASP corpus
+- Hybrid chunking implementation (paragraph + sliding window)
+- Strategy comparison with quantitative metrics
+- OWASP-specific analysis and recommendations
 
 **Repository Analyzed:**
 - **OWASP/www-project-top-10-for-large-language-model-applications**
 - 542 markdown documents
 - Nested folder structure (2_0_vulns/, documentation/, translations/)
-- Plain markdown with no YAML frontmatter (539 of 542 files)
+- Security guidelines for LLM applications (LLM01-LLM10)
 
 ### What's Different from Course
 
-| Aspect | Course Repos | OWASP Repo |
-|--------|-------------|------------|
-| **Frontmatter** | Most files have it | Almost none (539/542) |
-| **Structure** | Flat/simple | Nested directories |
-| **File Count** | 95-1,285 | 542 |
-| **Format** | Mixed .md/.mdx | Primarily .md |
+| Aspect | Course (Evidently) | Project (OWASP) |
+|--------|-------------------|-----------------|
+| **Day 1: Frontmatter** | Most files have it | Almost none (539/542) |
+| **Day 1: Structure** | Flat/simple | Nested directories |
+| **Day 1: File Count** | 95 documents | 542 documents |
+| **Day 2: Best Strategy** | Varies by structure | Section chunking (clear `##` headers) |
+| **Day 2: Implementation** | All 4 strategies | All 4 + hybrid approach |
+| **Day 2: Analysis** | General learnings | OWASP-specific recommendations |
 
-### Key Learning
+### Key Learnings
 
-The same implementation works across all repositories because:
+**Day 1:**
+- python-frontmatter gracefully handles missing metadata (returns empty `{}`)
+- In-memory zip processing is structure-agnostic
+- Good abstractions work across 95, 542, or 1,285 files
 
-1. **python-frontmatter gracefully handles missing metadata** - Returns empty `{}` instead of errors
-2. **In-memory zip processing is structure-agnostic** - Works regardless of folder nesting
-3. **Good abstractions are universal** - Same function works for 95 or 1,285 or 542 files
+**Day 2:**
+- OWASP's `## ` structure (LLM01, LLM02, etc.) ideal for section chunking
+- Hybrid approach solves paragraph size variance (max 43K tokens → 547 tokens)
+- Security documentation benefits from topic-aligned chunks (preserves LLM01-10 boundaries)
+- Section chunking: 1,023 chunks, avg 1,045 tokens, preserves nested `###` headers
 
-**Pipeline Architecture:**
-See [Data Flow Diagram](../docs/diagrams/github-ingestion-pipeline.md) for a visual representation of how the ingestion pipeline transforms GitHub repositories into structured documentation.
+**Architecture:**
+- Day 1: [GitHub Ingestion Pipeline](../docs/diagrams/github-ingestion-pipeline.md)
+- Day 2: [Hybrid Chunking Strategy](../docs/diagrams/hybrid-chunking-strategy.md)
 
 ### Running the Notebook
 
@@ -53,12 +71,14 @@ uv run jupyter notebook owasp_homework.ipynb
 Unlike `course/`, this folder applies full engineering standards:
 
 - ✅ Type hints on all function signatures
-- ✅ Google-style docstrings
-- ✅ Pre-commit hooks (ruff, black, mypy, bandit, snyk)
-- ✅ Explicit error handling
+- ✅ Google-style docstrings (Args, Returns, Raises, Examples)
+- ✅ Pre-commit hooks (ruff, black, mypy, bandit, snyk, **pip-audit**)
+- ✅ Hash-pinned dependencies (`requirements.lock`)
+- ✅ Explicit error handling and input validation
 - ✅ Engineering-grade documentation
+- ✅ CodeRabbit CLI review on pre-push
 
-See `.pre-commit-config.yaml` and `pyproject.toml` for toolchain configuration.
+See `.pre-commit-config.yaml`, `pyproject.toml`, and `requirements.lock` for toolchain configuration.
 
 ### Development Setup
 
@@ -77,7 +97,7 @@ This project has **automated quality gates** that run at different stages:
 
 | Stage | What Runs | When It Blocks |
 |-------|-----------|----------------|
-| **Pre-commit** | ruff, black, mypy, bandit, snyk | Before commit succeeds |
+| **Pre-commit** | ruff, black, mypy, bandit, snyk, pip-audit | Before commit succeeds |
 | **Pre-push** | CodeRabbit CLI review | Before push completes |
 
 **Workflow:**
@@ -121,18 +141,24 @@ git push --no-verify
 
 ### What You'll Learn
 
-**Repository Adaptability:**
-How the same ingestion code handles:
-- Different documentation conventions
-- Varying levels of metadata structure
+**Day 1: Repository Adaptability**
+- How the same ingestion code handles different documentation conventions
+- Why frontmatter is optional (graceful degradation)
 - Nested vs flat file organizations
+- Designing RAG pipelines for both structured and unstructured docs
 
-**Frontmatter Optional:**
-Why the implementation doesn't break when frontmatter is absent and how to design RAG pipelines for both structured (frontmatter) and unstructured (plain markdown) documentation.
+**Day 2: Chunking for Security Documentation**
+- Why section chunking works best for OWASP (clear `##` structure)
+- Hybrid approach solving size variance (paragraph + sliding window)
+- Quantitative comparison: 3563 vs 14254 vs 1023 vs 14745 chunks
+- Topic-aligned boundaries (preserves LLM01-10 security guidelines)
+- Trade-offs: predictability vs structure-awareness vs cost
 
-**RAG Implications:**
-- Some repos provide rich metadata out of the box
-- Others require metadata extraction from content structure (headers, file paths)
+**Engineering Rigor:**
+- Full engineering standards (type hints, docstrings, pre-commit hooks)
+- Hash-pinned dependencies for reproducible builds
+- Vulnerability scanning with snyk and pip-audit
+- Code quality gates preventing bad commits/pushes
 - Day 2 chunking strategies will differ based on available structure
 
 ### Comparison Output
