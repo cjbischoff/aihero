@@ -90,7 +90,7 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 - CHUNK-04: Implement LLM-based intelligent chunking using OpenAI or Groq
 
 **Plans:** 1 plan
-- [ ] 09-01-PLAN.md -- Implement LLM chunking with provider switching, cost tracking, and comparison
+- [x] 09-01-PLAN.md -- Implement LLM chunking with provider switching, cost tracking, and comparison
 
 **Success Criteria:**
 1. User can apply LLM-based semantic chunking using OpenAI or Groq API
