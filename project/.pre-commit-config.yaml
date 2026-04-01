@@ -40,6 +40,14 @@ repos:
         pass_filenames: false
         files: '(pyproject\.toml|requirements.*\.txt|Pipfile|poetry\.lock|package\.json)$'
 
+      - id: pip-audit
+        name: pip-audit vulnerability scan
+        entry: pip-audit
+        language: system
+        pass_filenames: false
+        always_run: true
+        args: ['--require-hashes', '-r', 'requirements.lock']
+
   # Semgrep disabled: Python 3.13 compatibility issue with semgrep v1.108.0
   # Missing pkg_resources module (setuptools dependency removed in Python 3.13)
   # Re-enable when semgrep adds Python 3.13 support or downgrade to Python 3.12
