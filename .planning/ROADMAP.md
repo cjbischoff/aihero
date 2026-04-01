@@ -89,7 +89,7 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 **Requirements:** 1
 - CHUNK-04: Implement LLM-based intelligent chunking using OpenAI or Groq
 
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 - [x] 09-01-PLAN.md -- Implement LLM chunking with provider switching, cost tracking, and comparison
 
 **Success Criteria:**
@@ -97,7 +97,7 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 2. User can view cost analysis showing actual API costs vs estimated costs
 3. User can compare LLM chunking output against simpler strategies
 
-**Status:** Planning complete
+**Status:** Complete
 
 ---
 
@@ -112,13 +112,16 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 - COURSE-05: Include inline explanations of token counting, overlap rationale, and semantic boundaries
 - COURSE-06: Document learnings about when to use each chunking approach
 
+**Plans:** 1 plan
+- [ ] 10-01-PLAN.md -- Add educational polish (learnings summary, Day 1 import, dividers, comments) and validate execution
+
 **Success Criteria:**
 1. User can open `course/day2.ipynb` and see all four chunking strategies implemented
 2. User can run all strategies on Evidently docs from Day 1 with visible sample outputs
 3. User can read inline explanations of token counting, overlap rationale, and semantic boundaries
 4. User can review documented learnings about when to use each chunking approach
 
-**Status:** Not started
+**Status:** Planning complete
 
 ---
 
@@ -171,14 +174,15 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 | 1-6   | v1.0      | 7/7            | Complete    | 2026-03-30 |
 | 7     | v1.1      | 2/2            | Complete    | 2026-03-31 |
 | 8     | v1.1      | 2/2            | Complete    | 2026-03-31 |
-| 9     | v1.1      | 0/1            | Planning    | --         |
-| 10-12 | v1.1      | 0/?            | Not started | --         |
+| 9     | v1.1      | 1/1            | Complete    | 2026-04-01 |
+| 10    | v1.1      | 0/1            | Planning complete | --    |
+| 11-12 | v1.1      | 0/?            | Not started | --         |
 
 ---
 
 ## Next Steps
 
-Run `/gsd:execute-phase 9` to begin Phase 9 (LLM Chunking).
+Run `/gsd:execute-phase 10` to begin Phase 10 execution.
 
 ---
 
