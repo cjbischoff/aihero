@@ -69,9 +69,9 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 - SUPPORT-02: Create strategy comparison framework (chunk counts, sizes, distribution)
 - SUPPORT-04: Provide helper functions for manual inspection and analysis of chunk quality
 
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 - [x] 08-01-PLAN.md -- Implement paragraph and section chunking functions
-- [ ] 08-02-PLAN.md -- Implement comparison framework and quality inspection helpers
+- [x] 08-02-PLAN.md -- Implement comparison framework and quality inspection helpers
 
 **Success Criteria:**
 1. User can apply paragraph-based chunking that respects natural text boundaries
@@ -79,7 +79,7 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 3. User can compare chunk counts, sizes, and distributions across all three strategies
 4. User can manually inspect chunk quality to verify no code blocks or tables are split mid-content
 
-**Status:** Planning complete
+**Status:** Complete
 
 ---
 
@@ -89,12 +89,15 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 **Requirements:** 1
 - CHUNK-04: Implement LLM-based intelligent chunking using OpenAI or Groq
 
+**Plans:** 1 plan
+- [ ] 09-01-PLAN.md -- Implement LLM chunking with provider switching, cost tracking, and comparison
+
 **Success Criteria:**
 1. User can apply LLM-based semantic chunking using OpenAI or Groq API
 2. User can view cost analysis showing actual API costs vs estimated costs
 3. User can compare LLM chunking output against simpler strategies
 
-**Status:** Not started
+**Status:** Planning complete
 
 ---
 
@@ -167,14 +170,15 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 |-------|-----------|----------------|-------------|------------|
 | 1-6   | v1.0      | 7/7            | Complete    | 2026-03-30 |
 | 7     | v1.1      | 2/2            | Complete    | 2026-03-31 |
-| 8     | v1.1      | 0/2            | Planning    | --         |
-| 9-12  | v1.1      | 0/?            | Not started | --         |
+| 8     | v1.1      | 2/2            | Complete    | 2026-03-31 |
+| 9     | v1.1      | 0/1            | Planning    | --         |
+| 10-12 | v1.1      | 0/?            | Not started | --         |
 
 ---
 
 ## Next Steps
 
-Run `/gsd:execute-phase 8` to begin Phase 8 (Semantic Chunking).
+Run `/gsd:execute-phase 9` to begin Phase 9 (LLM Chunking).
 
 ---
 
