@@ -138,8 +138,8 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 - PROJ-07: Document analysis of which chunking strategy works best for OWASP structure and why
 - PROJ-08: Include engineering standards (type hints, docstrings) in chunking functions
 
-**Plans:** 1 plan
-- [ ] 11-01-PLAN.md -- Complete hybrid chunking implementation and structured OWASP analysis
+**Plans:** 1/1 plans complete
+- [x] 11-01-PLAN.md -- Complete hybrid chunking implementation and structured OWASP analysis
 
 **Success Criteria:**
 1. User can open `project/owasp_homework.ipynb` and find Day 2 section after Day 1
@@ -179,7 +179,7 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 | 8     | v1.1      | 2/2            | Complete    | 2026-03-31 |
 | 9     | v1.1      | 1/1            | Complete    | 2026-04-01 |
 | 10    | v1.1      | 1/1            | Complete    | 2026-04-01 |
-| 11    | v1.1      | 0/1            | Planned     | --         |
+| 11    | v1.1      | 1/1 | Complete   | 2026-04-01 |
 | 12    | v1.1      | 0/?            | Not started | --         |
 
 ---
