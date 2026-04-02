@@ -3,6 +3,8 @@
 ## Milestones
 
 - **v1.0 Day 1 - GitHub Data Ingestion** -- Phases 1-6 (shipped 2026-03-30)
+- **v1.1 Day 2 - Document Chunking** -- Phases 7-12 (shipped 2026-04-01)
+- **v2.0 Day 3 - Add Search** -- Phases 13-18 (current)
 
 ## Phases
 
@@ -24,152 +26,154 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 
 </details>
 
----
+<details>
+<summary>v1.1 Day 2 - Document Chunking (Phases 7-12) -- SHIPPED 2026-04-01</summary>
 
-## v1.1 Day 2 - Document Chunking (In Progress)
+### Completed Phases
 
-**Goal:** Implement and compare multiple chunking strategies to prepare large documents for RAG systems.
+- [x] Phase 7: Foundation & Dependencies (2/2 plans) -- completed 2026-03-31
+- [x] Phase 8: Semantic Chunking (2/2 plans) -- completed 2026-03-31
+- [x] Phase 9: LLM Chunking (1/1 plans) -- completed 2026-04-01
+- [x] Phase 10: Course Notebook (1/1 plans) -- completed 2026-04-01
+- [x] Phase 11: Project Homework (1/1 plans) -- completed 2026-04-01
+- [x] Phase 12: Documentation & Synthesis (1/1 plans) -- completed 2026-04-01
 
-**Phases:** 6 (Phases 7-12)
+**Total:** 8 plans completed
 
-### Phase 7: Foundation & Dependencies
-**Goal:** Establish baseline chunking with metadata preservation
+See [v1.1 milestone archive](milestones/1.1-ROADMAP.md) for full details.
 
-**Requirements:** 8
-- DEP-01: Add tiktoken to project dependencies
-- DEP-02: Add openai SDK to optional dependencies
-- DEP-03: Add groq SDK as alternative to OpenAI
-- DEP-04: Update pyproject.toml with new dependencies
-- CHUNK-01: Implement sliding window chunking (2000 chars, 1000 overlap)
-- CHUNK-05: All strategies preserve metadata
-- SUPPORT-01: Integrate tiktoken for accurate token counting
-- SUPPORT-03: Implement metadata preservation across all chunking strategies
-
-**Plans:** 2/2 plans complete
-- [x] 07-01-PLAN.md -- Install Day 2 dependencies (tiktoken, openai, groq) in both environments
-- [x] 07-02-PLAN.md -- Implement sliding window chunking and token counting in both notebooks
-
-**Success Criteria:**
-1. User can install all required dependencies (tiktoken, openai, groq) via uv
-2. User can apply sliding window chunking with configurable size and overlap
-3. User can verify that all Day 1 metadata (filename, frontmatter) is preserved in chunks
-4. User can inspect chunk structure with `chunk_id`, `chunk_index`, `total_chunks`, `chunk_method` fields
-5. User can count tokens accurately using tiktoken for target model encoding
-
-**Status:** Complete
+</details>
 
 ---
 
-### Phase 8: Semantic Chunking
-**Goal:** Structure-aware chunking respecting language and markdown boundaries
+## v2.0 Day 3 - Add Search (Current)
 
-**Requirements:** 4
-- CHUNK-02: Implement paragraph-based chunking using regex (`\n\s*\n` pattern)
-- CHUNK-03: Implement section-based chunking by markdown headers (level 2)
-- SUPPORT-02: Create strategy comparison framework (chunk counts, sizes, distribution)
-- SUPPORT-04: Provide helper functions for manual inspection and analysis of chunk quality
+**Goal:** Build a working search system combining lexical and semantic approaches to enable efficient information retrieval from prepared documents.
 
-**Plans:** 2/2 plans complete
-- [x] 08-01-PLAN.md -- Implement paragraph and section chunking functions
-- [x] 08-02-PLAN.md -- Implement comparison framework and quality inspection helpers
+**Phases:** 6 (Phases 13-18)
 
-**Success Criteria:**
-1. User can apply paragraph-based chunking that respects natural text boundaries
-2. User can apply section-based chunking that preserves markdown header hierarchy
-3. User can compare chunk counts, sizes, and distributions across all three strategies
-4. User can manually inspect chunk quality to verify no code blocks or tables are split mid-content
-
-**Status:** Complete
+- [ ] **Phase 13: Dependencies & Setup** - Install search libraries and establish embedding cache infrastructure
+- [ ] **Phase 14: Text Search Foundation** - Implement lexical search with TF-IDF scoring and field boosting
+- [ ] **Phase 15: Vector Search Integration** - Add semantic search with embeddings and cosine similarity
+- [ ] **Phase 16: Hybrid Search via RRF** - Combine text and vector results using Reciprocal Rank Fusion
+- [ ] **Phase 17: OWASP Application & Analysis** - Apply all search methods to OWASP corpus with domain validation
+- [ ] **Phase 18: Documentation & Code Quality** - Add type hints, docstrings, and learnings documentation
 
 ---
 
-### Phase 9: LLM Chunking
-**Goal:** Intelligent boundary detection with cost analysis
+## Phase Details
 
-**Requirements:** 1
-- CHUNK-04: Implement LLM-based intelligent chunking using OpenAI or Groq
+### Phase 13: Dependencies & Setup
+**Goal:** Install search libraries and establish embedding cache infrastructure
 
-**Plans:** 1/1 plans complete
-- [x] 09-01-PLAN.md -- Implement LLM chunking with provider switching, cost tracking, and comparison
+**Depends on:** Phase 12 (Day 2 chunking complete)
 
-**Success Criteria:**
-1. User can apply LLM-based semantic chunking using OpenAI or Groq API
-2. User can view cost analysis showing actual API costs vs estimated costs
-3. User can compare LLM chunking output against simpler strategies
+**Requirements:** DEP-04, DEP-05, DEP-06, DEP-07
 
-**Status:** Complete
-
----
-
-### Phase 10: Course Notebook
-**Goal:** Complete Day 2 learning notebook with all strategies
-
-**Requirements:** 6
-- COURSE-01: Create new `course/day2.ipynb` notebook (follows day1.ipynb pattern)
-- COURSE-02: Implement all four chunking strategies in notebook cells
-- COURSE-03: Test all strategies on Evidently docs from Day 1 ingestion
-- COURSE-04: Display sample outputs showing chunk structure for each strategy
-- COURSE-05: Include inline explanations of token counting, overlap rationale, and semantic boundaries
-- COURSE-06: Document learnings about when to use each chunking approach
-
-**Plans:** 1/1 plans complete
-- [x] 10-01-PLAN.md -- Add educational polish (learnings summary, Day 1 import, dividers, comments) and validate execution
-
-**Success Criteria:**
-1. User can open `course/day2.ipynb` and see all four chunking strategies implemented
-2. User can run all strategies on Evidently docs from Day 1 with visible sample outputs
-3. User can read inline explanations of token counting, overlap rationale, and semantic boundaries
-4. User can review documented learnings about when to use each chunking approach
-
-**Status:** Complete
-
----
-
-### Phase 11: Project Homework
-**Goal:** Apply chunking to OWASP docs with analysis
-
-**Requirements:** 8
-- PROJ-01: Extend existing `project/owasp_homework.ipynb` with Day 2 section
-- PROJ-02: Add section header `## Day 2: Chunking` to delineate new work
-- PROJ-03: Apply simple sliding window chunking to OWASP docs from Day 1
-- PROJ-04: Experiment with paragraph chunking + sliding window combination
-- PROJ-05: Apply section-based chunking using markdown headers
-- PROJ-06: Manually inspect chunk results for each strategy
-- PROJ-07: Document analysis of which chunking strategy works best for OWASP structure and why
-- PROJ-08: Include engineering standards (type hints, docstrings) in chunking functions
-
-**Plans:** 1/1 plans complete
-- [x] 11-01-PLAN.md -- Complete hybrid chunking implementation and structured OWASP analysis
-
-**Success Criteria:**
-1. User can open `project/owasp_homework.ipynb` and find Day 2 section after Day 1
-2. User can run sliding window chunking on OWASP docs
-3. User can experiment with paragraph chunking combined with sliding window
-4. User can apply section-based chunking using OWASP markdown headers
-5. User can review manual inspection results for each strategy
-6. User can read documented analysis of which strategy works best for OWASP structure and why
-
-**Status:** Complete
-
----
-
-### Phase 12: Documentation & Synthesis
-**Goal:** Document learnings and chunking tradeoffs
-
-**Requirements:** 3
-- DOC-01: Document course material learnings in `course/day2.ipynb`
-- DOC-02: Document OWASP-specific findings in `project/owasp_homework.ipynb`
-- DOC-03: Include code comments explaining chunking strategy tradeoffs
+**Success Criteria** (what must be TRUE):
+1. User can import minsearch library for text and vector search operations
+2. User can import sentence-transformers with all-MiniLM-L6-v2 model (384-dim embeddings)
+3. User can verify torch backend installed for sentence-transformers (CPU-only)
+4. User can see updated pyproject.toml with all new dependencies pinned to exact versions
 
 **Plans:** 1 plan
-- [ ] 12-01-PLAN.md -- Verify documentation requirements completed in prior phases, update traceability
 
-**Success Criteria:**
-1. User can read Day 2 course material learnings documented in `course/day2.ipynb`
-2. User can read OWASP-specific findings documented in `project/owasp_homework.ipynb`
-3. User can find code comments explaining chunking strategy tradeoffs throughout implementation
+Plans:
+- [ ] 13-01-PLAN.md - Install minsearch, sentence-transformers, torch and regenerate requirements.lock
 
-**Status:** Planned
+---
+
+### Phase 14: Text Search Foundation
+**Goal:** Implement lexical search with TF-IDF scoring and field boosting
+
+**Depends on:** Phase 13
+
+**Requirements:** SEARCH-01, SEARCH-02, SEARCH-03, SEARCH-04, SEARCH-05, ORG-01, ORG-02, ORG-03, COURSE-07, COURSE-08
+
+**Success Criteria** (what must be TRUE):
+1. User can index chunked documents with minsearch.Index using TF-IDF scoring
+2. User can search with configurable field boosting (title, description, content)
+3. User can retrieve top-K results with relevance scores and full metadata
+4. User can run text search on DataTalksClub FAQ with example queries showing exact matching
+5. User can execute course/day3.ipynb from fresh kernel showing text search examples
+
+**Plans:** TBD
+
+**UI hint:** yes
+
+---
+
+### Phase 15: Vector Search Integration
+**Goal:** Add semantic search with embeddings and cosine similarity
+
+**Depends on:** Phase 14
+
+**Requirements:** SEARCH-06, SEARCH-07, SEARCH-08, SEARCH-09, SEARCH-10, SEARCH-11, COURSE-09
+
+**Success Criteria** (what must be TRUE):
+1. User can generate embeddings for chunked documents with progress tracking (tqdm)
+2. User can load cached embeddings from disk (.npy format) to avoid recomputation
+3. User can create minsearch.VectorSearch index with pre-computed embeddings
+4. User can search semantically with cosine similarity returning top-K results with scores
+5. User can run vector search on Evidently docs with semantic queries showing conceptual matching
+
+**Plans:** TBD
+
+**UI hint:** yes
+
+---
+
+### Phase 16: Hybrid Search via RRF
+**Goal:** Combine text and vector results using Reciprocal Rank Fusion
+
+**Depends on:** Phase 15
+
+**Requirements:** SEARCH-12, SEARCH-13, SEARCH-14, SEARCH-15, ORG-04, COURSE-10, COURSE-11, COURSE-12
+
+**Success Criteria** (what must be TRUE):
+1. User can run hybrid search combining text and vector results with RRF (k=60)
+2. User can see deduplicated results by chunk_id with unified scoring
+3. User can compare all three approaches side-by-side on same queries
+4. User can review documented search strategy selection framework (when to use each approach)
+
+**Plans:** TBD
+
+---
+
+### Phase 17: OWASP Application & Analysis
+**Goal:** Apply all search methods to OWASP corpus with domain validation
+
+**Depends on:** Phase 16
+
+**Requirements:** HOMEWORK-01, HOMEWORK-02, HOMEWORK-03, HOMEWORK-04, HOMEWORK-05, HOMEWORK-06, HOMEWORK-07, HOMEWORK-08, HOMEWORK-09, HOMEWORK-10, HOMEWORK-11
+
+**Success Criteria** (what must be TRUE):
+1. User can index all 542 OWASP documents with text, vector, and hybrid search
+2. User can test acronym handling (LLM01-10, CVE-IDs) across all three search methods
+3. User can manually inspect search results for each strategy (relevance, precision intuition)
+4. User can review documented analysis of which approach works best for security documentation and why
+5. User can see engineering standards applied (type hints, docstrings) to all search functions
+
+**Plans:** TBD
+
+**UI hint:** yes
+
+---
+
+### Phase 18: Documentation & Code Quality
+**Goal:** Add type hints, docstrings, and learnings documentation
+
+**Depends on:** Phase 17
+
+**Requirements:** (Addresses engineering standards across all prior work)
+
+**Success Criteria** (what must be TRUE):
+1. User can see Google-style docstrings on all search functions (purpose, Args, Returns)
+2. User can find type hints on all function signatures in both notebooks
+3. User can read code comments explaining tradeoffs and key decisions
+4. User can execute notebooks from fresh kernel with clean, reproducible outputs
+
+**Plans:** TBD
 
 ---
 
@@ -178,18 +182,19 @@ See [v1.0 milestone archive](milestones/1.0-ROADMAP.md) for full details.
 | Phase | Milestone | Plans Complete | Status      | Completed  |
 |-------|-----------|----------------|-------------|------------|
 | 1-6   | v1.0      | 7/7            | Complete    | 2026-03-30 |
-| 7     | v1.1      | 2/2            | Complete    | 2026-03-31 |
-| 8     | v1.1      | 2/2            | Complete    | 2026-03-31 |
-| 9     | v1.1      | 1/1            | Complete    | 2026-04-01 |
-| 10    | v1.1      | 1/1            | Complete    | 2026-04-01 |
-| 11    | v1.1      | 1/1            | Complete    | 2026-04-01 |
-| 12    | v1.1      | 0/1            | Planned     | --         |
+| 7-12  | v1.1      | 8/8            | Complete    | 2026-04-01 |
+| 13    | v2.0      | 0/1            | Planned     | --         |
+| 14    | v2.0      | 0/0            | Not started | --         |
+| 15    | v2.0      | 0/0            | Not started | --         |
+| 16    | v2.0      | 0/0            | Not started | --         |
+| 17    | v2.0      | 0/0            | Not started | --         |
+| 18    | v2.0      | 0/0            | Not started | --         |
 
 ---
 
 ## Next Steps
 
-Run `/gsd:execute-phase 12` to begin Phase 12 execution.
+Run `/gsd:execute-phase 13` to execute Phase 13 plan.
 
 ---
 
