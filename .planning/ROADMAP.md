@@ -53,7 +53,7 @@ See [v1.1 milestone archive](milestones/1.1-ROADMAP.md) for full details.
 **Phases:** 6 (Phases 13-18)
 
 - [x] **Phase 13: Dependencies & Setup** - Install search libraries and establish embedding cache infrastructure (completed 2026-04-02)
-- [ ] **Phase 14: Text Search Foundation** - Implement lexical search with TF-IDF scoring and field boosting
+- [x] **Phase 14: Text Search Foundation** - Implement lexical search with TF-IDF scoring and field boosting (completed 2026-04-02)
 - [ ] **Phase 15: Vector Search Integration** - Add semantic search with embeddings and cosine similarity
 - [ ] **Phase 16: Hybrid Search via RRF** - Combine text and vector results using Reciprocal Rank Fusion
 - [ ] **Phase 17: OWASP Application & Analysis** - Apply all search methods to OWASP corpus with domain validation
@@ -97,10 +97,10 @@ Plans:
 4. User can run text search on DataTalksClub FAQ with example queries showing exact matching
 5. User can execute course/day3.ipynb from fresh kernel showing text search examples
 
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
-- [ ] 14-01-PLAN.md — Create day2.py for imports and day3.ipynb with text search
+- [x] 14-01-PLAN.md — Create day2.py for imports and day3.ipynb with text search
 
 **UI hint:** yes
 
@@ -187,7 +187,7 @@ Plans:
 | 1-6   | v1.0      | 7/7            | Complete    | 2026-03-30 |
 | 7-12  | v1.1      | 8/8            | Complete    | 2026-04-01 |
 | 13    | v2.0      | 1/1 | Complete   | 2026-04-02 |
-| 14    | v2.0      | 0/1            | Planned | --         |
+| 14    | v2.0      | 1/1 | Complete   | 2026-04-02 |
 | 15    | v2.0      | 0/0            | Not started | --         |
 | 16    | v2.0      | 0/0            | Not started | --         |
 | 17    | v2.0      | 0/0            | Not started | --         |

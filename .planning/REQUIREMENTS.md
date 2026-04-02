@@ -18,11 +18,11 @@
 
 ### Text Search (Lexical)
 
-- [ ] **SEARCH-01**: Create minsearch.Index for text/lexical search on chunked documents
-- [ ] **SEARCH-02**: Index text fields (chunk content, title, description, filename) with TF-IDF scoring
-- [ ] **SEARCH-03**: Implement text_search() function with relevance scoring and configurable top-K retrieval
-- [ ] **SEARCH-04**: Test text search on DataTalksClub FAQ (data engineering subset) with sample queries
-- [ ] **SEARCH-05**: Test text search on Evidently docs from Day 1 with sample queries
+- [x] **SEARCH-01**: Create minsearch.Index for text/lexical search on chunked documents
+- [x] **SEARCH-02**: Index text fields (chunk content, title, description, filename) with TF-IDF scoring
+- [x] **SEARCH-03**: Implement text_search() function with relevance scoring and configurable top-K retrieval
+- [x] **SEARCH-04**: Test text search on DataTalksClub FAQ (data engineering subset) with sample queries
+- [x] **SEARCH-05**: Test text search on Evidently docs from Day 1 with sample queries
 
 ### Vector Search (Semantic)
 
@@ -42,15 +42,15 @@
 
 ### Code Organization
 
-- [ ] **ORG-01**: Structure search functions for agent integration (text_search, vector_search, hybrid_search with consistent signatures)
-- [ ] **ORG-02**: Establish unified result format with metadata (filename, title, content, score, chunk_id)
-- [ ] **ORG-03**: Ensure reproducible execution from fresh kernel (import Day 1/Day 2 functions as needed)
+- [x] **ORG-01**: Structure search functions for agent integration (text_search, vector_search, hybrid_search with consistent signatures)
+- [x] **ORG-02**: Establish unified result format with metadata (filename, title, content, score, chunk_id)
+- [x] **ORG-03**: Ensure reproducible execution from fresh kernel (import Day 1/Day 2 functions as needed)
 - [ ] **ORG-04**: Document search strategy selection (exact keywords → text, concepts → vector, best results → hybrid)
 
 ### Course Implementation (course/)
 
-- [ ] **COURSE-07**: Create course/day3.ipynb following established course notebook pattern
-- [ ] **COURSE-08**: Implement text search on DataTalksClub FAQ with example queries demonstrating exact matching
+- [x] **COURSE-07**: Create course/day3.ipynb following established course notebook pattern
+- [x] **COURSE-08**: Implement text search on DataTalksClub FAQ with example queries demonstrating exact matching
 - [ ] **COURSE-09**: Implement vector search on Evidently docs with semantic queries showing conceptual matching
 - [ ] **COURSE-10**: Implement hybrid search combining both approaches with RRF fusion
 - [ ] **COURSE-11**: Include comparison examples showing when each approach works best (e.g., acronyms vs paraphrases)
@@ -82,16 +82,16 @@ Requirements mapped to roadmap phases:
 | DEP-05 | Phase 13 | Complete |
 | DEP-06 | Phase 13 | Complete |
 | DEP-07 | Phase 13 | Complete |
-| SEARCH-01 | Phase 14 | Pending |
-| SEARCH-02 | Phase 14 | Pending |
-| SEARCH-03 | Phase 14 | Pending |
-| SEARCH-04 | Phase 14 | Pending |
-| SEARCH-05 | Phase 14 | Pending |
-| ORG-01 | Phase 14 | Pending |
-| ORG-02 | Phase 14 | Pending |
-| ORG-03 | Phase 14 | Pending |
-| COURSE-07 | Phase 14 | Pending |
-| COURSE-08 | Phase 14 | Pending |
+| SEARCH-01 | Phase 14 | Complete |
+| SEARCH-02 | Phase 14 | Complete |
+| SEARCH-03 | Phase 14 | Complete |
+| SEARCH-04 | Phase 14 | Complete |
+| SEARCH-05 | Phase 14 | Complete |
+| ORG-01 | Phase 14 | Complete |
+| ORG-02 | Phase 14 | Complete |
+| ORG-03 | Phase 14 | Complete |
+| COURSE-07 | Phase 14 | Complete |
+| COURSE-08 | Phase 14 | Complete |
 | SEARCH-06 | Phase 15 | Pending |
 | SEARCH-07 | Phase 15 | Pending |
 | SEARCH-08 | Phase 15 | Pending |
