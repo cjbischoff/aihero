@@ -1,147 +1,174 @@
-# Requirements: AI Hero - Day 2
+# Requirements: v2.0 Day 3 - Add Search
 
-**Defined:** 2026-03-30
-**Core Value:** Implement and compare multiple chunking strategies to prepare large documents for RAG systems.
+**Milestone Goal:** Build a working search system combining lexical and semantic approaches to enable efficient information retrieval from prepared documents.
 
-## v1.1 Requirements
+**Defined:** 2026-04-01
+**Core Value:** Implement text/lexical, vector/semantic, and hybrid search to demonstrate how modern RAG systems find relevant information.
 
-Requirements for Day 2 completion. Each maps to roadmap phases.
+---
 
-### Chunking Strategies
-
-- [x] **CHUNK-01**: Implement sliding window chunking with configurable size and overlap (default 2000 chars, 1000 overlap)
-- [x] **CHUNK-02**: Implement paragraph-based chunking using regex (`\n\s*\n` pattern)
-- [x] **CHUNK-03**: Implement section-based chunking by markdown headers (level 2)
-- [x] **CHUNK-04**: Implement LLM-based intelligent chunking using OpenAI or Groq
-- [x] **CHUNK-05**: All strategies preserve metadata (filename, frontmatter, headers)
-
-### Supporting Features
-
-- [x] **SUPPORT-01**: Integrate tiktoken for accurate token counting
-- [x] **SUPPORT-02**: Create strategy comparison framework (chunk counts, sizes, distribution)
-- [x] **SUPPORT-03**: Implement metadata preservation across all chunking strategies
-- [x] **SUPPORT-04**: Provide helper functions for manual inspection and analysis of chunk quality
-
-### Course Notebook (course/day2.ipynb)
-
-- [x] **COURSE-01**: Create new `course/day2.ipynb` notebook (follows day1.ipynb pattern)
-- [x] **COURSE-02**: Implement all four chunking strategies in notebook cells
-- [x] **COURSE-03**: Test all strategies on Evidently docs from Day 1 ingestion
-- [x] **COURSE-04**: Display sample outputs showing chunk structure for each strategy
-- [x] **COURSE-05**: Include inline explanations of token counting, overlap rationale, and semantic boundaries
-- [x] **COURSE-06**: Document learnings about when to use each chunking approach
-
-### Project Homework (project/owasp_homework.ipynb)
-
-- [x] **PROJ-01**: Extend existing `project/owasp_homework.ipynb` with Day 2 section *(pre-existing)*
-- [x] **PROJ-02**: Add section header `## Day 2: Chunking` to delineate new work *(pre-existing)*
-- [x] **PROJ-03**: Apply simple sliding window chunking to OWASP docs from Day 1 *(pre-existing)*
-- [x] **PROJ-04**: Experiment with paragraph chunking + sliding window combination *(Phase 11)*
-- [x] **PROJ-05**: Apply section-based chunking using markdown headers *(pre-existing)*
-- [x] **PROJ-06**: Manually inspect chunk results for each strategy *(pre-existing)*
-- [x] **PROJ-07**: Document analysis of which chunking strategy works best for OWASP structure and why *(Phase 11)*
-- [x] **PROJ-08**: Include engineering standards (type hints, docstrings) in chunking functions *(pre-existing)*
+## v2.0 Requirements
 
 ### Dependencies
 
-- [x] **DEP-01**: Add tiktoken to project dependencies
-- [x] **DEP-02**: Add openai SDK to optional dependencies (for LLM chunking demo)
-- [x] **DEP-03**: Add groq SDK as alternative to OpenAI (optional, free tier available)
-- [x] **DEP-04**: Update pyproject.toml with new dependencies
+- [x] **DEP-04**: Add minsearch library to project dependencies (course-specified for text + vector search)
+- [x] **DEP-05**: Add sentence-transformers library with all-MiniLM-L6-v2 model (384-dim embeddings)
+- [x] **DEP-06**: Add torch as PyTorch backend for sentence-transformers (CPU-only sufficient)
+- [x] **DEP-07**: Update pyproject.toml and regenerate requirements.lock with new dependencies
 
-### Documentation
+### Text Search (Lexical)
 
-- [ ] **DOC-01**: Document course material learnings in `course/day2.ipynb`
-- [ ] **DOC-02**: Document OWASP-specific findings in `project/owasp_homework.ipynb`
-- [ ] **DOC-03**: Include code comments explaining chunking strategy tradeoffs
+- [ ] **SEARCH-01**: Create minsearch.Index for text/lexical search on chunked documents
+- [ ] **SEARCH-02**: Index text fields (chunk content, title, description, filename) with TF-IDF scoring
+- [ ] **SEARCH-03**: Implement text_search() function with relevance scoring and configurable top-K retrieval
+- [ ] **SEARCH-04**: Test text search on DataTalksClub FAQ (data engineering subset) with sample queries
+- [ ] **SEARCH-05**: Test text search on Evidently docs from Day 1 with sample queries
 
-## v2 Requirements
+### Vector Search (Semantic)
 
-Deferred to future course days (Day 3+).
+- [ ] **SEARCH-06**: Load sentence-transformers with all-MiniLM-L6-v2 model (384-dim embeddings, CPU-optimized)
+- [ ] **SEARCH-07**: Generate embeddings for chunked documents with progress tracking (tqdm for visibility)
+- [ ] **SEARCH-08**: Cache embeddings to disk as numpy arrays (.npy format) to avoid recomputation (1-2 min → <1 sec)
+- [ ] **SEARCH-09**: Create minsearch.VectorSearch index with pre-computed embeddings
+- [ ] **SEARCH-10**: Implement vector_search() function with cosine similarity and configurable top-K retrieval
+- [ ] **SEARCH-11**: Test vector search on same course datasets (FAQ + Evidently) with semantic queries
 
-### Evaluation & Testing
+### Hybrid Search
 
-- **EVAL-01**: Create labeled test set for retrieval quality measurement
-- **EVAL-02**: Implement retrieval metrics (MRR, NDCG@k, Recall@k)
-- **EVAL-03**: Automated chunk quality scoring
+- [ ] **SEARCH-12**: Implement hybrid_search() function combining text and vector results with deduplication
+- [ ] **SEARCH-13**: Use Reciprocal Rank Fusion (RRF) with k=60 for parameter-free score combination
+- [ ] **SEARCH-14**: Implement deduplication by chunk_id or filename to avoid duplicate results
+- [ ] **SEARCH-15**: Compare all three approaches (text vs vector vs hybrid) with side-by-side examples
 
-### Advanced Chunking
+### Code Organization
 
-- **ADV-01**: Semantic chunking with embeddings (2026 research shows lower accuracy than simple methods)
-- **ADV-02**: Hybrid retrieval preparation (dense + sparse vectors)
-- **ADV-03**: Agentic chunking (experimental, not production-ready)
+- [ ] **ORG-01**: Structure search functions for agent integration (text_search, vector_search, hybrid_search with consistent signatures)
+- [ ] **ORG-02**: Establish unified result format with metadata (filename, title, content, score, chunk_id)
+- [ ] **ORG-03**: Ensure reproducible execution from fresh kernel (import Day 1/Day 2 functions as needed)
+- [ ] **ORG-04**: Document search strategy selection (exact keywords → text, concepts → vector, best results → hybrid)
 
-### Embeddings & Indexing (Day 3+)
+### Course Implementation (course/)
 
-- **EMBED-01**: Generate embeddings for chunks
-- **INDEX-01**: Vector database integration
-- **SEARCH-01**: Semantic search implementation
+- [ ] **COURSE-07**: Create course/day3.ipynb following established course notebook pattern
+- [ ] **COURSE-08**: Implement text search on DataTalksClub FAQ with example queries demonstrating exact matching
+- [ ] **COURSE-09**: Implement vector search on Evidently docs with semantic queries showing conceptual matching
+- [ ] **COURSE-10**: Implement hybrid search combining both approaches with RRF fusion
+- [ ] **COURSE-11**: Include comparison examples showing when each approach works best (e.g., acronyms vs paraphrases)
+- [ ] **COURSE-12**: Document search strategy selection decision framework with tradeoffs table
 
-## Out of Scope
+### OWASP Homework (project/)
 
-Explicitly excluded from Day 2. Documented to prevent scope creep.
+- [ ] **HOMEWORK-01**: Extend project/owasp_homework.ipynb with Day 3 section following Day 1/Day 2 pattern
+- [ ] **HOMEWORK-02**: Add section header `## Day 3: Search` to clearly delineate new work
+- [ ] **HOMEWORK-03**: Index OWASP chunked documents (from Day 2) with text search (minsearch.Index)
+- [ ] **HOMEWORK-04**: Generate and cache embeddings for OWASP docs with vector search (sentence-transformers)
+- [ ] **HOMEWORK-05**: Implement hybrid search on OWASP corpus with RRF fusion (k=60)
+- [ ] **HOMEWORK-06**: Experiment with all three approaches on OWASP-specific queries (security terminology)
+- [ ] **HOMEWORK-07**: Test acronym handling (LLM01-10, CVE-IDs) across all search methods to understand limitations
+- [ ] **HOMEWORK-08**: Manually inspect search results for each strategy (relevance, precision, recall intuition)
+- [ ] **HOMEWORK-09**: Document analysis: which approach works best for security documentation structure and why
+- [ ] **HOMEWORK-10**: Address technical terminology challenges (acronyms, codes, precise terms vs conceptual queries)
+- [ ] **HOMEWORK-11**: Apply engineering standards (type hints, docstrings per PROJ-08 pattern) to search functions
 
-| Feature | Reason |
-|---------|--------|
-| Vector embeddings | Day 3 topic - requires chunking to be complete first |
-| Vector database setup | Day 3 topic - search and indexing |
-| Retrieval quality metrics | Day 3+ topic - requires embedding and search first |
-| Production error handling | Course focuses on learning, not production quality |
-| Semantic chunking frameworks (LangChain) | Research shows overkill (39MB+) for course learning; custom 20-line implementations preferred |
-| NLP frameworks (NLTK, spaCy) | Unnecessary overhead (3.8MB-500MB+) for simple chunking; regex and tiktoken sufficient |
-| Comprehensive testing | Course-quality code, not production-grade |
-| Cost optimization beyond basics | Course demonstrates concepts; production optimization deferred |
-| Deduplication of overlapping chunks | Day 3 topic before embedding (prevents storage bloat) |
-| Test set creation for evaluation | Day 3+ topic when retrieval quality becomes measurable |
+---
 
 ## Traceability
 
-Which phases cover which requirements. Updated during roadmap creation.
+Requirements mapped to roadmap phases:
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| **Chunking Strategies** | | |
-| CHUNK-01 | 7 | Complete |
-| CHUNK-02 | 8 | Complete |
-| CHUNK-03 | 8 | Complete |
-| CHUNK-04 | 9 | Complete |
-| CHUNK-05 | 7 | Complete |
-| **Supporting Features** | | |
-| SUPPORT-01 | 7 | Complete |
-| SUPPORT-02 | 8 | Complete |
-| SUPPORT-03 | 7 | Complete |
-| SUPPORT-04 | 8 | Complete |
-| **Course Notebook** | | |
-| COURSE-01 | 10 | Complete |
-| COURSE-02 | 10 | Complete |
-| COURSE-03 | 10 | Complete |
-| COURSE-04 | 10 | Complete |
-| COURSE-05 | 10 | Complete |
-| COURSE-06 | 10 | Complete |
-| **Project Homework** | | |
-| PROJ-01 | 11 | Complete (pre-existing) |
-| PROJ-02 | 11 | Complete (pre-existing) |
-| PROJ-03 | 11 | Complete (pre-existing) |
-| PROJ-04 | 11 | Complete (Phase 11) |
-| PROJ-05 | 11 | Complete (pre-existing) |
-| PROJ-06 | 11 | Complete (pre-existing) |
-| PROJ-07 | 11 | Complete (Phase 11) |
-| PROJ-08 | 11 | Complete (pre-existing) |
-| **Dependencies** | | |
-| DEP-01 | 7 | Not started |
-| DEP-02 | 7 | Not started |
-| DEP-03 | 7 | Not started |
-| DEP-04 | 7 | Not started |
-| **Documentation** | | |
-| DOC-01 | 12 | Not started |
-| DOC-02 | 12 | Not started |
-| DOC-03 | 12 | Not started |
+| DEP-04 | Phase 13 | Complete |
+| DEP-05 | Phase 13 | Complete |
+| DEP-06 | Phase 13 | Complete |
+| DEP-07 | Phase 13 | Complete |
+| SEARCH-01 | Phase 14 | Pending |
+| SEARCH-02 | Phase 14 | Pending |
+| SEARCH-03 | Phase 14 | Pending |
+| SEARCH-04 | Phase 14 | Pending |
+| SEARCH-05 | Phase 14 | Pending |
+| ORG-01 | Phase 14 | Pending |
+| ORG-02 | Phase 14 | Pending |
+| ORG-03 | Phase 14 | Pending |
+| COURSE-07 | Phase 14 | Pending |
+| COURSE-08 | Phase 14 | Pending |
+| SEARCH-06 | Phase 15 | Pending |
+| SEARCH-07 | Phase 15 | Pending |
+| SEARCH-08 | Phase 15 | Pending |
+| SEARCH-09 | Phase 15 | Pending |
+| SEARCH-10 | Phase 15 | Pending |
+| SEARCH-11 | Phase 15 | Pending |
+| COURSE-09 | Phase 15 | Pending |
+| SEARCH-12 | Phase 16 | Pending |
+| SEARCH-13 | Phase 16 | Pending |
+| SEARCH-14 | Phase 16 | Pending |
+| SEARCH-15 | Phase 16 | Pending |
+| ORG-04 | Phase 16 | Pending |
+| COURSE-10 | Phase 16 | Pending |
+| COURSE-11 | Phase 16 | Pending |
+| COURSE-12 | Phase 16 | Pending |
+| HOMEWORK-01 | Phase 17 | Pending |
+| HOMEWORK-02 | Phase 17 | Pending |
+| HOMEWORK-03 | Phase 17 | Pending |
+| HOMEWORK-04 | Phase 17 | Pending |
+| HOMEWORK-05 | Phase 17 | Pending |
+| HOMEWORK-06 | Phase 17 | Pending |
+| HOMEWORK-07 | Phase 17 | Pending |
+| HOMEWORK-08 | Phase 17 | Pending |
+| HOMEWORK-09 | Phase 17 | Pending |
+| HOMEWORK-10 | Phase 17 | Pending |
+| HOMEWORK-11 | Phase 17 | Pending |
 
-**Coverage:**
-- v1.1 requirements: 27 total
-- Mapped to phases: 27 (complete)
-- Unmapped: 0
+**Coverage:** 42/42 requirements mapped (100%)
 
 ---
-*Requirements defined: 2026-03-30*
-*Last updated: 2026-03-30 after research completion*
+
+## Future Requirements (Deferred to Day 4-7)
+
+### Advanced Search Features
+- **RERANK-01**: Cross-encoder reranking for +30-50% accuracy improvement (adds 120ms latency)
+- **FUSION-02**: Query-aware adaptive fusion (different weights by query type, requires classification)
+- **EMBED-02**: Fine-tuned embedding models for domain-specific terminology (requires labeled data)
+
+### Scale & Performance
+- **SCALE-01**: Vector databases (Chroma, FAISS, Qdrant) for >10K chunk corpora
+- **SCALE-02**: Real-time indexing for dynamic document collections
+- **PERF-01**: GPU acceleration for embedding generation at scale
+
+### Agent Integration
+- **AGENT-01**: Conversational interface with search integration (Day 4-7)
+- **AGENT-02**: Multi-turn query refinement based on search results
+- **AGENT-03**: Context-aware result presentation and summarization
+
+---
+
+## Out of Scope (Explicitly Excluded from v2.0)
+
+### Premature Optimizations
+| Feature | Reason |
+|---------|--------|
+| **OpenAI Embeddings API** | Use local sentence-transformers (free, no rate limits, course requirement, offline-capable) |
+| **Multiple vector databases** | 542 OWASP docs (~2K chunks) fit in memory; infrastructure premature for learning goals |
+| **BM25 instead of TF-IDF** | minsearch uses TF-IDF (acceptable for course); BM25 is production upgrade path (documented) |
+| **GPU acceleration** | CPU inference sufficient for course scale (14.7ms/1K tokens all-MiniLM-L6-v2) |
+| **Cross-encoder reranking** | Day 4+ feature (two-stage retrieval adds complexity beyond fundamentals) |
+
+### Anti-Patterns
+| Feature | Reason |
+|---------|--------|
+| **Auto-query rewriting with LLM** | Adds latency, cost, unpredictability; can make queries worse; hard to debug (research-flagged anti-feature) |
+| **Only embeddings without lexical** | Fails on exact terminology, acronyms (LLM01), CVE-IDs; hybrid compensates for embedding weaknesses |
+| **Linear combination score fusion** | BM25 (0-100+) vs cosine (0-1) causes "tidal wave" effect; use RRF instead (parameter-free, production-validated) |
+| **Fine-tuned models without validation** | Requires 100s-1000s labeled pairs, marginal gains, expensive to maintain (defer to advanced milestones) |
+
+### Complexity Beyond Course Scope
+- **Real-time indexing**: Static corpus sufficient for course (batch indexing pattern matches Day 1/Day 2)
+- **Field-level boosting tuning**: Start with minsearch defaults (title: 2.0, content: 1.0), tune only if needed
+- **Custom tokenization**: Use minsearch defaults; shared tokenizer function prevents index/query mismatches
+- **Quantized models**: Production optimization (ONNX, int8); course focuses on fundamentals first
+
+**Rationale:** Day 3 focuses on fundamental search concepts. Production optimizations, infrastructure, and advanced features defer to Day 4-7 milestones per PROJECT.md evolution plan.
+
+---
+
+*Last updated: 2026-04-01 | v2.0 requirements defined based on Day 3 course materials + ecosystem research*
