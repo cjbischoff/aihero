@@ -97,7 +97,10 @@ Plans:
 4. User can run text search on DataTalksClub FAQ with example queries showing exact matching
 5. User can execute course/day3.ipynb from fresh kernel showing text search examples
 
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 14-01-PLAN.md — Create day2.py for imports and day3.ipynb with text search
 
 **UI hint:** yes
 
@@ -184,7 +187,7 @@ Plans:
 | 1-6   | v1.0      | 7/7            | Complete    | 2026-03-30 |
 | 7-12  | v1.1      | 8/8            | Complete    | 2026-04-01 |
 | 13    | v2.0      | 1/1 | Complete   | 2026-04-02 |
-| 14    | v2.0      | 0/0            | Not started | --         |
+| 14    | v2.0      | 0/1            | Planned | --         |
 | 15    | v2.0      | 0/0            | Not started | --         |
 | 16    | v2.0      | 0/0            | Not started | --         |
 | 17    | v2.0      | 0/0            | Not started | --         |
@@ -194,7 +197,7 @@ Plans:
 
 ## Next Steps
 
-Run `/gsd:execute-phase 13` to execute Phase 13 plan.
+Run `/gsd:execute-phase 14` to execute Phase 14 plan.
 
 ---
 
