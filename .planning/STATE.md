@@ -2,16 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Day 3 - Add Search
-status: ready-to-execute
-stopped_at: Phase 13 plan created and verified
-last_updated: "2026-04-01T20:15:00.000Z"
-last_activity: 2026-04-01
+status: executing
+last_updated: "2026-04-02T19:07:44.823Z"
 progress:
   total_phases: 6
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 1
-  completed_plans: 0
-  percent: 0
+  completed_plans: 1
+  percent: 100
 ---
 
 # Project State
@@ -29,14 +27,14 @@ See: .planning/PROJECT.md (updated 2026-04-01)
 
 **Phase:** 13 - Dependencies & Setup
 
-**Plan:** 13-01 (ready to execute)
+**Plan:** 13-01 (completed)
 
-**Status:** Ready to execute Phase 13
+**Status:** Phase 13 complete, ready for Phase 14
 
-**Progress:** Phase 13 of 18 (milestone start)
+**Progress:** [██████████] 100%
 
 ```
-Progress: [===========>··················] 0% complete (Phase 13/18)
+Progress: [===========>··················] 17% complete (Phase 13/18, 1 plan completed)
 ```
 
 ## Performance Metrics
@@ -45,42 +43,48 @@ Progress: [===========>··················] 0% complete (Phase 
 
 - **Phases:** 6 total (13-18)
 - **Requirements:** 42 total mapped
-- **Completed:** 0 phases
-- **In Progress:** Phase 13
-- **Remaining:** 6 phases
+- **Completed:** 1 phases (Phase 13)
+- **In Progress:** Phase 14 (planning next)
+- **Remaining:** 5 phases
 
 ### Overall Project Stats
 
 - **Total Phases:** 18 (across v1.0, v1.1, v2.0)
-- **Completed Phases:** 12 (v1.0: 6, v1.1: 6)
-- **Total Plans:** 15+ completed
-- **Total Tasks:** 30+ completed
-- **Days Active:** 3 (2026-03-30 to 2026-04-01)
+- **Completed Phases:** 13 (v1.0: 6, v1.1: 6, v2.0: 1)
+- **Total Plans:** 16 completed
+- **Total Tasks:** 32 completed
+- **Days Active:** 4 (2026-03-30 to 2026-04-02)
 
-**Velocity (from v1.0 and v1.1):**
+**Velocity (from v1.0, v1.1, and v2.0):**
 
-- Total plans completed: 15
-- Average duration: ~4 min
-- Total execution time: ~4.0 hours
+- Total plans completed: 16
+- Average duration: ~3 min
+- Total execution time: ~4.1 hours
 
 **Recent Trend:**
 
-Last 5 plans (from v1.1):
-- Phase 08 P02: 4 min | 3 tasks | 2 files
+Last 5 plans:
+
 - Phase 09 P01: 4 min | 2 tasks | 2 files
 - Phase 10 P01: 4 min | 2 tasks | 3 files
 - Phase 11 P01: 4 min | 3 tasks | 3 files
 - Phase 12 P01: 1 min | 4 tasks | 1 files
+- Phase 13 P01: 3 min | 2 tasks | 6 files
 
 ## Accumulated Context
 
 ### Decisions (v2.0)
 
-*To be populated during milestone execution*
+Key decisions made during v2.0 execution:
+
+- Used uv add command per D-08 (atomic pyproject.toml update + environment sync)
+- Resolved torch to 2.11.0 from >=2.0.0 constraint (latest stable, CPU-only)
+- Regenerated requirements.lock after uv add (maintains hash-pinned reproducibility)
 
 ### Recent Decisions (from v1.0 and v1.1)
 
 Key decisions affecting current work:
+
 - Use uv package manager (course requirement, modern tooling)
 - Separate course/ and project/ folders (course reproductions vs personal implementations)
 - Process zips in-memory (more efficient than disk I/O, course pattern)
@@ -112,6 +116,7 @@ Key decisions affecting current work:
 ### Recent Learnings
 
 **From v1.1 (Day 2 Chunking):**
+
 - Section-based chunking optimal for OWASP due to clear `##` header structure (LLM01-10)
 - Hybrid approach (paragraph + sliding window for oversized) balances semantic boundaries with size limits
 - Token counting with tiktoken critical for LLM context window management
@@ -124,35 +129,37 @@ Key decisions affecting current work:
 
 ### What Just Happened
 
-- Milestone v1.1 completed (Phases 7-12, all plans executed)
-- Day 2 chunking implemented and validated on OWASP corpus
-- 542 OWASP documents chunked and ready for search indexing
-- Research completed for v2.0 search implementation (HIGH confidence)
-- Roadmap created for v2.0 with 6 phases (13-18)
-- 42 requirements mapped to phases with 100% coverage
-- Phase 13 context gathered through discuss-phase
-- Phase 13 plan created (13-01-PLAN.md) and verified
+- Phase 13 completed successfully (1/1 plans)
+- Installed minsearch 0.0.10, sentence-transformers 5.3.0, torch 2.11.0 in both environments
+- 27 packages added to course/, 22 to project/ (torch and transitive dependencies)
+- Both requirements.lock files regenerated with hashes (~93KB each)
+- All imports verified working in both course/ and project/ environments
+- Dependencies ready for Phase 14 text search implementation
 
 ### What's Next
 
-1. Execute Phase 13: Install minsearch, sentence-transformers, torch dependencies
-2. Move to Phase 14: Text search implementation
-3. Continue progressive enhancement through Phases 15-16
+1. Plan Phase 14: Text Search Foundation (TF-IDF with minsearch, field boosting)
+2. Execute Phase 14: Implement lexical search on DataTalksClub FAQ
+3. Move to Phase 15: Vector search with semantic embeddings
+4. Continue progressive enhancement through Phases 16-18
 
 ### Context for Next Session
 
 **Quick Start:**
-- Run `/gsd:execute-phase 13` to install dependencies
-- Dependencies to add: minsearch 0.0.10, sentence-transformers 5.3.0, torch >=2.0.0
-- Plan available at `.planning/phases/13-dependencies-setup/13-01-PLAN.md`
+
+- Phase 13 complete - all dependencies installed and verified
+- Ready to plan Phase 14: Text Search Foundation
+- Run `/gsd:discuss-phase 14` or `/gsd:plan-phase 14` to start
 
 **Files to Review:**
+
 - `.planning/REQUIREMENTS.md` - All 42 v2.0 requirements
 - `.planning/research/SUMMARY.md` - Stack, features, architecture, pitfalls
 - `.planning/ROADMAP.md` - v2.0 phase structure (Phases 13-18)
 - `project/owasp_homework.ipynb` - Day 2 output (chunked OWASP docs ready for indexing)
 
 **Key Context:**
+
 - Progressive enhancement pattern: text → vector → hybrid search
 - Use RRF (k=60) for score fusion (avoids normalization issues)
 - Embedding caching critical (60s → <1s reload time)

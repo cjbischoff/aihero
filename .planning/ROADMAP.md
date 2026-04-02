@@ -52,7 +52,7 @@ See [v1.1 milestone archive](milestones/1.1-ROADMAP.md) for full details.
 
 **Phases:** 6 (Phases 13-18)
 
-- [ ] **Phase 13: Dependencies & Setup** - Install search libraries and establish embedding cache infrastructure
+- [x] **Phase 13: Dependencies & Setup** - Install search libraries and establish embedding cache infrastructure (completed 2026-04-02)
 - [ ] **Phase 14: Text Search Foundation** - Implement lexical search with TF-IDF scoring and field boosting
 - [ ] **Phase 15: Vector Search Integration** - Add semantic search with embeddings and cosine similarity
 - [ ] **Phase 16: Hybrid Search via RRF** - Combine text and vector results using Reciprocal Rank Fusion
@@ -76,10 +76,10 @@ See [v1.1 milestone archive](milestones/1.1-ROADMAP.md) for full details.
 3. User can verify torch backend installed for sentence-transformers (CPU-only)
 4. User can see updated pyproject.toml with all new dependencies pinned to exact versions
 
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
-- [ ] 13-01-PLAN.md - Install minsearch, sentence-transformers, torch and regenerate requirements.lock
+- [x] 13-01-PLAN.md - Install minsearch, sentence-transformers, torch and regenerate requirements.lock
 
 ---
 
@@ -183,7 +183,7 @@ Plans:
 |-------|-----------|----------------|-------------|------------|
 | 1-6   | v1.0      | 7/7            | Complete    | 2026-03-30 |
 | 7-12  | v1.1      | 8/8            | Complete    | 2026-04-01 |
-| 13    | v2.0      | 0/1            | Planned     | --         |
+| 13    | v2.0      | 1/1 | Complete   | 2026-04-02 |
 | 14    | v2.0      | 0/0            | Not started | --         |
 | 15    | v2.0      | 0/0            | Not started | --         |
 | 16    | v2.0      | 0/0            | Not started | --         |
