@@ -26,12 +26,12 @@
 
 ### Vector Search (Semantic)
 
-- [ ] **SEARCH-06**: Load sentence-transformers with all-MiniLM-L6-v2 model (384-dim embeddings, CPU-optimized)
-- [ ] **SEARCH-07**: Generate embeddings for chunked documents with progress tracking (tqdm for visibility)
-- [ ] **SEARCH-08**: Cache embeddings to disk as numpy arrays (.npy format) to avoid recomputation (1-2 min → <1 sec)
-- [ ] **SEARCH-09**: Create minsearch.VectorSearch index with pre-computed embeddings
-- [ ] **SEARCH-10**: Implement vector_search() function with cosine similarity and configurable top-K retrieval
-- [ ] **SEARCH-11**: Test vector search on same course datasets (FAQ + Evidently) with semantic queries
+- [x] **SEARCH-06**: Load sentence-transformers with all-MiniLM-L6-v2 model (384-dim embeddings, CPU-optimized)
+- [x] **SEARCH-07**: Generate embeddings for chunked documents with progress tracking (tqdm for visibility)
+- [x] **SEARCH-08**: Cache embeddings to disk as numpy arrays (.npy format) to avoid recomputation (1-2 min → <1 sec)
+- [x] **SEARCH-09**: Create minsearch.VectorSearch index with pre-computed embeddings
+- [x] **SEARCH-10**: Implement vector_search() function with cosine similarity and configurable top-K retrieval
+- [x] **SEARCH-11**: Test vector search on same course datasets (FAQ + Evidently) with semantic queries
 
 ### Hybrid Search
 
@@ -51,7 +51,7 @@
 
 - [x] **COURSE-07**: Create course/day3.ipynb following established course notebook pattern
 - [x] **COURSE-08**: Implement text search on DataTalksClub FAQ with example queries demonstrating exact matching
-- [ ] **COURSE-09**: Implement vector search on Evidently docs with semantic queries showing conceptual matching
+- [x] **COURSE-09**: Implement vector search on Evidently docs with semantic queries showing conceptual matching
 - [ ] **COURSE-10**: Implement hybrid search combining both approaches with RRF fusion
 - [ ] **COURSE-11**: Include comparison examples showing when each approach works best (e.g., acronyms vs paraphrases)
 - [ ] **COURSE-12**: Document search strategy selection decision framework with tradeoffs table
@@ -92,13 +92,13 @@ Requirements mapped to roadmap phases:
 | ORG-03 | Phase 14 | Complete |
 | COURSE-07 | Phase 14 | Complete |
 | COURSE-08 | Phase 14 | Complete |
-| SEARCH-06 | Phase 15 | Pending |
-| SEARCH-07 | Phase 15 | Pending |
-| SEARCH-08 | Phase 15 | Pending |
-| SEARCH-09 | Phase 15 | Pending |
-| SEARCH-10 | Phase 15 | Pending |
-| SEARCH-11 | Phase 15 | Pending |
-| COURSE-09 | Phase 15 | Pending |
+| SEARCH-06 | Phase 15 | Complete |
+| SEARCH-07 | Phase 15 | Complete |
+| SEARCH-08 | Phase 15 | Complete |
+| SEARCH-09 | Phase 15 | Complete |
+| SEARCH-10 | Phase 15 | Complete |
+| SEARCH-11 | Phase 15 | Complete |
+| COURSE-09 | Phase 15 | Complete |
 | SEARCH-12 | Phase 16 | Pending |
 | SEARCH-13 | Phase 16 | Pending |
 | SEARCH-14 | Phase 16 | Pending |

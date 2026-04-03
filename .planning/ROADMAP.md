@@ -54,7 +54,7 @@ See [v1.1 milestone archive](milestones/1.1-ROADMAP.md) for full details.
 
 - [x] **Phase 13: Dependencies & Setup** - Install search libraries and establish embedding cache infrastructure (completed 2026-04-02)
 - [x] **Phase 14: Text Search Foundation** - Implement lexical search with TF-IDF scoring and field boosting (completed 2026-04-02)
-- [ ] **Phase 15: Vector Search Integration** - Add semantic search with embeddings and cosine similarity
+- [x] **Phase 15: Vector Search Integration** - Add semantic search with embeddings and cosine similarity (completed 2026-04-03)
 - [ ] **Phase 16: Hybrid Search via RRF** - Combine text and vector results using Reciprocal Rank Fusion
 - [ ] **Phase 17: OWASP Application & Analysis** - Apply all search methods to OWASP corpus with domain validation
 - [ ] **Phase 18: Documentation & Code Quality** - Add type hints, docstrings, and learnings documentation
@@ -120,7 +120,10 @@ Plans:
 4. User can search semantically with cosine similarity returning top-K results with scores
 5. User can run vector search on Evidently docs with semantic queries showing conceptual matching
 
-**Plans:** TBD
+**Plans:** 1/1 plans complete
+
+Plans:
+- [x] 15-01-PLAN.md — Add vector search with embeddings to day3.ipynb
 
 **UI hint:** yes
 
@@ -188,7 +191,7 @@ Plans:
 | 7-12  | v1.1      | 8/8            | Complete    | 2026-04-01 |
 | 13    | v2.0      | 1/1 | Complete   | 2026-04-02 |
 | 14    | v2.0      | 1/1 | Complete   | 2026-04-02 |
-| 15    | v2.0      | 0/0            | Not started | --         |
+| 15    | v2.0      | 1/1 | Complete   | 2026-04-03 |
 | 16    | v2.0      | 0/0            | Not started | --         |
 | 17    | v2.0      | 0/0            | Not started | --         |
 | 18    | v2.0      | 0/0            | Not started | --         |
@@ -197,7 +200,7 @@ Plans:
 
 ## Next Steps
 
-Run `/gsd:execute-phase 14` to execute Phase 14 plan.
+Run `/gsd:execute-phase 15` to execute Phase 15 plan.
 
 ---
 

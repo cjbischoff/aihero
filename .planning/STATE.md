@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Day 3 - Add Search
 status: executing
-last_updated: "2026-04-02T19:07:44.823Z"
+last_updated: "2026-04-02T19:35:53Z"
 progress:
   total_phases: 6
-  completed_phases: 1
-  total_plans: 1
-  completed_plans: 1
+  completed_phases: 3
+  total_plans: 3
+  completed_plans: 3
   percent: 100
 ---
 
@@ -19,22 +19,24 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-01)
 
 **Core value:** Build working RAG pipeline components step-by-step, understanding each stage from data ingestion through conversational agents.
-**Current focus:** v2.0 Day 3 - Add Search (Phase 13: Dependencies & Setup)
+**Current focus:** Phase 15 — vector-search-integration
 
 ## Current Position
 
+Phase: 15 (vector-search-integration) — COMPLETE
+Plan: 1 of 1
 **Milestone:** v2.0 Day 3 - Add Search
 
-**Phase:** 13 - Dependencies & Setup
+**Phase:** 15 - Vector Search Integration
 
-**Plan:** 13-01 (completed)
+**Plan:** 15-01 (completed)
 
-**Status:** Phase 13 complete, ready for Phase 14
+**Status:** Phase 15 Complete - Ready for Phase 16
 
 **Progress:** [██████████] 100%
 
 ```
-Progress: [===========>··················] 17% complete (Phase 13/18, 1 plan completed)
+Progress: [===============>··········] 50% complete (Phase 15/18, 3 plans completed)
 ```
 
 ## Performance Metrics
@@ -80,6 +82,10 @@ Key decisions made during v2.0 execution:
 - Used uv add command per D-08 (atomic pyproject.toml update + environment sync)
 - Resolved torch to 2.11.0 from >=2.0.0 constraint (latest stable, CPU-only)
 - Regenerated requirements.lock after uv add (maintains hash-pinned reproducibility)
+- Use all-MiniLM-L6-v2 model (384-dim, 22MB, fast CPU inference for course context)
+- Cache embeddings to disk (.npy files) for <1s reload vs 3-4min generation
+- Compute cosine similarity scores manually via index.vectors (minsearch API doesn't expose scores)
+- Show balanced vector search examples (3 successes, 2 limitations)
 
 ### Recent Decisions (from v1.0 and v1.1)
 
@@ -129,43 +135,44 @@ Key decisions affecting current work:
 
 ### What Just Happened
 
-- Phase 13 completed successfully (1/1 plans)
-- Installed minsearch 0.0.10, sentence-transformers 5.3.0, torch 2.11.0 in both environments
-- 27 packages added to course/, 22 to project/ (torch and transitive dependencies)
-- Both requirements.lock files regenerated with hashes (~93KB each)
-- All imports verified working in both course/ and project/ environments
-- Dependencies ready for Phase 14 text search implementation
+- Phase 15 completed successfully (1/1 plans)
+- Added vector search with sentence-transformers embeddings to day3.ipynb
+- Generated and cached embeddings for DataTalksClub FAQ (1,503 chunks) and Evidently docs (648 chunks)
+- Implemented vector_search() wrapper function with cosine similarity scores
+- Demonstrated semantic search solving text search failures (paraphrases, conceptual queries)
+- Showed vector search limitations (exact acronyms, precise terminology)
+- Embedding cache reduces reload time from ~3-4 minutes to <1 second
 
 ### What's Next
 
-1. Plan Phase 14: Text Search Foundation (TF-IDF with minsearch, field boosting)
-2. Execute Phase 14: Implement lexical search on DataTalksClub FAQ
-3. Move to Phase 15: Vector search with semantic embeddings
-4. Continue progressive enhancement through Phases 16-18
+1. Plan Phase 16: Hybrid Search (combine text + vector with RRF)
+2. Execute Phase 16: Implement hybrid_search() using Reciprocal Rank Fusion
+3. Move to Phase 17 and 18 for remaining Day 3 work
+4. Complete v2.0 milestone (Day 3 - Add Search)
 
 ### Context for Next Session
 
 **Quick Start:**
 
-- Phase 13 complete - all dependencies installed and verified
-- Ready to plan Phase 14: Text Search Foundation
-- Run `/gsd:discuss-phase 14` or `/gsd:plan-phase 14` to start
+- Phase 15 complete - vector search fully implemented
+- Ready to plan Phase 16: Hybrid Search
+- Run `/gsd:discuss-phase 16` or `/gsd:plan-phase 16` to start
 
 **Files to Review:**
 
-- `.planning/REQUIREMENTS.md` - All 42 v2.0 requirements
-- `.planning/research/SUMMARY.md` - Stack, features, architecture, pitfalls
-- `.planning/ROADMAP.md` - v2.0 phase structure (Phases 13-18)
-- `project/owasp_homework.ipynb` - Day 2 output (chunked OWASP docs ready for indexing)
+- `course/day3.ipynb` - Text search and vector search both implemented
+- `.planning/phases/15-vector-search-integration/15-01-SUMMARY.md` - Phase 15 summary
+- `.planning/REQUIREMENTS.md` - Track completed requirements
+- `.planning/ROADMAP.md` - v2.0 phase structure (50% complete)
 
 **Key Context:**
 
-- Progressive enhancement pattern: text → vector → hybrid search
-- Use RRF (k=60) for score fusion (avoids normalization issues)
-- Embedding caching critical (60s → <1s reload time)
-- OWASP acronyms (LLM01-10) require hybrid search (BM25 + semantic)
-- minsearch uses TF-IDF (not BM25, but acceptable for course)
-- all-MiniLM-L6-v2 model: 384-dim, 22MB, fast CPU inference (14.7ms/1K tokens)
+- text_search() and vector_search() both return consistent interface (list[dict] with score)
+- Both functions demonstrated with success and limitation examples
+- Ready for RRF (k=60) score fusion in hybrid search
+- Embedding cache pattern established (get_or_generate_embeddings)
+- minsearch.VectorSearch API: fit(vectors, payload), search() doesn't expose scores
+- Score computation pattern: access index.vectors for manual calculation
 
 ---
 
