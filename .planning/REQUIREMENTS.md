@@ -35,32 +35,32 @@
 
 ### Hybrid Search
 
-- [ ] **SEARCH-12**: Implement hybrid_search() function combining text and vector results with deduplication
-- [ ] **SEARCH-13**: Use Reciprocal Rank Fusion (RRF) with k=60 for parameter-free score combination
-- [ ] **SEARCH-14**: Implement deduplication by chunk_id or filename to avoid duplicate results
-- [ ] **SEARCH-15**: Compare all three approaches (text vs vector vs hybrid) with side-by-side examples
+- [x] **SEARCH-12**: Implement hybrid_search() function combining text and vector results with deduplication
+- [x] **SEARCH-13**: Use Reciprocal Rank Fusion (RRF) with k=60 for parameter-free score combination
+- [x] **SEARCH-14**: Implement deduplication by chunk_id or filename to avoid duplicate results
+- [x] **SEARCH-15**: Compare all three approaches (text vs vector vs hybrid) with side-by-side examples
 
 ### Code Organization
 
 - [x] **ORG-01**: Structure search functions for agent integration (text_search, vector_search, hybrid_search with consistent signatures)
 - [x] **ORG-02**: Establish unified result format with metadata (filename, title, content, score, chunk_id)
 - [x] **ORG-03**: Ensure reproducible execution from fresh kernel (import Day 1/Day 2 functions as needed)
-- [ ] **ORG-04**: Document search strategy selection (exact keywords → text, concepts → vector, best results → hybrid)
+- [x] **ORG-04**: Document search strategy selection (exact keywords → text, concepts → vector, best results → hybrid)
 
 ### Course Implementation (course/)
 
 - [x] **COURSE-07**: Create course/day3.ipynb following established course notebook pattern
 - [x] **COURSE-08**: Implement text search on DataTalksClub FAQ with example queries demonstrating exact matching
 - [x] **COURSE-09**: Implement vector search on Evidently docs with semantic queries showing conceptual matching
-- [ ] **COURSE-10**: Implement hybrid search combining both approaches with RRF fusion
-- [ ] **COURSE-11**: Include comparison examples showing when each approach works best (e.g., acronyms vs paraphrases)
-- [ ] **COURSE-12**: Document search strategy selection decision framework with tradeoffs table
+- [x] **COURSE-10**: Implement hybrid search combining both approaches with RRF fusion
+- [x] **COURSE-11**: Include comparison examples showing when each approach works best (e.g., acronyms vs paraphrases)
+- [x] **COURSE-12**: Document search strategy selection decision framework with tradeoffs table
 
 ### OWASP Homework (project/)
 
-- [ ] **HOMEWORK-01**: Extend project/owasp_homework.ipynb with Day 3 section following Day 1/Day 2 pattern
-- [ ] **HOMEWORK-02**: Add section header `## Day 3: Search` to clearly delineate new work
-- [ ] **HOMEWORK-03**: Index OWASP chunked documents (from Day 2) with text search (minsearch.Index)
+- [x] **HOMEWORK-01**: Extend project/owasp_homework.ipynb with Day 3 section following Day 1/Day 2 pattern
+- [x] **HOMEWORK-02**: Add section header `## Day 3: Search` to clearly delineate new work
+- [x] **HOMEWORK-03**: Index OWASP chunked documents (from Day 2) with text search (minsearch.Index)
 - [ ] **HOMEWORK-04**: Generate and cache embeddings for OWASP docs with vector search (sentence-transformers)
 - [ ] **HOMEWORK-05**: Implement hybrid search on OWASP corpus with RRF fusion (k=60)
 - [ ] **HOMEWORK-06**: Experiment with all three approaches on OWASP-specific queries (security terminology)
@@ -99,17 +99,17 @@ Requirements mapped to roadmap phases:
 | SEARCH-10 | Phase 15 | Complete |
 | SEARCH-11 | Phase 15 | Complete |
 | COURSE-09 | Phase 15 | Complete |
-| SEARCH-12 | Phase 16 | Pending |
-| SEARCH-13 | Phase 16 | Pending |
-| SEARCH-14 | Phase 16 | Pending |
-| SEARCH-15 | Phase 16 | Pending |
-| ORG-04 | Phase 16 | Pending |
-| COURSE-10 | Phase 16 | Pending |
-| COURSE-11 | Phase 16 | Pending |
-| COURSE-12 | Phase 16 | Pending |
-| HOMEWORK-01 | Phase 17 | Pending |
-| HOMEWORK-02 | Phase 17 | Pending |
-| HOMEWORK-03 | Phase 17 | Pending |
+| SEARCH-12 | Phase 16 | Complete |
+| SEARCH-13 | Phase 16 | Complete |
+| SEARCH-14 | Phase 16 | Complete |
+| SEARCH-15 | Phase 16 | Complete |
+| ORG-04 | Phase 16 | Complete |
+| COURSE-10 | Phase 16 | Complete |
+| COURSE-11 | Phase 16 | Complete |
+| COURSE-12 | Phase 16 | Complete |
+| HOMEWORK-01 | Phase 17 | Complete |
+| HOMEWORK-02 | Phase 17 | Complete |
+| HOMEWORK-03 | Phase 17 | Complete |
 | HOMEWORK-04 | Phase 17 | Pending |
 | HOMEWORK-05 | Phase 17 | Pending |
 | HOMEWORK-06 | Phase 17 | Pending |
