@@ -55,7 +55,7 @@ See [v1.1 milestone archive](milestones/1.1-ROADMAP.md) for full details.
 - [x] **Phase 13: Dependencies & Setup** - Install search libraries and establish embedding cache infrastructure (completed 2026-04-02)
 - [x] **Phase 14: Text Search Foundation** - Implement lexical search with TF-IDF scoring and field boosting (completed 2026-04-02)
 - [x] **Phase 15: Vector Search Integration** - Add semantic search with embeddings and cosine similarity (completed 2026-04-03)
-- [ ] **Phase 16: Hybrid Search via RRF** - Combine text and vector results using Reciprocal Rank Fusion
+- [x] **Phase 16: Hybrid Search via RRF** - Combine text and vector results using Reciprocal Rank Fusion (completed 2026-04-03)
 - [ ] **Phase 17: OWASP Application & Analysis** - Apply all search methods to OWASP corpus with domain validation
 - [ ] **Phase 18: Documentation & Code Quality** - Add type hints, docstrings, and learnings documentation
 
@@ -142,7 +142,10 @@ Plans:
 3. User can compare all three approaches side-by-side on same queries
 4. User can review documented search strategy selection framework (when to use each approach)
 
-**Plans:** TBD
+**Plans:** 1/1 plans complete
+
+Plans:
+- [x] 16-01-PLAN.md — Implement hybrid_search() with RRF fusion, side-by-side comparisons, and strategy selection framework
 
 ---
 
@@ -160,7 +163,12 @@ Plans:
 4. User can review documented analysis of which approach works best for security documentation and why
 5. User can see engineering standards applied (type hints, docstrings) to all search functions
 
-**Plans:** TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 17-01-PLAN.md — Add Day 3 section header, imports, text search on OWASP section chunks
+- [ ] 17-02-PLAN.md — Add vector search with paragraph embeddings and hybrid search with multi-granularity RRF
+- [ ] 17-03-PLAN.md — Run 5-query experiments and add Analysis Summary documentation
 
 **UI hint:** yes
 
@@ -191,16 +199,16 @@ Plans:
 | 7-12  | v1.1      | 8/8            | Complete    | 2026-04-01 |
 | 13    | v2.0      | 1/1 | Complete   | 2026-04-02 |
 | 14    | v2.0      | 1/1 | Complete   | 2026-04-02 |
-| 15    | v2.0      | 1/1 | Complete   | 2026-04-03 |
-| 16    | v2.0      | 0/0            | Not started | --         |
-| 17    | v2.0      | 0/0            | Not started | --         |
+| 15    | v2.0      | 1/1 | Complete    | 2026-04-03 |
+| 16    | v2.0      | 1/1 | Complete    | 2026-04-03 |
+| 17    | v2.0      | 0/3            | Planning    | --         |
 | 18    | v2.0      | 0/0            | Not started | --         |
 
 ---
 
 ## Next Steps
 
-Run `/gsd:execute-phase 15` to execute Phase 15 plan.
+Run `/gsd:execute-phase 17` to execute Phase 17 plans.
 
 ---
 
