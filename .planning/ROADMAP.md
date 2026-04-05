@@ -163,11 +163,11 @@ Plans:
 4. User can review documented analysis of which approach works best for security documentation and why
 5. User can see engineering standards applied (type hints, docstrings) to all search functions
 
-**Plans:** 1/3 plans executed
+**Plans:** 2/3 plans executed
 
 Plans:
 - [x] 17-01-PLAN.md — Add Day 3 section header, imports, text search on OWASP section chunks
-- [ ] 17-02-PLAN.md — Add vector search with paragraph embeddings and hybrid search with multi-granularity RRF
+- [x] 17-02-PLAN.md — Add vector search with paragraph embeddings and hybrid search with multi-granularity RRF
 - [ ] 17-03-PLAN.md — Run 5-query experiments and add Analysis Summary documentation
 
 **UI hint:** yes
@@ -201,7 +201,7 @@ Plans:
 | 14    | v2.0      | 1/1 | Complete   | 2026-04-02 |
 | 15    | v2.0      | 1/1 | Complete    | 2026-04-03 |
 | 16    | v2.0      | 1/1 | Complete    | 2026-04-03 |
-| 17    | v2.0      | 1/3 | In Progress|  |
+| 17    | v2.0      | 2/3 | In Progress|  |
 | 18    | v2.0      | 0/0            | Not started | --         |
 
 ---
