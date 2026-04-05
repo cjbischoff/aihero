@@ -56,7 +56,7 @@ See [v1.1 milestone archive](milestones/1.1-ROADMAP.md) for full details.
 - [x] **Phase 14: Text Search Foundation** - Implement lexical search with TF-IDF scoring and field boosting (completed 2026-04-02)
 - [x] **Phase 15: Vector Search Integration** - Add semantic search with embeddings and cosine similarity (completed 2026-04-03)
 - [x] **Phase 16: Hybrid Search via RRF** - Combine text and vector results using Reciprocal Rank Fusion (completed 2026-04-03)
-- [ ] **Phase 17: OWASP Application & Analysis** - Apply all search methods to OWASP corpus with domain validation
+- [x] **Phase 17: OWASP Application & Analysis** - Apply all search methods to OWASP corpus with domain validation (completed 2026-04-05)
 - [ ] **Phase 18: Documentation & Code Quality** - Add type hints, docstrings, and learnings documentation
 
 ---
@@ -163,12 +163,12 @@ Plans:
 4. User can review documented analysis of which approach works best for security documentation and why
 5. User can see engineering standards applied (type hints, docstrings) to all search functions
 
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [x] 17-01-PLAN.md — Add Day 3 section header, imports, text search on OWASP section chunks
 - [x] 17-02-PLAN.md — Add vector search with paragraph embeddings and hybrid search with multi-granularity RRF
-- [ ] 17-03-PLAN.md — Run 5-query experiments and add Analysis Summary documentation
+- [x] 17-03-PLAN.md — Run 5-query experiments and add Analysis Summary documentation
 
 **UI hint:** yes
 
@@ -187,7 +187,10 @@ Plans:
 3. User can read code comments explaining tradeoffs and key decisions
 4. User can execute notebooks from fresh kernel with clean, reproducible outputs
 
-**Plans:** TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 18-01-PLAN.md — Add type hints and tradeoff comments to course/day3.ipynb, verify reproducibility
 
 ---
 
@@ -201,14 +204,14 @@ Plans:
 | 14    | v2.0      | 1/1 | Complete   | 2026-04-02 |
 | 15    | v2.0      | 1/1 | Complete    | 2026-04-03 |
 | 16    | v2.0      | 1/1 | Complete    | 2026-04-03 |
-| 17    | v2.0      | 2/3 | In Progress|  |
-| 18    | v2.0      | 0/0            | Not started | --         |
+| 17    | v2.0      | 3/3 | Complete   | 2026-04-05 |
+| 18    | v2.0      | 0/1            | Planned     | --         |
 
 ---
 
 ## Next Steps
 
-Run `/gsd:execute-phase 17` to execute Phase 17 plans.
+Run `/gsd:execute-phase 18` to execute Phase 18 (Documentation & Code Quality).
 
 ---
 

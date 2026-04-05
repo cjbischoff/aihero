@@ -63,11 +63,11 @@
 - [x] **HOMEWORK-03**: Index OWASP chunked documents (from Day 2) with text search (minsearch.Index)
 - [x] **HOMEWORK-04**: Generate and cache embeddings for OWASP docs with vector search (sentence-transformers)
 - [x] **HOMEWORK-05**: Implement hybrid search on OWASP corpus with RRF fusion (k=60)
-- [ ] **HOMEWORK-06**: Experiment with all three approaches on OWASP-specific queries (security terminology)
-- [ ] **HOMEWORK-07**: Test acronym handling (LLM01-10, CVE-IDs) across all search methods to understand limitations
-- [ ] **HOMEWORK-08**: Manually inspect search results for each strategy (relevance, precision, recall intuition)
-- [ ] **HOMEWORK-09**: Document analysis: which approach works best for security documentation structure and why
-- [ ] **HOMEWORK-10**: Address technical terminology challenges (acronyms, codes, precise terms vs conceptual queries)
+- [x] **HOMEWORK-06**: Experiment with all three approaches on OWASP-specific queries (security terminology)
+- [x] **HOMEWORK-07**: Test acronym handling (LLM01-10, CVE-IDs) across all search methods to understand limitations
+- [x] **HOMEWORK-08**: Manually inspect search results for each strategy (relevance, precision, recall intuition)
+- [x] **HOMEWORK-09**: Document analysis: which approach works best for security documentation structure and why
+- [x] **HOMEWORK-10**: Address technical terminology challenges (acronyms, codes, precise terms vs conceptual queries)
 - [x] **HOMEWORK-11**: Apply engineering standards (type hints, docstrings per PROJ-08 pattern) to search functions
 
 ---
@@ -112,11 +112,11 @@ Requirements mapped to roadmap phases:
 | HOMEWORK-03 | Phase 17 | Complete |
 | HOMEWORK-04 | Phase 17 | Complete |
 | HOMEWORK-05 | Phase 17 | Complete |
-| HOMEWORK-06 | Phase 17 | Pending |
-| HOMEWORK-07 | Phase 17 | Pending |
-| HOMEWORK-08 | Phase 17 | Pending |
-| HOMEWORK-09 | Phase 17 | Pending |
-| HOMEWORK-10 | Phase 17 | Pending |
+| HOMEWORK-06 | Phase 17 | Complete |
+| HOMEWORK-07 | Phase 17 | Complete |
+| HOMEWORK-08 | Phase 17 | Complete |
+| HOMEWORK-09 | Phase 17 | Complete |
+| HOMEWORK-10 | Phase 17 | Complete |
 | HOMEWORK-11 | Phase 17 | Complete |
 
 **Coverage:** 42/42 requirements mapped (100%)
