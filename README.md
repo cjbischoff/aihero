@@ -1,8 +1,8 @@
-# AI Hero - RAG Course (Days 1 & 2)
+# AI Hero - RAG Course (Days 1, 2 & 3)
 
-A hands-on implementation from the AI Hero crash course on building RAG (Retrieval Augmented Generation) systems. This project demonstrates GitHub data ingestion and document chunking strategies for preparing documents for RAG pipelines.
+A hands-on implementation from the AI Hero crash course on building RAG (Retrieval Augmented Generation) systems. This project demonstrates the complete RAG pipeline: GitHub data ingestion, document chunking strategies, and search systems (text, vector, and hybrid).
 
-## Current Status: v1.1 Complete ✓
+## Current Status: v2.0 Complete ✓
 
 **v1.0 - Day 1: GitHub Data Ingestion** (shipped 2026-03-30)
 - Downloads GitHub repositories as zip archives
@@ -15,6 +15,13 @@ A hands-on implementation from the AI Hero crash course on building RAG (Retriev
 - Token counting infrastructure with tiktoken
 - Comparison framework for evaluating strategies
 
+**v2.0 - Day 3: Search Systems** (shipped 2026-04-06)
+- Text search with TF-IDF and field boosting (exact keyword matching)
+- Vector search with sentence embeddings (semantic similarity)
+- Hybrid search combining both via RRF fusion (k=60)
+- Multi-granularity pattern (1,023 sections, 14,254 paragraphs)
+- Production patterns (embedding cache, field boosting, RRF)
+
 ## Repository Structure
 
 ```
@@ -22,11 +29,12 @@ aihero/
 ├── course/              # Course reproduction (learning focus)
 │   ├── day1.ipynb       # Day 1: GitHub data ingestion
 │   ├── day2.ipynb       # Day 2: Chunking strategies
+│   ├── day3.ipynb       # Day 3: Search systems (text, vector, hybrid)
 │   ├── requirements.lock # Hash-pinned dependencies
-│   └── pyproject.toml   # Dependencies (requests, tiktoken, openai, groq)
+│   └── pyproject.toml   # Dependencies (requests, tiktoken, openai, groq, sentence-transformers, minsearch)
 │
 ├── project/             # Engineering-quality implementations
-│   ├── owasp_homework.ipynb    # OWASP analysis (Day 1 + Day 2)
+│   ├── owasp_homework.ipynb    # OWASP analysis (Day 1 + Day 2 + Day 3)
 │   ├── requirements.lock       # Hash-pinned dependencies
 │   ├── .pre-commit-config.yaml # Quality gates (black, ruff, mypy, snyk, pip-audit)
 │   └── pyproject.toml          # Dependencies + dev tools
@@ -64,6 +72,9 @@ uv run jupyter notebook day1.ipynb
 
 # Day 2: Chunking strategies
 uv run jupyter notebook day2.ipynb
+
+# Day 3: Search systems
+uv run jupyter notebook day3.ipynb
 ```
 
 **Day 1 notebook** walks through:
@@ -79,6 +90,14 @@ uv run jupyter notebook day2.ipynb
 5. Comparison framework and quality inspection
 6. Learnings summary with decision framework
 
+**Day 3 notebook** implements:
+1. Text search with TF-IDF and field boosting
+2. Vector search with sentence embeddings (all-MiniLM-L6-v2)
+3. Hybrid search combining both via RRF fusion (k=60)
+4. Embedding cache pattern (<1s reload vs 3-4 min generation)
+5. Multi-granularity indexing (sections for text, paragraphs for vector)
+6. Performance comparison across all three search methods
+
 ### Project Homework
 ```bash
 cd project/
@@ -89,8 +108,9 @@ uv run jupyter notebook owasp_homework.ipynb
 The project notebook demonstrates:
 1. **Day 1:** Adapting course patterns to OWASP repository (542 docs, minimal frontmatter)
 2. **Day 2:** Hybrid chunking strategy (paragraph + sliding window)
-3. Strategy comparison on OWASP corpus
-4. Documented analysis: which chunking approach works best for security documentation
+3. **Day 3:** Multi-granularity search (1,023 sections, 14,254 paragraphs)
+4. Strategy comparison on OWASP corpus
+5. Documented analysis: which search approach works best for security documentation
 
 ## Key Concepts
 
@@ -141,6 +161,42 @@ sidebar_position: 1
 
 **Token Counting**: Uses `tiktoken` (cl100k_base) for accurate token counts matching GPT-3.5/4 tokenizers.
 
+### Day 3: Search Systems
+
+**Text Search (TF-IDF)**: Lexical search using term frequency-inverse document frequency scoring with field boosting.
+
+**Key Features:**
+- Fast exact keyword matching
+- Field boosting (title: 2.0, content: 1.0)
+- Excels at acronyms and codes (e.g., "LLM01", "CVE-2024-1234")
+- Inverted index for O(log N) search
+
+**Vector Search (Semantic)**: Embedding-based similarity using sentence-transformers.
+
+**Key Features:**
+- Semantic understanding (handles paraphrases and synonyms)
+- all-MiniLM-L6-v2 model (384 dimensions, 22MB)
+- Cosine similarity scoring
+- Embedding cache pattern (<1s reload vs 3-4 min generation)
+
+**Hybrid Search (RRF)**: Combines text and vector results using Reciprocal Rank Fusion.
+
+**Algorithm:**
+```
+RRF_score(doc) = Σ [1 / (k + rank_i(doc))]
+where k=60 (production-validated parameter)
+```
+
+**Benefits:**
+- Best of both worlds: exact match + semantic understanding
+- Parameter-free fusion (k=60 works across corpora)
+- Documents appearing in both lists rank higher (consensus ranking)
+
+**Multi-Granularity Pattern**: Different chunk sizes optimized per search method.
+- Text search: Section chunks (1,023 chunks, avg 1,045 tokens) for better statistics
+- Vector search: Paragraph chunks (14,254 chunks, avg 75 tokens) for semantic precision
+- RRF fusion: Maps paragraphs to sections for coherent results
+
 ## What You'll Learn
 
 By exploring the notebooks, you'll understand:
@@ -157,16 +213,25 @@ By exploring the notebooks, you'll understand:
 - Cost analysis for LLM-based chunking (free tiers vs. paid)
 - Comparison frameworks for evaluating chunking quality
 
+**Day 3:**
+- When to use text search vs. vector search vs. hybrid search
+- How TF-IDF and field boosting improve exact keyword matching
+- How semantic embeddings capture meaning beyond exact terms
+- Why RRF fusion (k=60) is production-validated and parameter-free
+- Multi-granularity pattern: optimizing chunk size per search method
+- Production optimizations: embedding cache, parallel search, storage patterns
+
 ## About the Course
 
 This project follows the [AI Hero](https://www.ai-hero.com/) crash course on building intelligent systems.
 
 **✓ Day 1 (v1.0)**: Data ingestion - downloading and parsing GitHub documentation
 **✓ Day 2 (v1.1)**: Document chunking - preparing documents for embedding and retrieval
+**✓ Day 3 (v2.0)**: Search systems - text, vector, and hybrid search with RRF fusion
 
-**Future Days** (v2.0+):
-- Day 3: Vector embeddings and search
-- Day 4+: Conversational agents with LLM integration
+**Future Days** (v3.0+):
+- Day 4+: Conversational agents with retrieval integration
+- Evaluation frameworks and production deployment patterns
 
 ## Standards & Quality
 
@@ -189,9 +254,10 @@ See `CLAUDE.md` for complete standards documentation.
 
 1. **Start with Day 1**: `course/day1.ipynb` - GitHub data ingestion
 2. **Continue with Day 2**: `course/day2.ipynb` - Four chunking strategies
-3. **Review project work**: `project/owasp_homework.ipynb` - OWASP analysis
-4. **Explore diagrams**: `docs/diagrams/` - Mermaid flowcharts for all phases
+3. **Explore Day 3**: `course/day3.ipynb` - Text, vector, and hybrid search systems
+4. **Review project work**: `project/owasp_homework.ipynb` - OWASP analysis (Days 1-3)
+5. **Explore diagrams**: `docs/diagrams/` - Mermaid flowcharts for all phases
 
 ---
 
-*Last updated: 2026-04-01 | v1.1 Complete ✓*
+*Last updated: 2026-04-06 | v2.0 Complete ✓*
