@@ -1,10 +1,11 @@
-# Course: Days 1 & 2 - RAG Fundamentals
+# Course: Days 1, 2 & 3 - RAG Fundamentals
 
-This folder contains course reproductions for Days 1 and 2 of the AI Hero RAG crash course:
+This folder contains course reproductions for Days 1, 2, and 3 of the AI Hero RAG crash course:
 - **Day 1:** GitHub repository data ingestion
 - **Day 2:** Document chunking strategies
+- **Day 3:** Search methods (text, vector, hybrid)
 
-Both notebooks demonstrate core concepts with hands-on implementations and real-world examples.
+All notebooks demonstrate core concepts with hands-on implementations and real-world examples.
 
 ## Notebook: day1.ipynb
 
@@ -154,12 +155,103 @@ The notebook includes a comprehensive learnings summary with:
 - Key gotchas (cost scaling, size variance, structure requirements)
 - Decision framework (when to use which strategy)
 
+## Notebook: day3.ipynb
+
+### What It Does
+
+Implements and compares three search methods for RAG systems:
+1. **Text Search**: TF-IDF with field boosting (exact term matching)
+2. **Vector Search**: Semantic search with sentence embeddings
+3. **Hybrid Search**: RRF fusion combining both approaches
+
+### Key Components
+
+**Search Functions:**
+- `text_search()` - Lexical search with TF-IDF scoring
+- `vector_search()` - Semantic search with cosine similarity
+- `hybrid_search()` - Reciprocal Rank Fusion (RRF) combining both
+- `compare_search_methods()` - Side-by-side comparison tool
+
+**Models & Libraries:**
+- `minsearch` - Lightweight TF-IDF and vector search
+- `sentence-transformers` - Embedding generation (all-MiniLM-L6-v2)
+- `torch` - Backend for sentence-transformers (CPU-only)
+
+**Architecture:**
+See `../docs/diagrams/` for visual representations:
+- [Text Search Foundation](../docs/diagrams/text-search-foundation.md)
+- [Vector Search Integration](../docs/diagrams/vector-search-integration.md)
+- [Hybrid Search RRF Fusion](../docs/diagrams/hybrid-search-rrf-fusion.md)
+
+### Test Data
+
+Tests all strategies on DataTalks.Club FAQ and Evidently AI docs from Day 1:
+- DataTalks: 1,285 documents (FAQ format)
+- Evidently: 95 documents (technical documentation)
+
+### Running the Notebook
+
+**Setup:**
+```bash
+cd course/
+uv sync
+uv run jupyter notebook day3.ipynb
+```
+
+**Dependencies:**
+- minsearch==0.0.6 (text and vector search)
+- sentence-transformers==3.3.1 (embedding generation)
+- torch==2.11.0 (CPU backend for transformers)
+
+**Execution:**
+- Requires Day 1 completion (imports `read_repo_data` from day1.py)
+- First run generates embeddings (~3-4 min), subsequent runs use cache (<1s)
+- Expected runtime: ~5 minutes first run, ~30 seconds cached
+
+### Key Concepts Explained
+
+**Text Search (TF-IDF):**
+- Fast exact matching on keywords
+- Field boosting (title:2.0, content:1.0)
+- Best for acronyms and codes
+
+**Vector Search (Semantic):**
+- Understands meaning and paraphrases
+- 384-dimensional embeddings
+- Best for conceptual queries
+
+**Hybrid Search (RRF):**
+- Combines both methods using Reciprocal Rank Fusion
+- k=60 (production-validated parameter)
+- Best overall coverage
+
+**Search Trade-offs:**
+- Text: Fast, exact, fails on paraphrases
+- Vector: Semantic, slower, may miss exact codes
+- Hybrid: Best of both, slightly more complex
+
+### What You'll Learn
+
+- When to use each search method (decision framework)
+- How TF-IDF scoring works with field boosting
+- How sentence embeddings capture semantic meaning
+- How RRF fusion combines rankings from multiple methods
+- Production optimization patterns (embedding cache)
+- Search strategy selection for different query types
+
+### Day 3 Learnings Summary
+
+The notebook includes a comprehensive learnings summary with:
+- Search method comparison table (Best For | Strengths | Limitations | Production Use)
+- Key insights (acronym handling, semantic queries, RRF fusion, cache pattern)
+- Production recommendations (when to use each method)
+
 ## Next Steps
 
-After completing both notebooks:
-1. Review project/owasp_homework.ipynb for hybrid chunking implementation
-2. Explore docs/diagrams/ for visual flowcharts of all phases
-3. Day 3 (v2.0) will cover vector embeddings and search
+After completing all three notebooks:
+1. Review project/owasp_homework.ipynb for production implementation (Days 1 + 2 + 3)
+2. Explore docs/diagrams/ for visual flowcharts of all search methods
+3. Experiment with different queries to understand method trade-offs
 
 ---
 

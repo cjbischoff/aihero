@@ -1,6 +1,6 @@
 # Project: OWASP LLM Top 10 - Engineering Implementation
 
-This folder contains engineering-quality implementations of Days 1 & 2 course work applied to the OWASP LLM Top 10 repository. The notebook demonstrates full engineering standards (type hints, docstrings, pre-commit hooks) and includes analysis specific to security documentation.
+This folder contains engineering-quality implementations of Days 1, 2, and 3 course work applied to the OWASP LLM Top 10 repository. The notebook demonstrates full engineering standards (type hints, docstrings, pre-commit hooks) and includes analysis specific to security documentation.
 
 ## Notebook: owasp_homework.ipynb
 
@@ -18,6 +18,14 @@ This folder contains engineering-quality implementations of Days 1 & 2 course wo
 - Strategy comparison with quantitative metrics
 - OWASP-specific analysis and recommendations
 
+**Day 3: Search Methods**
+- Text search with TF-IDF and field boosting
+- Vector search with sentence embeddings
+- Hybrid search with RRF fusion (k=60)
+- Multi-granularity search (section chunks for text, paragraph for vector)
+- 5 query experiments demonstrating search method strengths
+- Analysis Summary with production recommendations
+
 **Repository Analyzed:**
 - **OWASP/www-project-top-10-for-large-language-model-applications**
 - 542 markdown documents
@@ -34,6 +42,9 @@ This folder contains engineering-quality implementations of Days 1 & 2 course wo
 | **Day 2: Best Strategy** | Varies by structure | Section chunking (clear `##` headers) |
 | **Day 2: Implementation** | All 4 strategies | All 4 + hybrid approach |
 | **Day 2: Analysis** | General learnings | OWASP-specific recommendations |
+| **Day 3: Search Scope** | Single granularity | Multi-granularity (sections + paragraphs) |
+| **Day 3: Best Method** | Hybrid (general) | Hybrid (security docs optimized) |
+| **Day 3: Analysis** | General comparison | Security-specific (acronym handling, CVE-IDs) |
 
 ### Key Learnings
 
@@ -48,9 +59,20 @@ This folder contains engineering-quality implementations of Days 1 & 2 course wo
 - Security documentation benefits from topic-aligned chunks (preserves LLM01-10 boundaries)
 - Section chunking: 1,023 chunks, avg 1,045 tokens, preserves nested `###` headers
 
+**Day 3:**
+- Multi-granularity search: section chunks for text (1,023), paragraph for vector (14,254)
+- Text search excels at exact acronyms (LLM01-10, CVE-IDs) critical for security docs
+- Vector search handles conceptual queries ("how to secure AI models")
+- Hybrid search combines both via RRF fusion (k=60) - production recommendation
+- Paragraph→section mapping enables deduplication across different granularities
+- Analysis Summary identifies hybrid search as optimal for security documentation
+
 **Architecture:**
 - Day 1: [GitHub Ingestion Pipeline](../docs/diagrams/github-ingestion-pipeline.md)
 - Day 2: [Hybrid Chunking Strategy](../docs/diagrams/hybrid-chunking-strategy.md)
+- Day 3: [Text Search Foundation](../docs/diagrams/text-search-foundation.md)
+- Day 3: [Vector Search Integration](../docs/diagrams/vector-search-integration.md)
+- Day 3: [Hybrid Search RRF Fusion](../docs/diagrams/hybrid-search-rrf-fusion.md)
 
 ### Running the Notebook
 
@@ -63,7 +85,11 @@ uv run jupyter notebook owasp_homework.ipynb
 
 **Execution:**
 - Run all cells from top to bottom (Kernel → Restart & Run All)
-- Expected runtime: ~45 seconds (OWASP repo is 320MB)
+- Expected runtime: ~5-10 minutes first run (includes embedding generation)
+  - Day 1: ~45 seconds (OWASP repo download, 320MB)
+  - Day 2: ~30 seconds (chunking 542 documents)
+  - Day 3: ~3-4 minutes first run (embedding generation for 14,254 paragraphs)
+  - Day 3: ~30 seconds cached run (embeddings loaded from .npy file)
 - Note: First download may be slow due to repo size
 
 ### Engineering Standards
@@ -154,12 +180,20 @@ git push --no-verify
 - Topic-aligned boundaries (preserves LLM01-10 security guidelines)
 - Trade-offs: predictability vs structure-awareness vs cost
 
+**Day 3: Search for Security Documentation**
+- Multi-granularity search strategy (section for text, paragraph for vector)
+- Why text search dominates acronym matching (LLM01-10, CVE-IDs)
+- When vector search handles conceptual security queries better
+- How RRF fusion (k=60) combines both methods optimally
+- Paragraph→section mapping for cross-granularity deduplication
+- Production recommendation: Hybrid search as default for security docs
+
 **Engineering Rigor:**
 - Full engineering standards (type hints, docstrings, pre-commit hooks)
 - Hash-pinned dependencies for reproducible builds
 - Vulnerability scanning with snyk and pip-audit
 - Code quality gates preventing bad commits/pushes
-- Day 2 chunking strategies will differ based on available structure
+- Complete implementation from data ingestion through search
 
 ### Comparison Output
 
@@ -172,9 +206,10 @@ The notebook shows:
 
 ### Next Steps
 
-- Review "What I Learned" section in the notebook for deeper insights
-- Compare with `../course/day1.ipynb` to see adaptation points
-- Consider how Day 2 chunking will handle repos without frontmatter
+- Review "Analysis Summary" section in the notebook for Day 3 search insights
+- Compare with `../course/day3.ipynb` to see multi-granularity vs single-granularity
+- Experiment with different queries to test search method trade-offs
+- Consider Day 4: Building complete RAG pipeline with retrieval and generation
 
 ---
 
