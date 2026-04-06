@@ -1,0 +1,39 @@
+{
+  // Python interpreter configuration
+  // Default to project/.venv (has pre-commit hooks)
+  // Manually switch to course/.venv when working in course/ notebooks
+  "python.defaultInterpreterPath": "${workspaceFolder}/project/.venv/bin/python",
+  "python.terminal.activateEnvironment": true,
+
+  // Jupyter configuration
+  "jupyter.notebookFileRoot": "${workspaceFolder}",
+
+  // Python analysis paths (both folders)
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/course",
+    "${workspaceFolder}/project"
+  ],
+
+  // Disable formatOnSave (pre-commit handles formatting in project/)
+  "[python]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "never"
+    }
+  },
+
+  // Hide virtual environments and cache files
+  "files.exclude": {
+    "**/.venv": true,
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    ".planning": false
+  },
+
+  // Don't watch virtual environments (performance)
+  "files.watcherExclude": {
+    "**/.venv/**": true,
+    "**/__pycache__/**": true,
+    ".planning/**": true
+  }
+}

@@ -31,7 +31,10 @@ env/
 .env.local
 
 # IDE
-.vscode/
+.vscode/*
+!.vscode/settings.example.json
+!.vscode/extensions.json
+!.vscode/README.md
 .idea/
 *.swp
 *.swo
