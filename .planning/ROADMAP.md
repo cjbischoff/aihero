@@ -76,7 +76,7 @@ See [v2.0 milestone archive](milestones/v2.0-ROADMAP.md) for full details.
 **Plans**: 1 plan
 
 Plans:
-- [ ] 19-01-PLAN.md — Install pydantic-ai and add type hints to search functions
+- [x] 19-01-PLAN.md — Install pydantic-ai and add type hints to search functions
 
 #### Phase 20: Manual OpenAI Agent
 **Goal**: Working agent using raw OpenAI API demonstrating function calling fundamentals
@@ -88,11 +88,10 @@ Plans:
   3. Conversation history managed correctly across multiple turns (stateless LLM pattern)
   4. Error handling prevents crashes when search returns empty results
   5. Loop termination prevents infinite tool calls (20-step limit)
-**Plans**: TBD
-**UI hint**: yes
+**Plans**: 1 plan
 
 Plans:
-- [ ] TBD
+- [ ] 20-01-PLAN.md — Implement manual OpenAI agent with function calling fundamentals
 
 #### Phase 21: Pydantic AI Framework Migration
 **Goal**: Same agent behavior with cleaner, production-ready code
@@ -179,8 +178,8 @@ Phases execute in numeric order: 19 → 20 → 21 → 22 → 23 → 24
 | 16. Hybrid Search via RRF | v2.0 | 1/1 | Complete | 2026-04-03 |
 | 17. OWASP Application & Analysis | v2.0 | 3/3 | Complete | 2026-04-05 |
 | 18. Documentation & Code Quality | v2.0 | 1/1 | Complete | 2026-04-06 |
-| 19. Dependency Setup & Search Preparation | v4.0 | 0/1 | Planning | - |
-| 20. Manual OpenAI Agent | v4.0 | 0/TBD | Not started | - |
+| 19. Dependency Setup & Search Preparation | v4.0 | 1/1 | Complete   | 2026-04-07 |
+| 20. Manual OpenAI Agent | v4.0 | 0/1 | Planning | - |
 | 21. Pydantic AI Framework Migration | v4.0 | 0/TBD | Not started | - |
 | 22. Course Deliverable | v4.0 | 0/TBD | Not started | - |
 | 23. OWASP Security Agent | v4.0 | 0/TBD | Not started | - |
