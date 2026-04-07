@@ -91,7 +91,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 20-01-PLAN.md — Implement manual OpenAI agent with function calling fundamentals
+- [x] 20-01-PLAN.md — Implement manual OpenAI agent with function calling fundamentals
 
 #### Phase 21: Pydantic AI Framework Migration
 **Goal**: Same agent behavior with cleaner, production-ready code
@@ -102,10 +102,10 @@ Plans:
   2. Tool schema auto-generated from type hints and docstrings (no manual JSON)
   3. Agent reasoning breakdown visible via result.new_messages()
   4. Code complexity reduced compared to manual version (fewer lines, clearer intent)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] TBD
+- [ ] 21-01-PLAN.md — Extend day4.ipynb with Pydantic AI framework section
 
 #### Phase 22: Course Deliverable
 **Goal**: course/day4.ipynb reproduces Day 4 materials with FAQ agent
@@ -179,8 +179,8 @@ Phases execute in numeric order: 19 → 20 → 21 → 22 → 23 → 24
 | 17. OWASP Application & Analysis | v2.0 | 3/3 | Complete | 2026-04-05 |
 | 18. Documentation & Code Quality | v2.0 | 1/1 | Complete | 2026-04-06 |
 | 19. Dependency Setup & Search Preparation | v4.0 | 1/1 | Complete   | 2026-04-07 |
-| 20. Manual OpenAI Agent | v4.0 | 0/1 | Planning | - |
-| 21. Pydantic AI Framework Migration | v4.0 | 0/TBD | Not started | - |
+| 20. Manual OpenAI Agent | v4.0 | 1/1 | Complete   | 2026-04-07 |
+| 21. Pydantic AI Framework Migration | v4.0 | 0/1 | Planned | - |
 | 22. Course Deliverable | v4.0 | 0/TBD | Not started | - |
 | 23. OWASP Security Agent | v4.0 | 0/TBD | Not started | - |
 | 24. Documentation & Final Verification | v4.0 | 0/TBD | Not started | - |

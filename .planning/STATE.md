@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v4.0
 milestone_name: Day 4 - Agents and Tools
 status: verifying
-stopped_at: Completed 19-01-PLAN.md - pydantic-ai installed, search functions typed
-last_updated: "2026-04-07T13:12:54.196Z"
+stopped_at: Completed 20-01-PLAN.md - Manual OpenAI agent implemented
+last_updated: "2026-04-07T15:34:07.300Z"
 last_activity: 2026-04-07
 progress:
   total_phases: 6
-  completed_phases: 1
-  total_plans: 1
-  completed_plans: 1
+  completed_phases: 2
+  total_plans: 2
+  completed_plans: 2
   percent: 75
 ---
 
@@ -21,11 +21,11 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-06)
 
 **Core value:** Build working RAG pipeline components step-by-step, understanding each stage from data ingestion through conversational agents.
-**Current focus:** Phase 19 — dependency-setup-search-preparation
+**Current focus:** Phase 20 — manual-openai-agent
 
 ## Current Position
 
-Phase: 19 (dependency-setup-search-preparation) — EXECUTING
+Phase: 20 (manual-openai-agent) — EXECUTING
 Plan: 1 of 1
 Status: Phase complete — ready for verification
 Last activity: 2026-04-07
@@ -55,6 +55,7 @@ Progress: [████████████░░░░] 75% (18/24 phases c
 - Trend: Stable
 
 | Phase 19 P01 | 288 | 2 tasks | 6 files |
+| Phase 20 P01 | 217 | 3 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,9 @@ Recent decisions affecting current work:
 - **Phase 18**: Apply engineering standards to course/ (type hints + docstrings in both contexts)
 - [Phase 19]: Use full pydantic-ai package (not slim) for batteries-included approach with all LLM SDKs
 - [Phase 19]: Use Any type for index/model parameters to enable duck typing across minsearch types
+- [Phase 20]: Use max_steps=20 for loop termination to prevent infinite loops and control token cost
+- [Phase 20]: Implement strict mode in tool schema to guarantee parameter validation
+- [Phase 20]: Feed tool errors back to LLM as JSON for graceful recovery
 
 ### Pending Todos
 
@@ -79,8 +83,8 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-07T13:12:54.194Z
-Stopped at: Completed 19-01-PLAN.md - pydantic-ai installed, search functions typed
+Last session: 2026-04-07T15:34:07.298Z
+Stopped at: Completed 20-01-PLAN.md - Manual OpenAI agent implemented
 Resume file: None
 
 **Next steps:**
