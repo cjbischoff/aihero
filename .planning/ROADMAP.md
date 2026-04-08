@@ -108,7 +108,7 @@ Plans:
 - [x] 21-01-PLAN.md — Extend day4.ipynb with Pydantic AI framework section
 
 #### Phase 22: Course Deliverable
-**Goal**: course/day4.ipynb reproduces Day 4 materials with FAQ agent
+**Goal**: Finalize course/day4.ipynb with FAQ agent demonstration, system prompt experiments, and learnings
 **Depends on**: Phase 21
 **Requirements**: COURSE-01, COURSE-04, COURSE-05, COURSE-06, COURSE-07
 **Success Criteria** (what must be TRUE):
@@ -117,11 +117,11 @@ Plans:
   3. System prompt experiments show measurable behavior variation (2-3 variants tested)
   4. Learnings documented in markdown cells (agentic behavior, stateless pattern, tool use)
   5. Notebook runs top-to-bottom from fresh kernel without errors
-**Plans**: TBD
+**Plans**: 1 plan
 **UI hint**: yes
 
 Plans:
-- [ ] TBD
+- [x] 22-01-PLAN.md — Add FAQ demo (5 questions), system prompt experiments (3 tones), and Day 4 learnings
 
 #### Phase 23: OWASP Security Agent
 **Goal**: Agent applied to OWASP corpus with security domain-specific tuning
@@ -133,11 +133,11 @@ Plans:
   3. 5+ OWASP-specific queries tested (LLM01-10 lookups, CVE references, security concepts)
   4. Engineering standards applied (type hints, docstrings, inline comments explaining tradeoffs)
   5. Day 4 section added to project/owasp_homework.ipynb with clear header
-**Plans**: TBD
+**Plans**: 1 plan
 **UI hint**: yes
 
 Plans:
-- [ ] TBD
+- [ ] 23-01-PLAN.md — Create OWASP security agent with hybrid_search tool and 8 diverse test queries
 
 #### Phase 24: Documentation & Final Verification
 **Goal**: All documentation updated, reproducibility verified, milestone complete
@@ -180,7 +180,7 @@ Phases execute in numeric order: 19 → 20 → 21 → 22 → 23 → 24
 | 18. Documentation & Code Quality | v2.0 | 1/1 | Complete | 2026-04-06 |
 | 19. Dependency Setup & Search Preparation | v4.0 | 1/1 | Complete   | 2026-04-07 |
 | 20. Manual OpenAI Agent | v4.0 | 1/1 | Complete   | 2026-04-07 |
-| 21. Pydantic AI Framework Migration | v4.0 | 1/1 | Complete   | 2026-04-07 |
-| 22. Course Deliverable | v4.0 | 0/TBD | Not started | - |
-| 23. OWASP Security Agent | v4.0 | 0/TBD | Not started | - |
+| 21. Pydantic AI Framework Migration | v4.0 | 1/1 | Complete    | 2026-04-07 |
+| 22. Course Deliverable | v4.0 | 1/1 | Complete    | 2026-04-07 |
+| 23. OWASP Security Agent | v4.0 | 0/1 | Not started | - |
 | 24. Documentation & Final Verification | v4.0 | 0/TBD | Not started | - |

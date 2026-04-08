@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v4.0
 milestone_name: Day 4 - Agents and Tools
 status: verifying
-stopped_at: Completed 21-01-PLAN.md
-last_updated: "2026-04-07T16:18:31.089Z"
+stopped_at: Completed 22-01-PLAN.md
+last_updated: "2026-04-07T20:04:38.488Z"
 last_activity: 2026-04-07
 progress:
   total_phases: 6
-  completed_phases: 3
-  total_plans: 3
-  completed_plans: 3
+  completed_phases: 4
+  total_plans: 4
+  completed_plans: 4
   percent: 33
 ---
 
@@ -21,11 +21,11 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-06)
 
 **Core value:** Build working RAG pipeline components step-by-step, understanding each stage from data ingestion through conversational agents.
-**Current focus:** Phase 21 — pydantic-ai-framework-migration
+**Current focus:** Phase 22 — course-deliverable
 
 ## Current Position
 
-Phase: 21 (pydantic-ai-framework-migration) — EXECUTING
+Phase: 22 (course-deliverable) — EXECUTING
 Plan: 1 of 1
 Status: Phase complete — ready for verification
 Last activity: 2026-04-07
@@ -57,6 +57,7 @@ Progress: [████████░░░░░░░░] 33% (2/6 phases com
 | Phase 19 P01 | 288s | 2 tasks | 6 files |
 | Phase 20 P01 | 217s | 3 tasks | 2 files |
 | Phase 21 P01 | 220 | 4 tasks | 2 files |
+| Phase 22 P01 | 154 | 3 tasks | 1 files |
 
 ## Phase 20 Verification Results
 
@@ -105,6 +106,7 @@ Recent decisions affecting current work:
 - **Phase 20**: Feed tool errors back to LLM as JSON for graceful recovery
 - [Phase 21]: Use @agent.tool_plain decorator (idiomatic Pydantic AI pattern) rather than constructor tools=[] parameter
 - [Phase 21]: Document ~70% code reduction (50 lines → 15 lines) in side-by-side comparison showing framework abstraction benefits
+- [Phase 22]: Atomic cell addition for course/day4.ipynb - added 10 cells (28-37) in single operation for valid notebook state
 
 ### Pending Todos
 
@@ -116,8 +118,8 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-07T16:18:29.465Z
-Stopped at: Completed 21-01-PLAN.md
+Last session: 2026-04-07T20:04:38.486Z
+Stopped at: Completed 22-01-PLAN.md
 Resume file: None
 
 **Next steps:**
