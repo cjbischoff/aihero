@@ -1,6 +1,6 @@
 # Project: OWASP LLM Top 10 - Engineering Implementation
 
-This folder contains engineering-quality implementations of Days 1, 2, and 3 course work applied to the OWASP LLM Top 10 repository. The notebook demonstrates full engineering standards (type hints, docstrings, pre-commit hooks) and includes analysis specific to security documentation.
+This folder contains engineering-quality implementations of Days 1, 2, 3, and 4 course work applied to the OWASP LLM Top 10 repository. The notebook demonstrates full engineering standards (type hints, docstrings, pre-commit hooks) and includes analysis specific to security documentation.
 
 ## Notebook: owasp_homework.ipynb
 
@@ -26,6 +26,13 @@ This folder contains engineering-quality implementations of Days 1, 2, and 3 cou
 - 5 query experiments demonstrating search method strengths
 - Analysis Summary with production recommendations
 
+**Day 4: AI Agent for Security Documentation**
+- Pydantic AI agent with OWASP-specific system prompt
+- Hybrid search tool integration (RRF k=60 from Day 3)
+- 8 diverse test queries covering LLM01-10, CVE references, and security concepts
+- Domain-specific prompt tuning for security terminology
+- Engineering standards (type hints, docstrings, inline comments)
+
 **Repository Analyzed:**
 - **OWASP/www-project-top-10-for-large-language-model-applications**
 - 542 markdown documents
@@ -45,6 +52,9 @@ This folder contains engineering-quality implementations of Days 1, 2, and 3 cou
 | **Day 3: Search Scope** | Single granularity | Multi-granularity (sections + paragraphs) |
 | **Day 3: Best Method** | Hybrid (general) | Hybrid (security docs optimized) |
 | **Day 3: Analysis** | General comparison | Security-specific (acronym handling, CVE-IDs) |
+| **Day 4: Agent Tool** | text_search | hybrid_search (security optimized) |
+| **Day 4: Prompting** | General FAQ | Security-tuned with OWASP context |
+| **Day 4: Query Scope** | 5 FAQ questions | 8 security-specific queries |
 
 ### Key Learnings
 
@@ -67,12 +77,20 @@ This folder contains engineering-quality implementations of Days 1, 2, and 3 cou
 - Paragraph→section mapping enables deduplication across different granularities
 - Analysis Summary identifies hybrid search as optimal for security documentation
 
+**Day 4:**
+- OWASP agent uses hybrid_search as tool (optimal from Day 3 research)
+- Security-focused system prompt improves relevance for LLM01-10 queries
+- Domain-specific prompts: cite sources, use security terminology, reference OWASP guidelines
+- Agent loop handles error cases gracefully (empty results, API failures)
+- Framework benefits: ~70% code reduction vs manual OpenAI implementation
+
 **Architecture:**
 - Day 1: [GitHub Ingestion Pipeline](../docs/diagrams/github-ingestion-pipeline.md)
 - Day 2: [Hybrid Chunking Strategy](../docs/diagrams/hybrid-chunking-strategy.md)
 - Day 3: [Text Search Foundation](../docs/diagrams/text-search-foundation.md)
 - Day 3: [Vector Search Integration](../docs/diagrams/vector-search-integration.md)
 - Day 3: [Hybrid Search RRF Fusion](../docs/diagrams/hybrid-search-rrf-fusion.md)
+- Day 4: [Agent-Tool Architecture](../docs/diagrams/agent-tool-architecture.md)
 
 ### Running the Notebook
 
@@ -90,6 +108,7 @@ uv run jupyter notebook owasp_homework.ipynb
   - Day 2: ~30 seconds (chunking 542 documents)
   - Day 3: ~3-4 minutes first run (embedding generation for 14,254 paragraphs)
   - Day 3: ~30 seconds cached run (embeddings loaded from .npy file)
+  - Day 4: ~30 seconds (agent queries, cached embeddings)
 - Note: First download may be slow due to repo size
 
 ### Engineering Standards
@@ -188,6 +207,13 @@ git push --no-verify
 - Paragraph→section mapping for cross-granularity deduplication
 - Production recommendation: Hybrid search as default for security docs
 
+**Day 4: Agents for Security Documentation**
+- How Pydantic AI simplifies agent development
+- Domain-specific system prompt engineering
+- Hybrid search as agent tool (combining text + vector)
+- Error handling in agent loops
+- Security-focused query patterns (LLM01-10, CVEs, concepts)
+
 **Engineering Rigor:**
 - Full engineering standards (type hints, docstrings, pre-commit hooks)
 - Hash-pinned dependencies for reproducible builds
@@ -207,9 +233,10 @@ The notebook shows:
 ### Next Steps
 
 - Review "Analysis Summary" section in the notebook for Day 3 search insights
-- Compare with `../course/day3.ipynb` to see multi-granularity vs single-granularity
+- Review Day 4 section for agent implementation with hybrid search
+- Compare with `../course/day4.ipynb` to see FAQ agent vs security agent
 - Experiment with different queries to test search method trade-offs
-- Consider Day 4: Building complete RAG pipeline with retrieval and generation
+- Consider Day 5+: Evaluation frameworks and production deployment
 
 ---
 
