@@ -1,8 +1,8 @@
-# AI Hero - RAG Course (Days 1, 2 & 3)
+# AI Hero - RAG Course (Days 1, 2, 3 & 4)
 
-A hands-on implementation from the AI Hero crash course on building RAG (Retrieval Augmented Generation) systems. This project demonstrates the complete RAG pipeline: GitHub data ingestion, document chunking strategies, and search systems (text, vector, and hybrid).
+A hands-on implementation from the AI Hero crash course on building RAG (Retrieval Augmented Generation) systems. This project demonstrates the complete RAG pipeline: GitHub data ingestion, document chunking strategies, search systems (text, vector, and hybrid), and AI agents with tool integration.
 
-## Current Status: v2.0 Complete ✓
+## Current Status: v4.0 Complete ✓
 
 **v1.0 - Day 1: GitHub Data Ingestion** (shipped 2026-03-30)
 - Downloads GitHub repositories as zip archives
@@ -22,6 +22,12 @@ A hands-on implementation from the AI Hero crash course on building RAG (Retriev
 - Multi-granularity pattern (1,023 sections, 14,254 paragraphs)
 - Production patterns (embedding cache, field boosting, RRF)
 
+**v4.0 - Day 4: Agents and Tools** (shipped 2026-04-10)
+- Manual OpenAI function calling (educational foundation for tool use)
+- Pydantic AI framework migration (~70% code reduction)
+- FAQ agent with text search tool integration (DataTalks corpus)
+- OWASP security agent with hybrid search and domain-specific prompts
+
 ## Repository Structure
 
 ```
@@ -30,11 +36,12 @@ aihero/
 │   ├── day1.ipynb       # Day 1: GitHub data ingestion
 │   ├── day2.ipynb       # Day 2: Chunking strategies
 │   ├── day3.ipynb       # Day 3: Search systems (text, vector, hybrid)
+│   ├── day4.ipynb       # Day 4: AI agents with tool calling
 │   ├── requirements.lock # Hash-pinned dependencies
-│   └── pyproject.toml   # Dependencies (requests, tiktoken, openai, groq, sentence-transformers, minsearch)
+│   └── pyproject.toml   # Dependencies (requests, tiktoken, openai, groq, sentence-transformers, minsearch, pydantic-ai)
 │
 ├── project/             # Engineering-quality implementations
-│   ├── owasp_homework.ipynb    # OWASP analysis (Day 1 + Day 2 + Day 3)
+│   ├── owasp_homework.ipynb    # OWASP analysis (Day 1 + Day 2 + Day 3 + Day 4)
 │   ├── requirements.lock       # Hash-pinned dependencies
 │   ├── .pre-commit-config.yaml # Quality gates (black, ruff, mypy, snyk, pip-audit)
 │   └── pyproject.toml          # Dependencies + dev tools
@@ -75,6 +82,9 @@ uv run jupyter notebook day2.ipynb
 
 # Day 3: Search systems
 uv run jupyter notebook day3.ipynb
+
+# Day 4: AI agents
+uv run jupyter notebook day4.ipynb
 ```
 
 **Day 1 notebook** walks through:
@@ -98,6 +108,13 @@ uv run jupyter notebook day3.ipynb
 5. Multi-granularity indexing (sections for text, paragraphs for vector)
 6. Performance comparison across all three search methods
 
+**Day 4 notebook** implements:
+1. Manual OpenAI function calling with tool schemas
+2. Pydantic AI agent framework migration
+3. FAQ demonstration with 5 test questions
+4. System prompt experiments (3 different tones)
+5. Educational comparison: manual vs framework approach
+
 ### Project Homework
 ```bash
 cd project/
@@ -109,8 +126,9 @@ The project notebook demonstrates:
 1. **Day 1:** Adapting course patterns to OWASP repository (542 docs, minimal frontmatter)
 2. **Day 2:** Hybrid chunking strategy (paragraph + sliding window)
 3. **Day 3:** Multi-granularity search (1,023 sections, 14,254 paragraphs)
-4. Strategy comparison on OWASP corpus
-5. Documented analysis: which search approach works best for security documentation
+4. **Day 4:** Security agent with hybrid search and domain-specific system prompt
+5. Strategy comparison on OWASP corpus
+6. Documented analysis: which search approach works best for security documentation
 
 ## Key Concepts
 
@@ -164,6 +182,23 @@ sidebar_position: 1
 ### Day 3: Search Systems
 
 **Text Search (TF-IDF)**: Lexical search using term frequency-inverse document frequency scoring with field boosting.
+
+### Day 4: Agents and Tools
+
+**AI Agent**: LLM-based system that can decide when and how to use tools to answer questions.
+
+**Function Calling**: OpenAI API pattern where the model can request tool invocations with structured arguments.
+
+**Tool Schema**: JSON definition describing what a function does, its parameters, and return types.
+
+**Pydantic AI**: Framework that auto-generates tool schemas from Python type hints and docstrings.
+
+**Stateless Pattern**: LLMs have no memory; conversation history must be sent with every API call.
+
+**Agent Loop**: Iterative cycle: User question → LLM decides → Tool invocation → Results → LLM response.
+
+**Architecture:**
+See [Agent-Tool Architecture](docs/diagrams/agent-tool-architecture.md) for the generic agent pattern.
 
 **Key Features:**
 - Fast exact keyword matching
@@ -221,6 +256,14 @@ By exploring the notebooks, you'll understand:
 - Multi-granularity pattern: optimizing chunk size per search method
 - Production optimizations: embedding cache, parallel search, storage patterns
 
+**Day 4:**
+- How AI agents decide when to use tools vs answer directly
+- OpenAI function calling with JSON tool schemas
+- Pydantic AI framework for type-safe agent development
+- System prompt engineering for agent behavior control
+- Stateless LLM pattern (managing conversation history)
+- Production patterns: error handling, loop termination
+
 ## About the Course
 
 This project follows the [AI Hero](https://www.ai-hero.com/) crash course on building intelligent systems.
@@ -228,10 +271,10 @@ This project follows the [AI Hero](https://www.ai-hero.com/) crash course on bui
 **✓ Day 1 (v1.0)**: Data ingestion - downloading and parsing GitHub documentation
 **✓ Day 2 (v1.1)**: Document chunking - preparing documents for embedding and retrieval
 **✓ Day 3 (v2.0)**: Search systems - text, vector, and hybrid search with RRF fusion
+**✓ Day 4 (v4.0)**: AI agents - function calling and tool integration
 
-**Future Days** (v3.0+):
-- Day 4+: Conversational agents with retrieval integration
-- Evaluation frameworks and production deployment patterns
+**Future Days** (v5.0+):
+- Day 5+: Evaluation frameworks and production deployment patterns
 
 ## Standards & Quality
 
@@ -255,9 +298,10 @@ See `CLAUDE.md` for complete standards documentation.
 1. **Start with Day 1**: `course/day1.ipynb` - GitHub data ingestion
 2. **Continue with Day 2**: `course/day2.ipynb` - Four chunking strategies
 3. **Explore Day 3**: `course/day3.ipynb` - Text, vector, and hybrid search systems
-4. **Review project work**: `project/owasp_homework.ipynb` - OWASP analysis (Days 1-3)
-5. **Explore diagrams**: `docs/diagrams/` - Mermaid flowcharts for all phases
+4. **Explore Day 4**: `course/day4.ipynb` - AI agents with tool calling
+5. **Review project work**: `project/owasp_homework.ipynb` - OWASP analysis (Days 1-4)
+6. **Explore diagrams**: `docs/diagrams/` - Mermaid flowcharts for all phases
 
 ---
 
-*Last updated: 2026-04-06 | v2.0 Complete ✓*
+*Last updated: 2026-04-10 | v4.0 Complete ✓*

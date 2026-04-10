@@ -1,9 +1,10 @@
-# Course: Days 1, 2 & 3 - RAG Fundamentals
+# Course: Days 1, 2, 3 & 4 - RAG Fundamentals
 
-This folder contains course reproductions for Days 1, 2, and 3 of the AI Hero RAG crash course:
+This folder contains course reproductions for Days 1, 2, 3, and 4 of the AI Hero RAG crash course:
 - **Day 1:** GitHub repository data ingestion
 - **Day 2:** Document chunking strategies
 - **Day 3:** Search methods (text, vector, hybrid)
+- **Day 4:** AI agents with tool calling
 
 All notebooks demonstrate core concepts with hands-on implementations and real-world examples.
 
@@ -246,12 +247,83 @@ The notebook includes a comprehensive learnings summary with:
 - Key insights (acronym handling, semantic queries, RRF fusion, cache pattern)
 - Production recommendations (when to use each method)
 
+## Notebook: day4.ipynb
+
+### What It Does
+
+Implements AI agents that use search tools to answer questions:
+1. **Manual OpenAI**: Function calling with JSON tool schemas and conversation history management
+2. **Pydantic AI**: Framework that auto-generates schemas from type hints (~70% code reduction)
+3. **FAQ Demonstration**: 5 test questions with agent responses
+4. **System Prompt Experiments**: 3 different tones showing behavior control
+
+### Key Components
+
+**Agent Functions:**
+- `run_agent()` - Manual OpenAI loop with tool calling
+- Pydantic AI `Agent()` initialization with `@agent.tool_plain` decorator
+- `text_search()` - Tool for searching indexed documents
+
+**Models & Libraries:**
+- `openai` - OpenAI Responses API for manual function calling
+- `pydantic-ai` - Type-safe agent framework
+
+**Architecture:**
+See `../docs/diagrams/`:
+- [Manual Agent Loop Flow](../docs/diagrams/manual-agent-loop-flow.md)
+- [Pydantic AI Migration](../docs/diagrams/pydantic-ai-migration-comparison.md)
+- [Agent-Tool Architecture](../docs/diagrams/agent-tool-architecture.md) (generic pattern)
+
+### Running the Notebook
+
+**Setup:**
+```bash
+cd course/
+uv sync
+uv run jupyter notebook day4.ipynb
+```
+
+**Dependencies:**
+- openai==2.30.0 (function calling API)
+- pydantic-ai>=1.77.0 (agent framework)
+- Requires Day 3 completion (imports search functions and index)
+
+**Execution:**
+- Requires OPENAI_API_KEY in `.env` file
+- Expected runtime: ~2-3 minutes (includes LLM API calls)
+
+### Key Concepts Explained
+
+**Function Calling:**
+- LLM decides when to invoke tools based on user question
+- Returns structured arguments matching tool schema
+- Agent executes tool and feeds results back to LLM
+
+**Stateless Pattern:**
+- LLMs have no memory between API calls
+- Full conversation history sent with every request
+- Agent manages message array: [system, user, assistant, tool, ...]
+
+**Framework Benefits:**
+- Pydantic AI reduces ~50 lines to ~15 lines
+- Type hints + docstrings become tool schema
+- Error handling and loop termination built-in
+
+### What You'll Learn
+
+- How OpenAI function calling works at the API level
+- Why Pydantic AI simplifies agent development
+- System prompt engineering for behavior control
+- Stateless conversation management pattern
+- Production patterns: error handling, max steps
+
 ## Next Steps
 
-After completing all three notebooks:
-1. Review project/owasp_homework.ipynb for production implementation (Days 1 + 2 + 3)
-2. Explore docs/diagrams/ for visual flowcharts of all search methods
-3. Experiment with different queries to understand method trade-offs
+After completing all four notebooks:
+1. Review project/owasp_homework.ipynb for production implementation (Days 1 + 2 + 3 + 4)
+2. Explore docs/diagrams/ for visual flowcharts of all phases
+3. Experiment with different queries to understand search method trade-offs
+4. Try different agent system prompts to see behavior changes
 
 ---
 
