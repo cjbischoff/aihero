@@ -73,3 +73,6 @@ credentials.json
 
 # Claude
 CLAUDE.md
+
+# Agent interaction logs (ephemeral evaluation artifacts)
+logs/
