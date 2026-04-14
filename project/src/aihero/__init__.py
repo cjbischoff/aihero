@@ -19,6 +19,7 @@ from aihero.evaluation import (
     EvaluationChecklist,
     RUBRICS,
     judge_agent,
+    evaluate_response,
 )
 
 __version__ = "0.1.0"
@@ -39,4 +40,5 @@ __all__ = [
     "EvaluationChecklist",
     "RUBRICS",
     "judge_agent",
+    "evaluate_response",
 ]
