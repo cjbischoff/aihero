@@ -1,0 +1,80 @@
+[
+  {
+    "question": "What is prompt injection and how does it work?",
+    "expected_answer": "Prompt injection is an attack where malicious input manipulates an LLM's behavior by overriding system prompts or injecting unauthorized instructions. Direct injection embeds commands in user input; indirect injection hides instructions in external data sources like documents or websites.",
+    "source_files": ["LLM01_PromptInjection.md"],
+    "source": "user"
+  },
+  {
+    "question": "How can I prevent prompt injection attacks in my LLM application?",
+    "expected_answer": "Prevent prompt injection by: (1) Using clear delimiters between system prompts and user input, (2) Implementing input validation and sanitization, (3) Applying privilege control to limit tool access, (4) Using separate LLM instances for different trust levels, (5) Monitoring for suspicious patterns in outputs.",
+    "source_files": ["LLM01_PromptInjection.md"],
+    "source": "user"
+  },
+  {
+    "question": "What is insecure output handling and what risks does it pose?",
+    "expected_answer": "Insecure output handling occurs when LLM-generated content is passed to downstream systems without validation or sanitization. Risks include XSS attacks when outputs are rendered in web browsers, SQL injection when outputs are used in database queries, and code injection when outputs are executed as commands.",
+    "source_files": ["LLM02_InsecureOutputHandling.md"],
+    "source": "user"
+  },
+  {
+    "question": "How do I sanitize LLM outputs before rendering them in a web application?",
+    "expected_answer": "Sanitize LLM outputs by: (1) HTML-encoding special characters before rendering in browsers, (2) Using parameterized queries for database operations, (3) Validating outputs against expected schemas, (4) Implementing content security policies (CSP), (5) Never executing LLM outputs as code without strict validation.",
+    "source_files": ["LLM02_InsecureOutputHandling.md"],
+    "source": "user"
+  },
+  {
+    "question": "What is training data poisoning and how does it compromise LLM security?",
+    "expected_answer": "Training data poisoning involves injecting malicious or biased data into an LLM's training dataset, causing the model to learn incorrect patterns, produce biased outputs, or embed backdoors. Attackers can manipulate public datasets, compromise data collection pipelines, or exploit fine-tuning processes.",
+    "source_files": ["LLM03_TrainingDataPoisoning.md"],
+    "source": "user"
+  },
+  {
+    "question": "What is model denial of service and what are common attack vectors?",
+    "expected_answer": "Model denial of service (DoS) exhausts LLM resources through resource-intensive queries, causing degraded performance or complete unavailability. Attack vectors include: excessively long inputs, complex reasoning chains, repetitive patterns that trigger infinite loops, and concurrent high-volume requests.",
+    "source_files": ["LLM04_ModelDenialOfService.md"],
+    "source": "user"
+  },
+  {
+    "question": "How can I protect my LLM application from denial of service attacks?",
+    "expected_answer": "Protect against LLM DoS by: (1) Implementing rate limiting per user/IP, (2) Setting input length limits and timeout controls, (3) Using load balancing and autoscaling, (4) Monitoring resource usage and query patterns, (5) Implementing circuit breakers for expensive operations.",
+    "source_files": ["LLM04_ModelDenialOfService.md"],
+    "source": "user"
+  },
+  {
+    "question": "What are the risks of supply chain vulnerabilities in LLM applications?",
+    "expected_answer": "Supply chain vulnerabilities arise from untrusted third-party models, datasets, plugins, or dependencies. Risks include backdoored models, poisoned training data, compromised packages, outdated libraries with known CVEs, and malicious plugins that exfiltrate data or execute unauthorized actions.",
+    "source_files": ["LLM05_SupplyChainVulnerabilities.md"],
+    "source": "user"
+  },
+  {
+    "question": "What is sensitive information disclosure in LLM applications?",
+    "expected_answer": "Sensitive information disclosure occurs when LLMs leak confidential data through responses, including: training data memorization, prompt injection to extract system prompts, inference from context windows, logging of sensitive user inputs, or inadvertent exposure of API keys and credentials in outputs.",
+    "source_files": ["LLM06_SensitiveInformationDisclosure.md"],
+    "source": "user"
+  },
+  {
+    "question": "What is excessive agency and how does it create security risks?",
+    "expected_answer": "Excessive agency occurs when LLM agents have too many permissions or poorly scoped tools, enabling unauthorized actions. Risks include data deletion, unauthorized API calls, privilege escalation, lateral movement across systems, and financial transactions without proper authorization controls.",
+    "source_files": ["LLM08_ExcessiveAgency.md"],
+    "source": "user"
+  },
+  {
+    "question": "How should I implement least privilege for LLM agents and tools?",
+    "expected_answer": "Implement least privilege by: (1) Limiting tool access to only what's necessary for the task, (2) Using read-only permissions where possible, (3) Requiring human approval for sensitive operations, (4) Implementing role-based access control (RBAC), (5) Auditing all tool invocations and maintaining access logs.",
+    "source_files": ["LLM08_ExcessiveAgency.md"],
+    "source": "user"
+  },
+  {
+    "question": "What is overreliance on LLM outputs and what risks does it pose?",
+    "expected_answer": "Overreliance occurs when users or systems trust LLM outputs without verification, despite potential hallucinations, biases, or factual errors. Risks include: making critical decisions based on false information, security vulnerabilities from trusting generated code, and operational failures from accepting incorrect recommendations.",
+    "source_files": ["LLM09_Overreliance.md"],
+    "source": "user"
+  },
+  {
+    "question": "What are insecure plugins and what security issues do they introduce?",
+    "expected_answer": "Insecure plugins are third-party extensions with inadequate security controls. Issues include: lack of input validation enabling injection attacks, excessive permissions beyond stated functionality, unencrypted data transmission, missing authentication, and supply chain risks from untrusted plugin sources.",
+    "source_files": ["LLM10_InsecurePlugins.md"],
+    "source": "user"
+  }
+]
