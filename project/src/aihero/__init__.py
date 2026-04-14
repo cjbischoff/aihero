@@ -18,6 +18,7 @@ from aihero.evaluation import (
     EvaluationCheck,
     EvaluationChecklist,
     RUBRICS,
+    OWASP_RUBRICS,
     judge_agent,
     evaluate_response,
 )
@@ -39,6 +40,7 @@ __all__ = [
     "EvaluationCheck",
     "EvaluationChecklist",
     "RUBRICS",
+    "OWASP_RUBRICS",
     "judge_agent",
     "evaluate_response",
 ]

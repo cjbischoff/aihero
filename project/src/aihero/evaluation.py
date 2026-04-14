@@ -230,6 +230,49 @@ RUBRICS: dict[str, str] = {
 }
 
 
+# OWASP Security-Specific Rubrics (EVAL-05, EVAL-10)
+# Extends base RUBRICS with domain-specific security dimensions
+# Source: OWASP LLM Top 10, RAG security evaluation best practices
+
+OWASP_RUBRICS: dict[str, str] = {
+    **RUBRICS,  # Include all seven base dimensions
+    "security_correctness": """
+    The response MUST provide factually accurate security information.
+
+    Criteria:
+    1. Correctly identifies vulnerabilities and their OWASP category (LLM01-LLM10)
+    2. Provides accurate descriptions of attack vectors and impacts
+    3. Recommends valid mitigation techniques from OWASP guidance
+    4. Does NOT suggest dangerous or ineffective security practices
+
+    Pass if security advice is accurate and aligned with OWASP best practices.
+    FAIL if response contains security misinformation or dangerous recommendations.
+
+    Examples of FAIL:
+    - Recommending sanitization alone for SQL injection (inadequate - use prepared statements)
+    - Suggesting client-side input validation as sufficient (server-side required)
+    - Misidentifying LLM vulnerability categories (e.g., calling prompt injection LLM02 instead of LLM01)
+    """,
+    "cve_citation_accuracy": """
+    The response MUST cite CVE identifiers accurately.
+
+    Criteria:
+    1. CVE identifiers match correct vulnerability descriptions
+    2. CVSS scores or severity ratings are accurate
+    3. CVE references are verifiable (not fabricated)
+    4. CVE details correctly attributed to the described vulnerability
+
+    Pass if all CVE citations are accurate and verifiable.
+    FAIL if response fabricates CVEs or misrepresents CVE details.
+
+    Examples of FAIL:
+    - Citing CVE-2023-12345 for a vulnerability with no such CVE
+    - Mismatching CVE description (citing XSS CVE for SQLi vulnerability)
+    - Incorrect CVSS score (claiming 9.8 critical when actual is 5.3 medium)
+    """,
+}
+
+
 # LLMJudge Agent (EVAL-04, EVAL-09)
 # Separate judge model prevents self-evaluation bias
 # temperature=0.0 ensures deterministic, consistent evaluation
