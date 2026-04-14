@@ -14,7 +14,7 @@ from typing import TypedDict
 
 from pydantic import BaseModel, Field
 from pydantic_ai import Agent
-from pydantic_ai.models import ModelSettings
+from pydantic_ai.models import ModelSettings  # type: ignore[attr-defined]
 
 
 class EvaluationCheck(BaseModel):
@@ -409,12 +409,12 @@ Give final verdict (pass/fail) based on your analysis.
         # (In production, customize output_type per dimension for cleaner extraction)
         check = EvaluationCheck(
             dimension=dimension,
-            justification=result.output.checks[0].justification
-            if result.output.checks
-            else "No justification provided",
-            check_pass=result.output.checks[0].check_pass
-            if result.output.checks
-            else False,
+            justification=(
+                result.output.checks[0].justification
+                if result.output.checks
+                else "No justification provided"
+            ),
+            check_pass=result.output.checks[0].check_pass if result.output.checks else False,
         )
         checks.append(check)
 

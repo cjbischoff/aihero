@@ -21,9 +21,9 @@ Typical usage:
     save_test_set(triplets, Path("data/test_data/manual_qa.json"))
 """
 
+import json
 from pathlib import Path
 from typing import TypedDict
-import json
 
 
 class TestTriplet(TypedDict):
@@ -86,9 +86,7 @@ def validate_test_set(triplets: list[TestTriplet]) -> bool:
         # Check all required fields present
         missing_fields = required_fields - set(triplet.keys())
         if missing_fields:
-            raise ValueError(
-                f"Triplet {idx} missing required fields: {missing_fields}"
-            )
+            raise ValueError(f"Triplet {idx} missing required fields: {missing_fields}")
 
         # Validate source field
         if triplet["source"] not in ["user", "ai-generated"]:
@@ -171,8 +169,8 @@ def load_test_set(input_path: Path) -> list[TestTriplet]:
         Loaded 10 triplets
     """
     # Read JSON file
-    with open(input_path, "r") as f:
-        triplets = json.load(f)
+    with open(input_path) as f:
+        triplets: list[TestTriplet] = json.load(f)
 
     # Validate loaded data
     validate_test_set(triplets)

@@ -12,15 +12,14 @@ Typical usage:
     print(f"Logged to: {log_file}")
 """
 
-from datetime import datetime
-from pathlib import Path
 import json
 import secrets
+from datetime import datetime
+from pathlib import Path
 from typing import Any
 
 from pydantic_ai import Agent, AgentRunResult
 from pydantic_ai.messages import ModelMessagesTypeAdapter
-
 
 # LOG-07: Create logs directory structure
 LOG_DIR = Path("logs")
@@ -125,11 +124,12 @@ def log_interaction_to_file(
     # LOG-03: Extract tools from agent.toolsets
     tools_list: list[str] = []
     for toolset in agent.toolsets:
-        tools_list.extend(toolset.keys())
+        tools_list.extend(toolset.keys())  # type: ignore[attr-defined]
 
     # LOG-02, LOG-08: Capture message history using ModelMessagesTypeAdapter
-    messages_adapter = ModelMessagesTypeAdapter()
-    messages_dict = messages_adapter.dump_python(result.new_messages())
+    messages_dict = ModelMessagesTypeAdapter.dump_python(
+        result.new_messages()
+    )
 
     # LOG-01: Build log entry with agent configuration
     # D-14 through D-21: Complete log content structure
@@ -145,7 +145,8 @@ def log_interaction_to_file(
     }
 
     # D-11, D-12: Generate unique filename and write to LOG_DIR
-    filename = generate_log_filename(agent.name)
+    agent_name = agent.name or "unknown_agent"
+    filename = generate_log_filename(agent_name)
     log_file = LOG_DIR / filename
 
     # D-20: Store complete log entry as single JSON file

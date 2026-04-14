@@ -15,12 +15,10 @@ Expected: 10 failed (ImportError) - this is correct for Wave 0
 import json
 import re
 from pathlib import Path
-from typing import get_type_hints
-
-import pytest
+from typing import Any, get_type_hints
 
 
-def test_evaluation_schemas(mock_evaluation_check):
+def test_evaluation_schemas(mock_evaluation_check: dict[str, Any]) -> None:
     """EVAL-01: EvaluationCheck and EvaluationChecklist schemas validate correctly.
 
     Wave 1: Pydantic schema implementation pending.
@@ -44,7 +42,7 @@ def test_evaluation_schemas(mock_evaluation_check):
     assert checklist.overall_pass is True
 
 
-def test_seven_dimensions():
+def test_seven_dimensions() -> None:
     """EVAL-02: Seven evaluation dimensions defined in RUBRICS dict.
 
     Wave 2: Rubrics implementation pending.
@@ -66,7 +64,7 @@ def test_seven_dimensions():
     assert all(len(rubric) > 50 for rubric in RUBRICS.values())  # Non-trivial rubrics
 
 
-def test_chain_of_thought_order():
+def test_chain_of_thought_order() -> None:
     """EVAL-03: justification field appears before check_pass in EvaluationCheck schema.
 
     Wave 1: Schema field order verification.
@@ -84,14 +82,16 @@ def test_chain_of_thought_order():
     ), "justification must appear before check_pass for chain-of-thought enforcement"
 
 
-def test_separate_judge_model():
+def test_separate_judge_model() -> None:
     """EVAL-04: Judge agent uses different model than FAQ agent.
 
     Wave 3: LLMJudge agent initialization.
     """
     from aihero.evaluation import judge_agent
+    from pydantic_ai.models import Model
 
     # Verify judge uses gpt-4o-mini (not gpt-5-nano like FAQ agent)
+    assert isinstance(judge_agent.model, Model)
     assert judge_agent.model.model_id == "openai:gpt-4o-mini"
 
     # Verify judge != FAQ agent model
@@ -99,7 +99,7 @@ def test_separate_judge_model():
     assert judge_agent.model.model_id != faq_model
 
 
-def test_owasp_rubrics():
+def test_owasp_rubrics() -> None:
     """EVAL-05: OWASP_RUBRICS includes security_correctness and cve_citation_accuracy.
 
     Wave 5: OWASP rubrics extension.
@@ -118,7 +118,7 @@ def test_owasp_rubrics():
         assert dimension in OWASP_RUBRICS
 
 
-def test_rubric_structure():
+def test_rubric_structure() -> None:
     """EVAL-06: Rubrics contain multi-part numbered criteria.
 
     Wave 2: Rubric content validation.
@@ -136,7 +136,7 @@ def test_rubric_structure():
         assert "MUST" in rubric.upper(), f"{dimension} rubric missing MUST criteria"
 
 
-def test_json_serialization(mock_evaluation_check):
+def test_json_serialization(mock_evaluation_check: dict[str, Any]) -> None:
     """EVAL-07: Evaluation results serialize to JSON via model_dump_json().
 
     Wave 1: Pydantic serialization.
@@ -161,7 +161,7 @@ def test_json_serialization(mock_evaluation_check):
     assert parsed["checks"][0]["dimension"] == "answer_relevant"
 
 
-def test_evaluation_interface():
+def test_evaluation_interface() -> None:
     """EVAL-08: evaluate_response function signature accepts log_file, triplet, returns checklist.
 
     Wave 4: Evaluation function interface.
@@ -181,23 +181,30 @@ def test_evaluation_interface():
     # Return type should be EvaluationChecklist (verified in integration test)
 
 
-def test_temperature_zero():
+def test_temperature_zero() -> None:
     """EVAL-09: Judge agent ModelSettings includes temperature=0.0.
 
     Wave 3: Deterministic evaluation settings.
     """
     from aihero.evaluation import judge_agent
 
-    # Access ModelSettings from agent (returns dict)
+    # Access ModelSettings from agent (returns dict or callable)
     model_settings = judge_agent.model_settings
 
     assert model_settings is not None, "ModelSettings not configured"
+
+    # If callable, it's a function that returns settings
+    if callable(model_settings):
+        settings_dict = model_settings(None)  # type: ignore[arg-type]
+    else:
+        settings_dict = model_settings
+
     assert (
-        model_settings.get("temperature") == 0.0
+        settings_dict.get("temperature") == 0.0
     ), "Judge must use temperature=0.0 for deterministic evaluation"
 
 
-def test_dual_rubrics():
+def test_dual_rubrics() -> None:
     """EVAL-10: Both RUBRICS and OWASP_RUBRICS available for course and project contexts.
 
     Wave 2 + Wave 5: Dual context support.

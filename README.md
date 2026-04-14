@@ -1,8 +1,8 @@
-# AI Hero - RAG Course (Days 1, 2, 3 & 4)
+# AI Hero - RAG Course (Days 1-5)
 
-A hands-on implementation from the AI Hero crash course on building RAG (Retrieval Augmented Generation) systems. This project demonstrates the complete RAG pipeline: GitHub data ingestion, document chunking strategies, search systems (text, vector, and hybrid), and AI agents with tool integration.
+A hands-on implementation from the AI Hero crash course on building RAG (Retrieval Augmented Generation) systems. This project demonstrates the complete RAG pipeline: GitHub data ingestion, document chunking strategies, search systems (text, vector, and hybrid), AI agents with tool integration, and LLM-as-a-Judge evaluation.
 
-## Current Status: v4.0 Complete ✓
+## Current Status: v5.0 Phase 27 Complete ✓
 
 **v1.0 - Day 1: GitHub Data Ingestion** (shipped 2026-03-30)
 - Downloads GitHub repositories as zip archives
@@ -28,6 +28,14 @@ A hands-on implementation from the AI Hero crash course on building RAG (Retriev
 - FAQ agent with text search tool integration (DataTalks corpus)
 - OWASP security agent with hybrid search and domain-specific prompts
 
+**v5.0 - Day 5: Evaluation** (Phase 27 complete 2026-04-14)
+- JSON logging infrastructure for agent interactions (Phase 25)
+- Test data generation: 125 triplets (25 manual + 100 AI-generated) (Phase 26)
+- LLM-as-a-Judge evaluation with structured Pydantic schemas (Phase 27)
+- Seven-dimension rubrics (instructions, answer quality, tool usage) + OWASP security extensions
+- Chain-of-thought field ordering (justification before verdict reduces variance 10-15%)
+- Separate judge model (gpt-4o-mini, temp=0.0) prevents self-evaluation bias
+
 ## Repository Structure
 
 ```
@@ -37,17 +45,28 @@ aihero/
 │   ├── day2.ipynb       # Day 2: Chunking strategies
 │   ├── day3.ipynb       # Day 3: Search systems (text, vector, hybrid)
 │   ├── day4.ipynb       # Day 4: AI agents with tool calling
+│   ├── day5.ipynb       # Day 5: LLM-as-a-Judge evaluation (inline implementation)
 │   ├── requirements.lock # Hash-pinned dependencies
 │   └── pyproject.toml   # Dependencies (requests, tiktoken, openai, groq, sentence-transformers, minsearch, pydantic-ai)
 │
 ├── project/             # Engineering-quality implementations
-│   ├── owasp_homework.ipynb    # OWASP analysis (Day 1 + Day 2 + Day 3 + Day 4)
+│   ├── src/aihero/
+│   │   ├── evaluation.py       # LLM-as-a-Judge schemas, rubrics, and judge agent
+│   │   ├── logging.py          # JSON-based agent interaction logging
+│   │   ├── test_data.py        # TestTriplet schema and validation utilities
+│   │   └── question_generator.py # AI-powered question generation
+│   ├── tests/
+│   │   ├── conftest.py         # Shared pytest fixtures
+│   │   └── test_evaluation.py  # 10/10 tests for EVAL-01 through EVAL-10
+│   ├── owasp_homework.ipynb    # OWASP analysis (Days 1-4)
 │   ├── requirements.lock       # Hash-pinned dependencies
 │   ├── .pre-commit-config.yaml # Quality gates (black, ruff, mypy, snyk, pip-audit)
 │   └── pyproject.toml          # Dependencies + dev tools
 │
 └── docs/
     └── diagrams/        # Mermaid diagrams for all phases
+        ├── llm-as-a-judge-evaluation-flow.md  # Phase 27: Evaluation pipeline
+        └── ...
 ```
 
 **course/**: Follows AI Hero course structure with DataTalks FAQ and Evidently AI docs as examples.
@@ -85,6 +104,9 @@ uv run jupyter notebook day3.ipynb
 
 # Day 4: AI agents
 uv run jupyter notebook day4.ipynb
+
+# Day 5: Evaluation
+uv run jupyter notebook day5.ipynb
 ```
 
 **Day 1 notebook** walks through:
@@ -114,6 +136,14 @@ uv run jupyter notebook day4.ipynb
 3. FAQ demonstration with 5 test questions
 4. System prompt experiments (3 different tones)
 5. Educational comparison: manual vs framework approach
+
+**Day 5 notebook** implements:
+1. JSON logging for agent interactions (session metadata, messages, response)
+2. Test data generation: manual triplets + AI-generated questions via Pydantic AI
+3. LLM-as-a-Judge evaluation with EvaluationCheck and EvaluationChecklist schemas
+4. Seven-dimension rubrics (instructions_follow, answer_relevant, citations, completeness, tool usage)
+5. Chain-of-thought evaluation pattern (justification before verdict)
+6. Inline implementation with educational comments
 
 ### Project Homework
 ```bash
@@ -200,6 +230,25 @@ sidebar_position: 1
 **Architecture:**
 See [Agent-Tool Architecture](docs/diagrams/agent-tool-architecture.md) for the generic agent pattern.
 
+### Day 5: Evaluation
+
+**LLM-as-a-Judge**: Using a separate LLM (judge model) to evaluate agent responses with structured rubrics.
+
+**Evaluation Dimensions**: Seven quality criteria - instructions_follow/avoid, answer_relevant/clear/citations, completeness, tool_call_search.
+
+**Chain-of-Thought Evaluation**: Field ordering where justification comes before check_pass in schema enforces reasoning before verdict (reduces variance 10-15%).
+
+**Structured Output**: Pydantic BaseModel schemas (EvaluationCheck, EvaluationChecklist) auto-validate LLM evaluation outputs.
+
+**Test Triplet**: Question + expected answer + source files + source tracking ('user' vs 'ai-generated').
+
+**Separate Judge Model**: Using gpt-4o-mini for evaluation instead of FAQ agent model prevents self-evaluation bias.
+
+**Temperature=0.0**: Deterministic evaluation settings for consistent, reproducible verdicts.
+
+**Evaluation Pipeline:**
+See [LLM-as-a-Judge Flow](docs/diagrams/llm-as-a-judge-evaluation-flow.md) for the complete evaluation architecture.
+
 **Key Features:**
 - Fast exact keyword matching
 - Field boosting (title: 2.0, content: 1.0)
@@ -264,6 +313,15 @@ By exploring the notebooks, you'll understand:
 - Stateless LLM pattern (managing conversation history)
 - Production patterns: error handling, loop termination
 
+**Day 5:**
+- Why LLM-as-a-Judge evaluation is necessary for RAG systems
+- How to log agent interactions for downstream evaluation
+- Test data generation: manual curation vs AI-powered synthesis
+- Structured evaluation with Pydantic schemas (EvaluationCheck, EvaluationChecklist)
+- Chain-of-thought evaluation pattern (justification before verdict)
+- Seven-dimension rubrics for comprehensive quality assessment
+- Separate judge model and temperature=0.0 for bias mitigation and determinism
+
 ## About the Course
 
 This project follows the [AI Hero](https://www.ai-hero.com/) crash course on building intelligent systems.
@@ -272,9 +330,10 @@ This project follows the [AI Hero](https://www.ai-hero.com/) crash course on bui
 **✓ Day 2 (v1.1)**: Document chunking - preparing documents for embedding and retrieval
 **✓ Day 3 (v2.0)**: Search systems - text, vector, and hybrid search with RRF fusion
 **✓ Day 4 (v4.0)**: AI agents - function calling and tool integration
+**✓ Day 5 (v5.0 Phase 27)**: LLM-as-a-Judge evaluation - structured rubrics and quality assessment
 
-**Future Days** (v5.0+):
-- Day 5+: Evaluation frameworks and production deployment patterns
+**Future Days** (v6.0+):
+- Day 6+: Production deployment patterns and web UI
 
 ## Standards & Quality
 
@@ -299,9 +358,11 @@ See `CLAUDE.md` for complete standards documentation.
 2. **Continue with Day 2**: `course/day2.ipynb` - Four chunking strategies
 3. **Explore Day 3**: `course/day3.ipynb` - Text, vector, and hybrid search systems
 4. **Explore Day 4**: `course/day4.ipynb` - AI agents with tool calling
-5. **Review project work**: `project/owasp_homework.ipynb` - OWASP analysis (Days 1-4)
-6. **Explore diagrams**: `docs/diagrams/` - Mermaid flowcharts for all phases
+5. **Explore Day 5**: `course/day5.ipynb` - LLM-as-a-Judge evaluation
+6. **Review project work**: `project/owasp_homework.ipynb` - OWASP analysis (Days 1-4)
+7. **Review project modules**: `project/src/aihero/` - Production evaluation system (logging, test data, LLM-as-a-Judge)
+8. **Explore diagrams**: `docs/diagrams/` - Mermaid flowcharts for all phases including evaluation pipeline
 
 ---
 
-*Last updated: 2026-04-10 | v4.0 Complete ✓*
+*Last updated: 2026-04-14 | v5.0 Phase 27 Complete ✓*

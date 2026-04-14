@@ -16,9 +16,11 @@ Typical usage:
         all_triplets.extend(triplets)
 """
 
-from typing import TypedDict
-from pydantic_ai import Agent
 import random
+from typing import Any, TypedDict
+
+from pydantic_ai import Agent
+
 from aihero.test_data import TestTriplet
 
 
@@ -60,8 +62,8 @@ question_generator = Agent(
 
 
 def sample_chunks_for_generation(
-    chunks: list[dict], n_samples: int = 20, seed: int | None = None
-) -> list[dict]:
+    chunks: list[dict[str, Any]], n_samples: int = 20, seed: int | None = None
+) -> list[dict[str, Any]]:
     """Sample random chunks from corpus for question generation.
 
     Random sampling without replacement ensures broad coverage across corpus,
@@ -88,7 +90,7 @@ def sample_chunks_for_generation(
     return random.sample(chunks, sample_size)
 
 
-async def generate_questions_from_chunk(chunk: dict) -> list[TestTriplet]:
+async def generate_questions_from_chunk(chunk: dict[str, Any]) -> list[TestTriplet]:
     """Generate questions from corpus chunk via Pydantic AI.
 
     Extracts source file metadata, generates diverse questions, and creates

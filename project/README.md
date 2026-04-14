@@ -1,6 +1,6 @@
 # Project: OWASP LLM Top 10 - Engineering Implementation
 
-This folder contains engineering-quality implementations of Days 1, 2, 3, and 4 course work applied to the OWASP LLM Top 10 repository. The notebook demonstrates full engineering standards (type hints, docstrings, pre-commit hooks) and includes analysis specific to security documentation.
+This folder contains engineering-quality implementations of Days 1-5 course work applied to the OWASP LLM Top 10 repository. Includes production-grade Python modules for evaluation (Phase 25-27) with full engineering standards (type hints, docstrings, pre-commit hooks, 10/10 test coverage).
 
 ## Notebook: owasp_homework.ipynb
 
@@ -33,6 +33,14 @@ This folder contains engineering-quality implementations of Days 1, 2, 3, and 4 
 - Domain-specific prompt tuning for security terminology
 - Engineering standards (type hints, docstrings, inline comments)
 
+**Day 5: LLM-as-a-Judge Evaluation System** (Phases 25-27)
+- **Phase 25 (Logging)**: JSON-based agent interaction logging (`src/aihero/logging.py`)
+- **Phase 26 (Test Data)**: TestTriplet schema, validation utilities, AI-powered question generation (`src/aihero/test_data.py`, `src/aihero/question_generator.py`)
+- **Phase 27 (LLM-as-a-Judge)**: Structured evaluation with Pydantic schemas, seven-dimension rubrics + OWASP security extensions (`src/aihero/evaluation.py`)
+- Production modules with complete type annotations and 10/10 pytest coverage (`tests/test_evaluation.py`)
+- Chain-of-thought evaluation pattern (justification before verdict)
+- Separate judge model (gpt-4o-mini, temp=0.0) for bias mitigation
+
 **Repository Analyzed:**
 - **OWASP/www-project-top-10-for-large-language-model-applications**
 - 542 markdown documents
@@ -55,6 +63,9 @@ This folder contains engineering-quality implementations of Days 1, 2, 3, and 4 
 | **Day 4: Agent Tool** | text_search | hybrid_search (security optimized) |
 | **Day 4: Prompting** | General FAQ | Security-tuned with OWASP context |
 | **Day 4: Query Scope** | 5 FAQ questions | 8 security-specific queries |
+| **Day 5: Implementation** | Inline in notebook | Production modules (src/aihero/) |
+| **Day 5: Test Coverage** | Educational focus | 10/10 pytest coverage with type safety |
+| **Day 5: Rubrics** | 7 base dimensions | 7 base + 2 OWASP security extensions |
 
 ### Key Learnings
 
@@ -84,6 +95,15 @@ This folder contains engineering-quality implementations of Days 1, 2, 3, and 4 
 - Agent loop handles error cases gracefully (empty results, API failures)
 - Framework benefits: ~70% code reduction vs manual OpenAI implementation
 
+**Day 5 (Phases 25-27):**
+- **Logging (Phase 25)**: JSON logging enables evaluation pipeline (session metadata, messages, response)
+- **Test Data (Phase 26)**: 125 test triplets (25 manual + 100 AI-generated via Pydantic AI question generator)
+- **LLM-as-a-Judge (Phase 27)**: Structured evaluation with EvaluationCheck and EvaluationChecklist Pydantic schemas
+- **OWASP Extensions**: Two additional rubrics (security_correctness, cve_citation_accuracy) beyond base seven dimensions
+- **Production Standards**: Complete type annotations, 10/10 pytest coverage, MyPy strict mode passing
+- **Chain-of-Thought**: Field ordering (justification before check_pass) reduces evaluation variance 10-15%
+- **Bias Mitigation**: Separate judge model (gpt-4o-mini) with temperature=0.0 for deterministic evaluation
+
 **Architecture:**
 - Day 1: [GitHub Ingestion Pipeline](../docs/diagrams/github-ingestion-pipeline.md)
 - Day 2: [Hybrid Chunking Strategy](../docs/diagrams/hybrid-chunking-strategy.md)
@@ -91,6 +111,7 @@ This folder contains engineering-quality implementations of Days 1, 2, 3, and 4 
 - Day 3: [Vector Search Integration](../docs/diagrams/vector-search-integration.md)
 - Day 3: [Hybrid Search RRF Fusion](../docs/diagrams/hybrid-search-rrf-fusion.md)
 - Day 4: [Agent-Tool Architecture](../docs/diagrams/agent-tool-architecture.md)
+- Day 5: [LLM-as-a-Judge Evaluation Flow](../docs/diagrams/llm-as-a-judge-evaluation-flow.md)
 
 ### Running the Notebook
 
@@ -214,6 +235,15 @@ git push --no-verify
 - Error handling in agent loops
 - Security-focused query patterns (LLM01-10, CVEs, concepts)
 
+**Day 5: Production Evaluation System**
+- Complete evaluation pipeline (logging → test data → judge → metrics)
+- Structured output with Pydantic schemas (EvaluationCheck, EvaluationChecklist)
+- Multi-dimension rubrics (7 base + 2 OWASP security extensions)
+- Chain-of-thought evaluation pattern (justification before verdict)
+- Test data generation strategies (manual curation + AI synthesis)
+- Production engineering standards (type safety, test coverage, MyPy strict)
+- Bias mitigation (separate judge model, temperature=0.0)
+
 **Engineering Rigor:**
 - Full engineering standards (type hints, docstrings, pre-commit hooks)
 - Hash-pinned dependencies for reproducible builds
@@ -234,10 +264,12 @@ The notebook shows:
 
 - Review "Analysis Summary" section in the notebook for Day 3 search insights
 - Review Day 4 section for agent implementation with hybrid search
-- Compare with `../course/day4.ipynb` to see FAQ agent vs security agent
+- **Review `src/aihero/` modules** for production evaluation system (Day 5)
+- **Run tests**: `uv run pytest tests/test_evaluation.py -v` (10/10 passing)
+- Compare with `../course/day4.ipynb` (FAQ agent) and `../course/day5.ipynb` (inline evaluation)
 - Experiment with different queries to test search method trade-offs
-- Consider Day 5+: Evaluation frameworks and production deployment
+- Run LLM-as-a-Judge evaluation on your own agent responses
 
 ---
 
-**Note:** This folder demonstrates applying course concepts with production engineering practices. Code quality is higher than course reproduction to show real-world implementation standards.
+**Note:** This folder demonstrates applying course concepts with production engineering practices. Code quality is higher than course reproduction to show real-world implementation standards (type safety, test coverage, pre-commit hooks).
