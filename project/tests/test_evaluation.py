@@ -48,8 +48,8 @@ def test_chain_of_thought_order() -> None:
     """
     from aihero.evaluation import EvaluationCheck
 
-    # Pydantic BaseModel stores field order in __fields__
-    field_names = list(EvaluationCheck.__fields__.keys())
+    # Pydantic BaseModel stores field order in model_fields
+    field_names = list(EvaluationCheck.model_fields.keys())
 
     justification_idx = field_names.index("justification")
     check_pass_idx = field_names.index("check_pass")
