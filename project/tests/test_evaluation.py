@@ -188,12 +188,12 @@ def test_temperature_zero():
     """
     from aihero.evaluation import judge_agent
 
-    # Access ModelSettings from agent
+    # Access ModelSettings from agent (returns dict)
     model_settings = judge_agent.model_settings
 
     assert model_settings is not None, "ModelSettings not configured"
     assert (
-        model_settings.temperature == 0.0
+        model_settings.get("temperature") == 0.0
     ), "Judge must use temperature=0.0 for deterministic evaluation"
 
 

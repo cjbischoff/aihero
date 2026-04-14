@@ -14,7 +14,12 @@ from aihero.question_generator import (
     generate_questions_from_chunk,
     sample_chunks_for_generation,
 )
-from aihero.evaluation import EvaluationCheck, EvaluationChecklist, RUBRICS
+from aihero.evaluation import (
+    EvaluationCheck,
+    EvaluationChecklist,
+    RUBRICS,
+    judge_agent,
+)
 
 __version__ = "0.1.0"
 __all__ = [
@@ -33,4 +38,5 @@ __all__ = [
     "EvaluationCheck",
     "EvaluationChecklist",
     "RUBRICS",
+    "judge_agent",
 ]
