@@ -1,0 +1,402 @@
+[
+  {
+    "question": "What makes social engineering attacks more dangerous when AI is involved?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/Archive/2_0_voting/archive_voting_round_one/results/owasp_top_10_llm_top_entries_summary.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How do existing security systems need to adapt to handle AI-driven attacks?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/Archive/2_0_voting/archive_voting_round_one/results/owasp_top_10_llm_top_entries_summary.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why is the involvement of AI in social engineering attacks considered a failure mode?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/Archive/2_0_voting/archive_voting_round_one/results/owasp_top_10_llm_top_entries_summary.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "In what ways can the sophistication of social engineering attacks increase with the use of AI?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/Archive/2_0_voting/archive_voting_round_one/results/owasp_top_10_llm_top_entries_summary.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What are the potential consequences of higher quality and quantity of attacks due to AI in social engineering?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/Archive/2_0_voting/archive_voting_round_one/results/owasp_top_10_llm_top_entries_summary.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What are the risks associated with poorly configured models according to the document?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/es-ES/LLM02_SensitiveInformationDisclosure.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How did the 'Proof Pudding' attack demonstrate vulnerabilities in machine learning models?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/es-ES/LLM02_SensitiveInformationDisclosure.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why is it important to safeguard training data from being revealed?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/es-ES/LLM02_SensitiveInformationDisclosure.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "In what ways can attackers exploit exposed training data?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/es-ES/LLM02_SensitiveInformationDisclosure.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What specific incident is cited as an example of model inversion attacks, and what were its consequences?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/es-ES/LLM02_SensitiveInformationDisclosure.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What is hallucination in the context of language models?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/LLM09_Misinformation.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How do LLMs create content that may be fabricated?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/LLM09_Misinformation.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why can hallucinations in LLM outputs be problematic for information accuracy?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/LLM09_Misinformation.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What other factors, besides hallucination, contribute to misinformation in LLMs?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/LLM09_Misinformation.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Can you explain how biases in training data affect the reliability of LLM-generated content?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/LLM09_Misinformation.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What are some examples of risks mentioned in the document?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/initiatives/agent_security_initiative/agentic-top-10/0.5-initial-candidates/ASI05_Cascading_Hallucination_Attacks.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How can self-reflection loops contribute to the reinforcement of false information?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/initiatives/agent_security_initiative/agentic-top-10/0.5-initial-candidates/ASI05_Cascading_Hallucination_Attacks.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "In what ways might RAG agents incorporate incorrect content?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/initiatives/agent_security_initiative/agentic-top-10/0.5-initial-candidates/ASI05_Cascading_Hallucination_Attacks.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why is the exchange of hallucinated knowledge among multi-agent teams concerning?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/initiatives/agent_security_initiative/agentic-top-10/0.5-initial-candidates/ASI05_Cascading_Hallucination_Attacks.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Can you explain what is meant by 'hallucinated facts' in the context of this document?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/initiatives/agent_security_initiative/agentic-top-10/0.5-initial-candidates/ASI05_Cascading_Hallucination_Attacks.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What are the common vulnerabilities associated with ChatGPT plugins as discussed in the document chunk?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/ru-RU/LLM01_PromptInjection.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How do prompt injection attacks affect LLM-integrated applications according to the various sources?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/ru-RU/LLM01_PromptInjection.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why is threat modeling important for large language models and what insights does one of the documents provide on this topic?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/ru-RU/LLM01_PromptInjection.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When considering defending against attacks like jailbreak, what methods are suggested in the document mentioned?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/ru-RU/LLM01_PromptInjection.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Can you compare the different approaches outlined in the documents for mitigating prompt injection attacks?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/ru-RU/LLM01_PromptInjection.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What is meant by tampering in the context of model security?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/pt-BR/LLM03_CadeiadeSuprimentos.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How did PoisonGPT manage to bypass Hugging Face's security features?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/pt-BR/LLM03_CadeiadeSuprimentos.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why is the alteration of a model particularly concerning in terms of misinformation?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/pt-BR/LLM03_CadeiadeSuprimentos.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Can you explain the consequences of an attacker publishing a tampered model?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/pt-BR/LLM03_CadeiadeSuprimentos.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What measures could be taken to prevent direct tampering of models like the one done by PoisonGPT?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/pt-BR/LLM03_CadeiadeSuprimentos.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What sensitive information might a system prompt disclose in an application?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/ko-KR/LLM07_SystemPromptLeakage.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How could an attacker use information obtained from a system prompt to gain unauthorized access?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/ko-KR/LLM07_SystemPromptLeakage.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why is it important to restrict sensitive information in application system prompts?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/ko-KR/LLM07_SystemPromptLeakage.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "In what ways can the disclosure of database types in a system prompt lead to vulnerabilities like SQL injection?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/ko-KR/LLM07_SystemPromptLeakage.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What measures can developers take to prevent sensitive information from being leaked in system prompts?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/ko-KR/LLM07_SystemPromptLeakage.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What is the significance of the MITRE CWE-400 in relation to resource consumption?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/es-ES/LLM10_UnboundedConsumption.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How does the OWASP Machine Learning Security Top Ten describe the risks of model theft?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/es-ES/LLM10_UnboundedConsumption.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "In what ways can resource consumption be classified as uncontrolled according to MITRE?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/es-ES/LLM10_UnboundedConsumption.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Compare the tactics outlined in the MITRE ATLAS concerning ML model access and denial of service.",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/es-ES/LLM10_UnboundedConsumption.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When should developers refer to OWASP's guidelines on resource management in their coding practices?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/es-ES/LLM10_UnboundedConsumption.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What does the image depict in terms of visual content or subject matter?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/initiatives/agent_security_initiative/README.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How can the image be interpreted in different contexts, such as artistic or technical perspectives?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/initiatives/agent_security_initiative/README.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why might the choice of colors in the image be significant?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/initiatives/agent_security_initiative/README.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When was the image created, and does the date influence its meaning or relevance?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/initiatives/agent_security_initiative/README.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What elements of the image stand out and contribute to its overall message or theme?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/initiatives/agent_security_initiative/README.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What are the actions that can be placed on hold according to the document?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/el-GR/LLM10_UnboundedConsumption.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How does the document suggest managing a smooth escalation process?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/el-GR/LLM10_UnboundedConsumption.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why is it important to restrict actions to a waiting status in certain situations?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/el-GR/LLM10_UnboundedConsumption.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When should actions be postponed as per the guidelines provided?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/el-GR/LLM10_UnboundedConsumption.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What implications might arise from not following the recommendations for action restriction and escalation?",
+    "expected_answer": "",
+    "source_files": [
+      "www-project-top-10-for-large-language-model-applications-main/2_0_vulns/translations/el-GR/LLM10_UnboundedConsumption.md"
+    ],
+    "source": "ai-generated"
+  }
+]

@@ -1,10 +1,11 @@
-# Course: Days 1, 2, 3 & 4 - RAG Fundamentals
+# Course: Days 1-5 - RAG Fundamentals
 
-This folder contains course reproductions for Days 1, 2, 3, and 4 of the AI Hero RAG crash course:
+This folder contains course reproductions for Days 1-5 of the AI Hero RAG crash course:
 - **Day 1:** GitHub repository data ingestion
 - **Day 2:** Document chunking strategies
 - **Day 3:** Search methods (text, vector, hybrid)
 - **Day 4:** AI agents with tool calling
+- **Day 5:** LLM-as-a-Judge evaluation
 
 All notebooks demonstrate core concepts with hands-on implementations and real-world examples.
 
@@ -317,14 +318,90 @@ uv run jupyter notebook day4.ipynb
 - Stateless conversation management pattern
 - Production patterns: error handling, max steps
 
+## Notebook: day5.ipynb
+
+### What It Does
+
+Implements LLM-as-a-Judge evaluation system for assessing agent response quality:
+1. **JSON Logging**: Capture agent interactions with session metadata for evaluation
+2. **Test Data Generation**: Manual test triplets + AI-powered question synthesis via Pydantic AI
+3. **LLM-as-a-Judge Evaluation**: Structured rubrics with chain-of-thought reasoning
+4. **Seven-Dimension Rubrics**: Comprehensive quality assessment across instruction following, answer quality, and tool usage
+
+### Key Components
+
+**Evaluation Schemas:**
+- `EvaluationCheck` - Single dimension with justification and pass/fail verdict
+- `EvaluationChecklist` - Aggregates all checks with overall_pass and metadata
+
+**Rubrics:**
+- Seven base dimensions: instructions_follow, instructions_avoid, answer_relevant, answer_clear, answer_citations, completeness, tool_call_search
+- Chain-of-thought field ordering (justification before check_pass)
+
+**Judge Agent:**
+- Separate model (gpt-4o-mini) to prevent self-evaluation bias
+- Temperature=0.0 for deterministic, reproducible verdicts
+- Structured output via Pydantic ensures consistent evaluation format
+
+**Architecture:**
+See `../docs/diagrams/`:
+- [LLM-as-a-Judge Evaluation Flow](../docs/diagrams/llm-as-a-judge-evaluation-flow.md)
+
+### Running the Notebook
+
+**Setup:**
+```bash
+cd course/
+uv sync
+uv run jupyter notebook day5.ipynb
+```
+
+**Dependencies:**
+- pydantic-ai>=1.77.0 (structured output for evaluation)
+- Requires Day 4 completion (uses FAQ agent logs)
+
+**Execution:**
+- Requires OPENAI_API_KEY in `.env` file
+- Expected runtime: ~3-5 minutes (includes judge LLM API calls)
+
+### Key Concepts Explained
+
+**LLM-as-a-Judge:**
+- Uses a separate LLM to evaluate agent outputs with structured rubrics
+- More scalable than human review for large test sets
+- Separate judge model prevents self-evaluation bias
+
+**Chain-of-Thought Evaluation:**
+- Field ordering in schema enforces LLM to generate reasoning (justification) before verdict (check_pass)
+- Reduces evaluation variance by 10-15% (Pydantic AI best practice)
+
+**Test Triplets:**
+- Question + expected_answer + source_files + source tracking ('user' vs 'ai-generated')
+- Enables retrieval metrics (hit rate, MRR) and answer quality assessment
+
+**Structured Output:**
+- Pydantic BaseModel schemas auto-validate LLM evaluation outputs
+- Eliminates schema drift and JSON parsing errors
+
+### What You'll Learn
+
+- Why LLM-as-a-Judge evaluation is necessary for RAG systems
+- How to design multi-dimension rubrics for comprehensive quality assessment
+- Chain-of-thought pattern for reducing evaluation variance
+- Separate judge model and temperature=0.0 for bias mitigation
+- Structured output with Pydantic for reliable evaluation pipelines
+- Test data generation strategies (manual curation vs AI synthesis)
+
 ## Next Steps
 
-After completing all four notebooks:
-1. Review project/owasp_homework.ipynb for production implementation (Days 1 + 2 + 3 + 4)
-2. Explore docs/diagrams/ for visual flowcharts of all phases
-3. Experiment with different queries to understand search method trade-offs
-4. Try different agent system prompts to see behavior changes
+After completing all five notebooks:
+1. Review project/owasp_homework.ipynb for production implementation (Days 1-4)
+2. Review project/src/aihero/ modules for production evaluation system (Day 5)
+3. Explore docs/diagrams/ for visual flowcharts of all phases
+4. Experiment with different queries to understand search method trade-offs
+5. Try different agent system prompts to see behavior changes
+6. Run evaluation on your own test questions to assess agent quality
 
 ---
 
-**Note:** This is course-quality code focused on learning concepts, not production engineering standards. See `../project/` for a version with full engineering rigor (type hints, docstrings, pre-commit hooks).
+**Note:** This is course-quality code focused on learning concepts, not production engineering standards. See `../project/` for a version with full engineering rigor (type hints, docstrings, pre-commit hooks, 10/10 test coverage).

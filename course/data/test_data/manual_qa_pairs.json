@@ -1,0 +1,74 @@
+[
+  {
+    "question": "What is Docker and why is it used in the course?",
+    "expected_answer": "Docker is a containerization platform that packages applications with their dependencies, allowing consistent environments across different machines. It's used in the course to ensure all students have reproducible development environments.",
+    "source_files": ["docker-setup.md", "environment-setup.md"],
+    "source": "user"
+  },
+  {
+    "question": "How do I install Docker for the course?",
+    "expected_answer": "Install Docker Desktop from docker.com. On Mac/Windows use the installer, on Linux follow the official Docker Engine installation guide. Verify installation with 'docker --version' command.",
+    "source_files": ["docker-setup.md"],
+    "source": "user"
+  },
+  {
+    "question": "What Python version is required for this course?",
+    "expected_answer": "Python 3.10 or higher is required. Python 3.13 is recommended for the latest features and compatibility.",
+    "source_files": ["prerequisites.md", "python-setup.md"],
+    "source": "user"
+  },
+  {
+    "question": "What topics are covered in the machine learning course?",
+    "expected_answer": "The course covers machine learning fundamentals including supervised learning, regression, classification, decision trees, ensemble methods, and deployment. Advanced topics include neural networks and deep learning.",
+    "source_files": ["course-structure.md", "topics-overview.md"],
+    "source": "user"
+  },
+  {
+    "question": "What is RAG and how does it work?",
+    "expected_answer": "RAG (Retrieval Augmented Generation) combines document retrieval with LLM generation. It searches a knowledge base for relevant context, then uses an LLM to generate answers grounded in that retrieved information.",
+    "source_files": ["rag-concepts.md", "llm-fundamentals.md"],
+    "source": "user"
+  },
+  {
+    "question": "How do vector embeddings work for search?",
+    "expected_answer": "Vector embeddings convert text into numerical vectors (arrays of numbers) that capture semantic meaning. Similar concepts have similar vectors, enabling semantic search by comparing vector similarity using cosine distance.",
+    "source_files": ["vector-embeddings.md", "search-systems.md"],
+    "source": "user"
+  },
+  {
+    "question": "What are the prerequisites for enrolling in the course?",
+    "expected_answer": "Prerequisites include basic Python programming knowledge, understanding of command-line operations, and Git fundamentals. Docker experience is helpful but not required as it's covered in the setup materials.",
+    "source_files": ["prerequisites.md", "enrollment-requirements.md"],
+    "source": "user"
+  },
+  {
+    "question": "Do I need a GPU for the course?",
+    "expected_answer": "A GPU is not required. The course uses CPU-compatible models and libraries. Embedding generation and search operations run efficiently on standard laptops.",
+    "source_files": ["hardware-requirements.md", "setup-guide.md"],
+    "source": "user"
+  },
+  {
+    "question": "How do I submit homework assignments?",
+    "expected_answer": "Submit homework via GitHub pull request to the course repository following the PR template guidelines. Include your solution files and a brief description of your approach.",
+    "source_files": ["homework-submission.md", "github-workflow.md"],
+    "source": "user"
+  },
+  {
+    "question": "When does the next cohort start?",
+    "expected_answer": "Check the course website for the latest cohort schedule. Typically new cohorts start quarterly with registration opening 2-3 weeks before the start date.",
+    "source_files": ["enrollment-schedule.md", "cohort-timeline.md"],
+    "source": "user"
+  },
+  {
+    "question": "How do I fix 'module not found' errors?",
+    "expected_answer": "First verify you're in the correct virtual environment. Then check dependencies are installed with 'pip list' or 'uv pip list'. Reinstall missing packages using 'pip install -r requirements.txt' or 'uv pip sync'.",
+    "source_files": ["troubleshooting.md", "python-environment.md"],
+    "source": "user"
+  },
+  {
+    "question": "What is the difference between TF-IDF and vector search?",
+    "expected_answer": "TF-IDF is keyword-based search using term frequency statistics, good for exact matches and acronyms. Vector search uses semantic embeddings to find conceptually similar content, better for paraphrased queries. Hybrid search combines both for optimal results.",
+    "source_files": ["search-comparison.md", "tfidf-vs-vector.md"],
+    "source": "user"
+  }
+]

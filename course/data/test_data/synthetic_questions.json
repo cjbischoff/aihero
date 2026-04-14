@@ -1,0 +1,402 @@
+[
+  {
+    "question": "What does it mean that base64 encoding does not change or hide the actual content of the data?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-2/012_a489fb34ac_should-i-include-my-env_encoded-file-in-my-gitigno.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why is it important to understand that base64 encoded data can be easily decoded?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-2/012_a489fb34ac_should-i-include-my-env_encoded-file-in-my-gitigno.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How can someone access and decode a base64 encoded string?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-2/012_a489fb34ac_should-i-include-my-env_encoded-file-in-my-gitigno.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What are the security implications of using base64 encoding for sensitive information?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-2/012_a489fb34ac_should-i-include-my-env_encoded-file-in-my-gitigno.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When should one avoid using base64 encoding for protecting data?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-2/012_a489fb34ac_should-i-include-my-env_encoded-file-in-my-gitigno.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What are repositories used for in the context of hosting notes and file versions?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/general/042_dc06a38bc6_how-do-i-use-git-github-for-this-course.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How can I create my own repositories according to the tutorial mentioned?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/general/042_dc06a38bc6_how-do-i-use-git-github-for-this-course.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why might someone want to host their notes and file versions in their own repositories?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/general/042_dc06a38bc6_how-do-i-use-git-github-for-this-course.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When should I consider using personal repositories instead of shared ones?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/general/042_dc06a38bc6_how-do-i-use-git-github-for-this-course.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What are the benefits of creating your own repositories for files and notes?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/general/042_dc06a38bc6_how-do-i-use-git-github-for-this-course.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What is more important when sending JSON to a tool in Python?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/llm-zoomcamp/workshops-agents/010_5beafdd0c8_i-passed-a-float-to-my-tool-but-got-a-validation-e.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why does the type used in Python matter less than the JSON schema?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/llm-zoomcamp/workshops-agents/010_5beafdd0c8_i-passed-a-float-to-my-tool-but-got-a-validation-e.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How can you ensure the JSON you send is compatible with a tool's input schema?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/llm-zoomcamp/workshops-agents/010_5beafdd0c8_i-passed-a-float-to-my-tool-but-got-a-validation-e.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What could happen if the JSON does not match the declared input schema of a tool?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/llm-zoomcamp/workshops-agents/010_5beafdd0c8_i-passed-a-float-to-my-tool-but-got-a-validation-e.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Can you explain the relationship between Python types and JSON schemas in tool integration?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/llm-zoomcamp/workshops-agents/010_5beafdd0c8_i-passed-a-float-to-my-tool-but-got-a-validation-e.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What command is used to install multiple Python packages at once?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/workshop-1-dlthub/004_ee564fdf82_other-packages-needed-but-not-listed.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How do you install DuckDB and its dependencies using pip?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/workshop-1-dlthub/004_ee564fdf82_other-packages-needed-but-not-listed.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why might you choose to use DuckDB with pandas and numpy in a data analysis workflow?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/workshop-1-dlthub/004_ee564fdf82_other-packages-needed-but-not-listed.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When would you need to install pyarrow alongside DuckDB?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/workshop-1-dlthub/004_ee564fdf82_other-packages-needed-but-not-listed.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Compare the roles of pandas and numpy in conjunction with DuckDB.",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/workshop-1-dlthub/004_ee564fdf82_other-packages-needed-but-not-listed.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What are the main issues discussed in GitHub Issues 590 and 1221 regarding confluent-kafka-python?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-7/005_0a441d9976_modulenotfounderror-no-module-named-avro.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How did users in the StackOverflow discussion address the import error related to the producer in confluent-kafka?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-7/005_0a441d9976_modulenotfounderror-no-module-named-avro.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why might someone be unable to import the producer from confluent-kafka, as mentioned in the StackOverflow discussion?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-7/005_0a441d9976_modulenotfounderror-no-module-named-avro.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When should a user consult GitHub Issues to troubleshoot problems with libraries like confluent-kafka-python?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-7/005_0a441d9976_modulenotfounderror-no-module-named-avro.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What steps can be taken to resolve the import error mentioned in the StackOverflow discussion?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-7/005_0a441d9976_modulenotfounderror-no-module-named-avro.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What access does a BigQuery Data Viewer have?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-3/047_0882fc44fa_security-access-control-bigquery.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How does the role of a BigQuery Data Editor differ from that of a BigQuery Admin?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-3/047_0882fc44fa_security-access-control-bigquery.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why might a team choose to assign the BigQuery Admin role to a specific user?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-3/047_0882fc44fa_security-access-control-bigquery.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When would it be appropriate to grant a user BigQuery Data Viewer access instead of BigQuery Data Editor access?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-3/047_0882fc44fa_security-access-control-bigquery.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What capabilities does a BigQuery Admin have that other roles do not?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-3/047_0882fc44fa_security-access-control-bigquery.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What function does the '-e' option serve in the docker run command?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-1/137_5f560784b0_postgres-18-startup-after-upgrade.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How do you specify a custom database name when running a PostgreSQL container using Docker?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-1/137_5f560784b0_postgres-18-startup-after-upgrade.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What should you adjust in the provided command if you want to change the database user from 'root' to 'admin'?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-1/137_5f560784b0_postgres-18-startup-after-upgrade.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why is the '-v' option important when running this Docker command?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-1/137_5f560784b0_postgres-18-startup-after-upgrade.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When running the PostgreSQL container, what does the port mapping '-p 5432:5432' accomplish?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-1/137_5f560784b0_postgres-18-startup-after-upgrade.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What happens to the Postgres DB data when the Docker container restarts?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/mlops-zoomcamp/module-5/023_93dfb7d96c_grafana-dashboard-error-after-reset-db-query-error.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why is it important to have a volume for the Postgres DB in the docker-compose.yml file?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/mlops-zoomcamp/module-5/023_93dfb7d96c_grafana-dashboard-error-after-reset-db-query-error.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How can I modify the default docker-compose.yml file to include a volume for persistent Postgres DB data?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/mlops-zoomcamp/module-5/023_93dfb7d96c_grafana-dashboard-error-after-reset-db-query-error.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What are the consequences of not having a volume for the Postgres DB in a Docker setup?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/mlops-zoomcamp/module-5/023_93dfb7d96c_grafana-dashboard-error-after-reset-db-query-error.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When do I need to consider adding a volume to my docker-compose.yml file for a database?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/mlops-zoomcamp/module-5/023_93dfb7d96c_grafana-dashboard-error-after-reset-db-query-error.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What information does the command 'free -h' provide about a system?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-1/103_513410225e_gcp-virtual-machine-vm-size-slow-clean-up.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How can I check the memory usage on my system using the terminal?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-1/103_513410225e_gcp-virtual-machine-vm-size-slow-clean-up.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why would someone want to use 'free -h' instead of other memory-checking commands?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-1/103_513410225e_gcp-virtual-machine-vm-size-slow-clean-up.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When is it most useful to run the 'free -h' command during system monitoring?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-1/103_513410225e_gcp-virtual-machine-vm-size-slow-clean-up.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Can you compare 'free -h' with other commands that show system resource usage, like 'top' or 'htop'?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/data-engineering-zoomcamp/module-1/103_513410225e_gcp-virtual-machine-vm-size-slow-clean-up.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "What command is used to install the scipy module?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/machine-learning-zoomcamp/module-8/017_0377df757c_error-with-scipy-missing-module-in-saturncloud.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "How can I run a pip installation command in a Jupyter notebook cell?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/machine-learning-zoomcamp/module-8/017_0377df757c_error-with-scipy-missing-module-in-saturncloud.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Why might you want to install the scipy module before using it in your project?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/machine-learning-zoomcamp/module-8/017_0377df757c_error-with-scipy-missing-module-in-saturncloud.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "When should you consider installing a new library like scipy in your development environment?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/machine-learning-zoomcamp/module-8/017_0377df757c_error-with-scipy-missing-module-in-saturncloud.md"
+    ],
+    "source": "ai-generated"
+  },
+  {
+    "question": "Can you explain the steps involved in installing a Python module using pip?",
+    "expected_answer": "",
+    "source_files": [
+      "faq-main/_questions/machine-learning-zoomcamp/module-8/017_0377df757c_error-with-scipy-missing-module-in-saturncloud.md"
+    ],
+    "source": "ai-generated"
+  }
+]
