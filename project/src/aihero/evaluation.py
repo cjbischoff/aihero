@@ -8,6 +8,8 @@ https://pydantic.dev/docs/ai/evals/evaluators/llm-judge/
 """
 
 from pydantic import BaseModel, Field
+from pydantic_ai import Agent
+from pydantic_ai.models import ModelSettings
 
 
 class EvaluationCheck(BaseModel):
@@ -221,3 +223,28 @@ RUBRICS: dict[str, str] = {
     FAIL if agent answered from memory when retrieval was needed.
     """,
 }
+
+
+# LLMJudge Agent (EVAL-04, EVAL-09)
+# Separate judge model prevents self-evaluation bias
+# temperature=0.0 ensures deterministic, consistent evaluation
+judge_agent = Agent(
+    "openai:gpt-4o-mini",
+    output_type=EvaluationChecklist,
+    model_settings=ModelSettings(temperature=0.0),
+    system_prompt="""You are an expert evaluator for RAG agent responses.
+
+Your task: Assess response quality across multiple dimensions using explicit rubrics.
+
+For EACH dimension:
+1. Read the rubric criteria carefully
+2. Analyze the response against EACH numbered criterion
+3. Cite specific evidence from the response (quote relevant parts)
+4. Provide detailed justification explaining your reasoning
+5. Give final verdict (pass/fail) based on justification
+
+Be thorough but fair. Minor imperfections are acceptable if core criteria are met.
+Focus on whether the response serves the user's actual need, not perfection.
+
+Chain-of-thought is REQUIRED: always justify before concluding.""",
+)
