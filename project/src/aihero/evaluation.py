@@ -7,6 +7,11 @@ Based on Pydantic AI best practices:
 https://pydantic.dev/docs/ai/evals/evaluators/llm-judge/
 """
 
+import json
+from datetime import datetime
+from pathlib import Path
+from typing import TypedDict
+
 from pydantic import BaseModel, Field
 from pydantic_ai import Agent
 from pydantic_ai.models import ModelSettings
@@ -248,3 +253,134 @@ Focus on whether the response serves the user's actual need, not perfection.
 
 Chain-of-thought is REQUIRED: always justify before concluding.""",
 )
+
+
+class TestTriplet(TypedDict):
+    """Test triplet structure from Phase 26.
+
+    Re-defined here for type hint clarity (avoid circular import).
+    Actual implementation in aihero.test_data module.
+    """
+
+    question: str
+    expected_answer: str
+    source_files: list[str]
+    source: str
+
+
+async def evaluate_response(
+    log_file: Path,
+    triplet: TestTriplet,
+    rubrics: dict[str, str] | None = None,
+) -> EvaluationChecklist:
+    """Evaluate agent response using LLM-as-a-Judge.
+
+    Implements EVAL-08: interface accepting log file + test triplet,
+    returning evaluation checklist for downstream metrics analysis.
+
+    Integrates:
+    - Phase 25: Loads interaction log from log_file
+    - Phase 26: Uses test triplet for ground truth comparison
+    - Phase 27: Evaluates with judge_agent and RUBRICS
+
+    Args:
+        log_file: Path to JSON log from Phase 25 logging.py
+        triplet: Test triplet from Phase 26 test_data.py with question,
+            expected_answer, and source_files
+        rubrics: Evaluation rubrics dict (default: RUBRICS for base dimensions,
+            or OWASP_RUBRICS for security-specific evaluation)
+
+    Returns:
+        EvaluationChecklist with per-dimension checks and overall verdict
+
+    Raises:
+        FileNotFoundError: If log_file does not exist
+        json.JSONDecodeError: If log_file is not valid JSON
+        KeyError: If log_file missing required fields (response, system_prompt, etc.)
+
+    Example:
+        >>> from pathlib import Path
+        >>> log = Path("logs/faq_agent_20260414_143052_a3f2.json")
+        >>> triplet = {
+        ...     "question": "What is RAG?",
+        ...     "expected_answer": "Retrieval Augmented Generation...",
+        ...     "source_files": ["rag-overview.md"],
+        ...     "source": "user"
+        ... }
+        >>> checklist = await evaluate_response(log, triplet)
+        >>> print(f"Overall: {'PASS' if checklist.overall_pass else 'FAIL'}")
+        Overall: PASS
+        >>> for check in checklist.checks:
+        ...     print(f"{check.dimension}: {check.check_pass}")
+        answer_relevant: True
+        answer_clear: True
+        ...
+    """
+    # Default to base RUBRICS if not specified
+    if rubrics is None:
+        rubrics = RUBRICS
+
+    # EVAL-08: Load Phase 25 interaction log
+    with open(log_file) as f:
+        log_data = json.load(f)
+
+    # Build evaluation context for judge agent
+    evaluation_context = f"""
+Question: {triplet['question']}
+
+Expected Answer: {triplet['expected_answer']}
+
+Actual Response: {log_data['response']}
+
+System Prompt: {log_data['system_prompt']}
+
+Tools Available: {', '.join(log_data['tools'])}
+
+Retrieved Messages: {json.dumps(log_data.get('messages', []), indent=2)}
+"""
+
+    # Evaluate each dimension
+    checks: list[EvaluationCheck] = []
+    for dimension, rubric in rubrics.items():
+        dimension_prompt = f"""
+Dimension: {dimension}
+
+Rubric:
+{rubric}
+
+Context:
+{evaluation_context}
+
+Evaluate the actual response against the rubric criteria.
+Provide specific justification citing evidence from the response.
+Give final verdict (pass/fail) based on your analysis.
+"""
+
+        # Run judge agent for this dimension
+        # Note: Simplified single-dimension evaluation
+        # Production could batch all dimensions in one call for efficiency
+        result = await judge_agent.run(dimension_prompt)
+
+        # Extract check from result
+        # Judge agent returns EvaluationChecklist, we extract first check
+        # (In production, customize output_type per dimension for cleaner extraction)
+        check = EvaluationCheck(
+            dimension=dimension,
+            justification=result.output.checks[0].justification
+            if result.output.checks
+            else "No justification provided",
+            check_pass=result.output.checks[0].check_pass
+            if result.output.checks
+            else False,
+        )
+        checks.append(check)
+
+    # EVAL-07: Overall verdict (all checks must pass)
+    overall_pass = all(check.check_pass for check in checks)
+
+    return EvaluationChecklist(
+        checks=checks,
+        overall_pass=overall_pass,
+        evaluated_at=datetime.now().isoformat(),
+        judge_model="openai:gpt-4o-mini",
+    )
