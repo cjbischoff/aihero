@@ -95,10 +95,10 @@ def main() -> None:
             message_placeholder = st.empty()
             full_response = ""
 
-            # Stream response chunks
+            # Stream response chunks (stream_text returns cumulative text, not deltas)
             result = agent.run_stream_sync(user_prompt=prompt)
             for chunk in result.stream_text(debounce_by=0.01):
-                full_response += chunk
+                full_response = chunk  # chunk is cumulative, not delta
                 message_placeholder.markdown(full_response + "▌")
 
             # Final update without cursor
