@@ -104,14 +104,11 @@ def main() -> None:
             # Final update without cursor
             message_placeholder.markdown(full_response)
 
-            # Get final result for logging
-            final_result = result.get_result_sync()
-
         # Add assistant message to history
         st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-        # Log interaction
-        log_interaction_to_file(agent, final_result, source="user")
+        # Log interaction (result object from run_stream_sync)
+        log_interaction_to_file(agent, result, source="user")
 
 
 if __name__ == "__main__":
