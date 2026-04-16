@@ -96,16 +96,16 @@ def main() -> None:
             full_response = ""
 
             # Stream response chunks
-            with agent.run_stream_sync(user_prompt=prompt) as result:
-                for chunk in result.stream_text(debounce_by=0.01):
-                    full_response += chunk
-                    message_placeholder.markdown(full_response + "▌")
+            result = agent.run_stream_sync(user_prompt=prompt)
+            for chunk in result.stream_text(debounce_by=0.01):
+                full_response += chunk
+                message_placeholder.markdown(full_response + "▌")
 
-                # Final update without cursor
-                message_placeholder.markdown(full_response)
+            # Final update without cursor
+            message_placeholder.markdown(full_response)
 
-                # Get final result for logging
-                final_result = result.get_result_sync()
+            # Get final result for logging
+            final_result = result.get_result_sync()
 
         # Add assistant message to history
         st.session_state.messages.append({"role": "assistant", "content": full_response})
