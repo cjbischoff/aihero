@@ -90,35 +90,28 @@ def main() -> None:
             st.markdown(prompt)
 
         # Stream assistant response with logging
-        # Use nonlocal to capture final result for logging after streaming
-        final_result = None
+        with st.chat_message("assistant"):
+            # Create placeholder for streaming text
+            message_placeholder = st.empty()
+            full_response = ""
 
-        def stream_and_log():
-            """Stream agent response and capture final result for logging.
-
-            Yields text chunks for st.write_stream() display with smooth
-            typewriter effect (debounce_by=0.01 for 10ms updates).
-
-            The final AgentRunResult is captured via nonlocal after streaming
-            completes, enabling log_interaction_to_file() call outside generator.
-            """
-            nonlocal final_result
+            # Stream response chunks
             with agent.run_stream_sync(user_prompt=prompt) as result:
                 for chunk in result.stream_text(debounce_by=0.01):
-                    yield chunk
-                # After streaming completes, get final result for logging
+                    full_response += chunk
+                    message_placeholder.markdown(full_response + "▌")
+
+                # Final update without cursor
+                message_placeholder.markdown(full_response)
+
+                # Get final result for logging
                 final_result = result.get_result_sync()
 
-        # Display streaming response
-        with st.chat_message("assistant"):
-            response = st.write_stream(stream_and_log())
-
         # Add assistant message to history
-        st.session_state.messages.append({"role": "assistant", "content": response})
+        st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-        # Log interaction if final result captured
-        if final_result:
-            log_interaction_to_file(agent, final_result, source="user")
+        # Log interaction
+        log_interaction_to_file(agent, final_result, source="user")
 
 
 if __name__ == "__main__":
