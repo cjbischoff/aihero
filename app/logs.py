@@ -136,7 +136,12 @@ def log_interaction_to_file(
     # Extract tools from agent.toolsets
     tools_list: list[str] = []
     for toolset in agent.toolsets:
-        tools_list.extend(toolset.keys())  # type: ignore[attr-defined]
+        # Toolset has function_tools dict attribute
+        if hasattr(toolset, 'function_tools'):
+            tools_list.extend(toolset.function_tools.keys())
+        # Fallback: try to get tool names from functions attribute
+        elif hasattr(toolset, 'functions'):
+            tools_list.extend(f.name for f in toolset.functions)
 
     # Capture message history using ModelMessagesTypeAdapter
     messages_dict = ModelMessagesTypeAdapter.dump_python(
