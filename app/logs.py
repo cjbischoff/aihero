@@ -24,8 +24,11 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from typing import Union
+
 from pydantic_ai import Agent, AgentRunResult
 from pydantic_ai.messages import ModelMessagesTypeAdapter
+from pydantic_ai.result import StreamedRunResultSync
 
 # Environment variable loading per D-13, D-14, D-15
 
@@ -92,7 +95,7 @@ def generate_log_filename(agent_name: str) -> str:
 
 def log_interaction_to_file(
     agent: Agent[Any, Any],
-    result: AgentRunResult[Any],
+    result: Union[AgentRunResult[Any], StreamedRunResultSync[Any]],
     source: str = "user",
 ) -> Path:
     """Log agent interaction to JSON file.
@@ -101,10 +104,15 @@ def log_interaction_to_file(
     for evaluation and debugging. Each call creates a single JSON file
     in the LOG_DIR directory.
 
+    Supports both streaming and non-streaming results:
+    - AgentRunResult from agent.run() - has .output attribute
+    - StreamedRunResultSync from agent.run_stream_sync() - has .get_output() method
+
     Args:
         agent: Pydantic AI agent instance with name, model, system_prompt,
             and toolsets attributes.
-        result: AgentRunResult from agent.run() containing output and new_messages().
+        result: AgentRunResult from agent.run() or StreamedRunResultSync from
+            agent.run_stream_sync(), containing output and new_messages().
         source: Query source - "user" (default) or "ai-generated" for synthetic
             test questions.
 
@@ -116,10 +124,17 @@ def log_interaction_to_file(
         AttributeError: If agent lacks required attributes (name, model, toolsets).
 
     Example:
+        >>> # Non-streaming usage
         >>> result = await faq_agent.run("What is RAG?")
         >>> log_file = log_interaction_to_file(faq_agent, result, source="user")
         >>> print(f"Logged to: {log_file}")
         Logged to: logs/faq_agent_20260415_143052_a3f2.json
+
+        >>> # Streaming usage
+        >>> result = faq_agent.run_stream_sync(user_prompt="What is RAG?")
+        >>> for chunk in result.stream_text():
+        ...     print(chunk, end="", flush=True)
+        >>> log_file = log_interaction_to_file(faq_agent, result, source="user")
 
     Log file structure:
         {
@@ -148,16 +163,25 @@ def log_interaction_to_file(
         result.new_messages()
     )
 
+    # Extract response text based on result type
+    # AgentRunResult has .output attribute, StreamedRunResultSync has .get_output() method
+    response_text = result.output if hasattr(result, 'output') else result.get_output()
+
+    # Extract system prompt - agent.system_prompt is a method, actual prompt in _system_prompts
+    system_prompt_text = (
+        agent._system_prompts[0] if agent._system_prompts else "<dynamic>"
+    )
+
     # Build log entry with agent configuration
     log_entry: dict[str, Any] = {
         "timestamp": datetime.now(),  # Serialized via serializer
         "agent_name": agent.name,
         "model": str(agent.model),
-        "system_prompt": agent.system_prompt,
+        "system_prompt": system_prompt_text,
         "tools": tools_list,
         "source": source,
         "messages": messages_dict,
-        "response": result.output,
+        "response": response_text,
     }
 
     # Generate unique filename and write to LOG_DIR

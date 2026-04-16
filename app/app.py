@@ -107,8 +107,8 @@ def main() -> None:
         # Add assistant message to history
         st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-        # Note: Logging disabled for streaming - StreamedRunResultSync has different API
-        # log_interaction_to_file(agent, result, source="user")
+        # Log interaction (supports both streaming and non-streaming results)
+        log_interaction_to_file(agent, result, source="user")
 
 
 if __name__ == "__main__":
