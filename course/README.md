@@ -1,11 +1,12 @@
-# Course: Days 1-5 - RAG Fundamentals
+# Course: Days 1-6 - RAG Fundamentals
 
-This folder contains course reproductions for Days 1-5 of the AI Hero RAG crash course:
+This folder contains course reproductions for Days 1-6 of the AI Hero RAG crash course:
 - **Day 1:** GitHub repository data ingestion
 - **Day 2:** Document chunking strategies
 - **Day 3:** Search methods (text, vector, hybrid)
 - **Day 4:** AI agents with tool calling
 - **Day 5:** LLM-as-a-Judge evaluation
+- **Day 6:** Publishing and deploying your agent
 
 All notebooks demonstrate core concepts with hands-on implementations and real-world examples.
 
@@ -248,6 +249,70 @@ The notebook includes a comprehensive learnings summary with:
 - Key insights (acronym handling, semantic queries, RRF fusion, cache pattern)
 - Production recommendations (when to use each method)
 
+## Notebook: day6.ipynb
+
+### What It Does
+
+Documents the journey from Day 4-5 notebooks to a deployed production agent:
+1. Code extraction into standalone app/ modules
+2. CLI interface for local testing
+3. Streamlit web UI with streaming responses
+4. Deployment to Streamlit Cloud with secrets management
+
+**Deployed Agent:** https://aihero-nbzqjktqedjuiq6bqjbjwn.streamlit.app/
+
+### Key Topics
+
+**Module Extraction Patterns:**
+- ingest.py: Data loading, chunking, indexing pipeline
+- search_tools.py: SearchTool class with dependency injection
+- search_agent.py: init_agent factory function
+- logs.py: JSON logging with environment configuration
+
+**SearchTool Class Pattern:**
+- Problem: Global variables (text_index) work for notebooks but break for testing/reuse
+- Solution: Dependency injection via class constructor
+- Benefit: Testable, reusable, no import order dependencies
+
+**Deployment Process:**
+1. Generate requirements.txt: `uv export --no-dev > requirements.txt`
+2. Configure Streamlit Cloud with app/ as root directory
+3. Set Python 3.11 in Advanced settings
+4. Configure TOML secrets: `OPENAI_API_KEY = "sk-..."`
+
+### Running the Notebook
+
+**Note:** This is a documentation-only notebook (no executable code cells).
+
+```bash
+cd course/
+uv run jupyter notebook day6.ipynb
+```
+
+Read through the notebook to understand:
+- Architecture comparison (notebook vs production)
+- Dependency injection pattern (SearchTool class)
+- Streamlit patterns (@st.cache_resource, session_state)
+- Deployment troubleshooting (Python version, TOML secrets format)
+
+### What You'll Learn
+
+- Notebook-to-production refactoring patterns
+- Dependency injection vs global variables
+- CLI interface with asyncio
+- Streamlit web UI with streaming
+- Streamlit Cloud deployment step-by-step
+- Hash-pinned dependencies for supply chain security
+
+### Day 6 Learnings Summary
+
+| Aspect | Notebook (Learning) | Production (app/) |
+|--------|---------------------|-------------------|
+| State | Global variables | Dependency injection |
+| Config | Hardcoded | Environment variables |
+| Execution | Cell-by-cell | Entry points |
+| Interfaces | Single notebook | CLI + Web UI |
+
 ## Notebook: day4.ipynb
 
 ### What It Does
@@ -394,13 +459,14 @@ uv run jupyter notebook day5.ipynb
 
 ## Next Steps
 
-After completing all five notebooks:
+After completing all six notebooks:
 1. Review project/owasp_homework.ipynb for production implementation (Days 1-4)
 2. Review project/src/aihero/ modules for production evaluation system (Day 5)
-3. Explore docs/diagrams/ for visual flowcharts of all phases
-4. Experiment with different queries to understand search method trade-offs
-5. Try different agent system prompts to see behavior changes
-6. Run evaluation on your own test questions to assess agent quality
+3. **Try the deployed agent**: https://aihero-nbzqjktqedjuiq6bqjbjwn.streamlit.app/
+4. **Review app/ modules** for production deployment patterns (Day 6)
+5. Explore docs/diagrams/ for visual flowcharts of all phases
+6. Experiment with different queries to understand search method trade-offs
+7. Run CLI locally: `cd app && python main.py`
 
 ---
 

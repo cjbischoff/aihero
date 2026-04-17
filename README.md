@@ -1,8 +1,8 @@
-# AI Hero - RAG Course (Days 1-5)
+# AI Hero - RAG Course (Days 1-6)
 
-A hands-on implementation from the AI Hero crash course on building RAG (Retrieval Augmented Generation) systems. This project demonstrates the complete RAG pipeline: GitHub data ingestion, document chunking strategies, search systems (text, vector, and hybrid), AI agents with tool integration, and LLM-as-a-Judge evaluation.
+A hands-on implementation from the AI Hero crash course on building RAG (Retrieval Augmented Generation) systems. This project demonstrates the complete RAG pipeline: GitHub data ingestion, document chunking strategies, search systems (text, vector, and hybrid), AI agents with tool integration, LLM-as-a-Judge evaluation, and production deployment with Streamlit Cloud.
 
-## Current Status: v5.0 Phase 27 Complete ✓
+## Current Status: v6.0 Phase 36 Complete ✓
 
 **v1.0 - Day 1: GitHub Data Ingestion** (shipped 2026-03-30)
 - Downloads GitHub repositories as zip archives
@@ -36,6 +36,13 @@ A hands-on implementation from the AI Hero crash course on building RAG (Retriev
 - Chain-of-thought field ordering (justification before verdict reduces variance 10-15%)
 - Separate judge model (gpt-4o-mini, temp=0.0) prevents self-evaluation bias
 
+**v6.0 - Day 6: Publish Your Agent** (shipped 2026-04-17)
+- Code refactored into standalone app/ modules (ingest, search, agent, logs)
+- CLI interface for local testing (python app/main.py)
+- Streamlit web UI with streaming responses
+- Deployed to Streamlit Cloud with secrets management
+- **Deployed:** https://aihero-nbzqjktqedjuiq6bqjbjwn.streamlit.app/
+
 ## Repository Structure
 
 ```
@@ -62,6 +69,16 @@ aihero/
 │   ├── requirements.lock       # Hash-pinned dependencies
 │   ├── .pre-commit-config.yaml # Quality gates (black, ruff, mypy, snyk, pip-audit)
 │   └── pyproject.toml          # Dependencies + dev tools
+│
+├── app/                 # Production deployment (Day 6)
+│   ├── ingest.py        # Data loading, chunking, indexing
+│   ├── search_tools.py  # SearchTool class (dependency injection)
+│   ├── search_agent.py  # init_agent factory function
+│   ├── logs.py          # JSON interaction logging
+│   ├── main.py          # CLI entry point
+│   ├── app.py           # Streamlit web UI entry point
+│   ├── pyproject.toml   # uv project dependencies
+│   └── requirements.txt # Generated for Streamlit Cloud
 │
 └── docs/
     └── diagrams/        # Mermaid diagrams for all phases
@@ -159,6 +176,26 @@ The project notebook demonstrates:
 4. **Day 4:** Security agent with hybrid search and domain-specific system prompt
 5. Strategy comparison on OWASP corpus
 6. Documented analysis: which search approach works best for security documentation
+
+### Deployed Agent
+Try the live FAQ agent at:
+https://aihero-nbzqjktqedjuiq6bqjbjwn.streamlit.app/
+
+### Running Locally
+```bash
+cd app/
+uv sync
+
+# CLI interface
+python main.py
+
+# Web UI
+streamlit run app.py
+```
+
+**Environment Variables:**
+- `OPENAI_API_KEY` (required): Your OpenAI API key
+- `LOGS_DIRECTORY` (optional): Log directory path (default: "logs")
 
 ## Key Concepts
 
@@ -322,6 +359,13 @@ By exploring the notebooks, you'll understand:
 - Seven-dimension rubrics for comprehensive quality assessment
 - Separate judge model and temperature=0.0 for bias mitigation and determinism
 
+**Day 6:**
+- Notebook-to-production refactoring patterns (global variables -> dependency injection)
+- CLI interface with asyncio for local testing
+- Streamlit web UI with streaming responses and session state
+- Streamlit Cloud deployment with secrets management
+- Hash-pinned dependencies for supply chain security
+
 ## About the Course
 
 This project follows the [AI Hero](https://www.ai-hero.com/) crash course on building intelligent systems.
@@ -331,9 +375,7 @@ This project follows the [AI Hero](https://www.ai-hero.com/) crash course on bui
 **✓ Day 3 (v2.0)**: Search systems - text, vector, and hybrid search with RRF fusion
 **✓ Day 4 (v4.0)**: AI agents - function calling and tool integration
 **✓ Day 5 (v5.0 Phase 27)**: LLM-as-a-Judge evaluation - structured rubrics and quality assessment
-
-**Future Days** (v6.0+):
-- Day 6+: Production deployment patterns and web UI
+**✓ Day 6 (v6.0)**: Production deployment - code refactoring, CLI, Streamlit, cloud deployment
 
 ## Standards & Quality
 
@@ -359,10 +401,12 @@ See `CLAUDE.md` for complete standards documentation.
 3. **Explore Day 3**: `course/day3.ipynb` - Text, vector, and hybrid search systems
 4. **Explore Day 4**: `course/day4.ipynb` - AI agents with tool calling
 5. **Explore Day 5**: `course/day5.ipynb` - LLM-as-a-Judge evaluation
-6. **Review project work**: `project/owasp_homework.ipynb` - OWASP analysis (Days 1-4)
-7. **Review project modules**: `project/src/aihero/` - Production evaluation system (logging, test data, LLM-as-a-Judge)
-8. **Explore diagrams**: `docs/diagrams/` - Mermaid flowcharts for all phases including evaluation pipeline
+6. **Explore Day 6**: `course/day6.ipynb` - Production deployment patterns
+7. **Try deployed agent**: https://aihero-nbzqjktqedjuiq6bqjbjwn.streamlit.app/
+8. **Review project work**: `project/owasp_homework.ipynb` - OWASP analysis (Days 1-4)
+9. **Review project modules**: `project/src/aihero/` - Production evaluation system (logging, test data, LLM-as-a-Judge)
+10. **Explore diagrams**: `docs/diagrams/` - Mermaid flowcharts for all phases including evaluation pipeline
 
 ---
 
-*Last updated: 2026-04-14 | v5.0 Phase 27 Complete ✓*
+*Last updated: 2026-04-17 | v6.0 Phase 36 Complete ✓*

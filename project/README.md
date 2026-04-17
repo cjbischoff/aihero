@@ -1,5 +1,7 @@
 # Project: OWASP LLM Top 10 - Engineering Implementation
 
+> **Note:** This folder contains engineering-quality implementations of course homework (Days 1-5) applied to OWASP LLM Top 10. For production deployment code (Day 6), see the `app/` folder at the repository root. The app/ folder demonstrates the transition from notebooks to deployed modules.
+
 This folder contains engineering-quality implementations of Days 1-5 course work applied to the OWASP LLM Top 10 repository. Includes production-grade Python modules for evaluation (Phase 25-27) with full engineering standards (type hints, docstrings, pre-commit hooks, 10/10 test coverage).
 
 ## Notebook: owasp_homework.ipynb
@@ -260,6 +262,30 @@ The notebook shows:
 
 **Key Insight:** A production RAG system needs to handle both cases gracefully.
 
+## Related: app/ Deployment Context
+
+The `app/` folder at the repository root demonstrates Day 6 production deployment patterns:
+
+```
+app/
+├── ingest.py          # Data loading (from course/day1.py patterns)
+├── search_tools.py    # SearchTool class (dependency injection)
+├── search_agent.py    # init_agent factory (from course/day4.ipynb)
+├── logs.py            # JSON logging (from project/src/aihero/logging.py patterns)
+├── main.py            # CLI entry point
+└── app.py             # Streamlit web UI
+```
+
+**Key Difference:**
+- `project/src/aihero/`: Production evaluation system (logging, test data, LLM-as-a-Judge)
+- `app/`: Deployment demonstration (refactored FAQ agent for Streamlit Cloud)
+
+Both use engineering standards (type hints, docstrings) but serve different purposes:
+- project/ = Engineering homework applying course patterns to OWASP
+- app/ = Production deployment of course FAQ agent
+
+**Deployed Agent:** https://aihero-nbzqjktqedjuiq6bqjbjwn.streamlit.app/
+
 ### Next Steps
 
 - Review "Analysis Summary" section in the notebook for Day 3 search insights
@@ -267,6 +293,8 @@ The notebook shows:
 - **Review `src/aihero/` modules** for production evaluation system (Day 5)
 - **Run tests**: `uv run pytest tests/test_evaluation.py -v` (10/10 passing)
 - Compare with `../course/day4.ipynb` (FAQ agent) and `../course/day5.ipynb` (inline evaluation)
+- **Explore app/ folder** for Day 6 deployment patterns (SearchTool class, init_agent factory)
+- **Try the deployed agent**: https://aihero-nbzqjktqedjuiq6bqjbjwn.streamlit.app/
 - Experiment with different queries to test search method trade-offs
 - Run LLM-as-a-Judge evaluation on your own agent responses
 
