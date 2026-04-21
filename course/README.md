@@ -457,9 +457,77 @@ uv run jupyter notebook day5.ipynb
 - Structured output with Pydantic for reliable evaluation pipelines
 - Test data generation strategies (manual curation vs AI synthesis)
 
+## Notebook: day7.ipynb
+
+### What It Does
+
+Documents portfolio presentation best practices for AI/RAG projects:
+1. **README Structure**: 11-section industry standard with RAG-specific guidance
+2. **Evaluation Organization**: Learning artifacts (notebooks) vs production modules pattern
+3. **Demo Creation**: Terminal GIFs (asciinema+agg, VHS), web recording (Streamlit), screenshots
+4. **Social Sharing**: LinkedIn narrative templates, GitHub social preview, badge selection, community engagement
+
+**This is a documentation-only notebook** (no executable code cells). It completes the course by teaching how to present your work effectively as a portfolio piece.
+
+### Key Components
+
+**Documentation Sections:**
+- Section 1: README Structure (11-section standard comparison with v6.0 README)
+- Section 2: Evaluation Organization (day5.ipynb vs project/src/aihero/ comparison)
+- Section 3: Demo Creation Workflows (terminal GIFs, web recordings, screenshots)
+- Section 4: Social Sharing Strategies (LinkedIn, GitHub, community engagement)
+- Section 5: Learnings Summary (documentation vs implementation distinction)
+
+**Reference Materials:**
+- Live deployment example: https://aihero-nbzqjktqedjuiq6bqjbjwn.streamlit.app/
+- LinkedIn five-part narrative template (hook/context/solution/learnings/CTA)
+- GitHub social preview specifications (1280x640px)
+- shields.io badge URL patterns
+
+### Running the Notebook
+
+**Note:** This is a documentation-only notebook with no executable code cells.
+
+```bash
+cd course/
+uv run jupyter notebook day7.ipynb
+```
+
+Read through the notebook to understand:
+- Industry-standard README structure and how v6.0 README compares
+- When to separate learning artifacts from production modules
+- Demo creation tool selection (asciinema vs VHS, Streamlit recorder, screencapture)
+- LinkedIn algorithm optimization and cross-posting strategies
+
+### Key Concepts Explained
+
+**Documentation vs Implementation:**
+Day 7 teaches a key professional skill: knowing when to document vs when to build. Portfolio presentation materials create value through clarity and synthesis, not through code. This notebook documents best practices WITHOUT implementing repository reorganization.
+
+**11-Section README Standard:**
+Modern README files follow: Title & Description, Overview, Features, Installation, Usage, Contributing, Tests, Deployment, FAQ, Credits, License. Day 7 compares this standard against v6.0 README.md to identify gaps (Contributing, Tests, FAQ, License deferred to v8.0+).
+
+**Social Sharing as Technical Communication:**
+The ability to explain complex systems clearly signals strong technical understanding. LinkedIn narrative posts (300-450 words), GitHub social previews, and cross-posting strategies demonstrate communication skills valued by hiring managers.
+
+### What You'll Learn
+
+- 11-section README structure standard and how to apply it
+- When to use learning artifacts (notebooks) vs production modules
+- Demo creation tool selection for different use cases
+- LinkedIn algorithm priorities (2026) and optimal post structure
+- GitHub social preview optimization (1280x640px)
+- Badge selection (3-4 essential badges only)
+- Cross-posting strategy (DEV.to-first, platform adaptation)
+- The distinction between documentation and implementation as deliverables
+
+### Day 7 Learnings Summary
+
+The core lesson: Documentation itself is a deliverable. Day 7 completes the course by documenting how to present work effectively, demonstrating that portfolio presentation creates value through clarity, not code. This reflects professional judgment about what to build vs what to document.
+
 ## Next Steps
 
-After completing all six notebooks:
+After completing all seven notebooks:
 1. Review project/owasp_homework.ipynb for production implementation (Days 1-4)
 2. Review project/src/aihero/ modules for production evaluation system (Day 5)
 3. **Try the deployed agent**: https://aihero-nbzqjktqedjuiq6bqjbjwn.streamlit.app/
