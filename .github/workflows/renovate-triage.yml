@@ -1,0 +1,42 @@
+name: '[AUTO] Renovate AI Triage'
+
+on:
+  pull_request:
+    types: [opened]
+
+# Deny everything at workflow level; grant only what each job needs.
+permissions: {}
+
+jobs:
+  triage:
+    if: startsWith(github.event.pull_request.title, '[RENOVATE]')
+    runs-on: ubuntu-latest
+    environment: ai-triage
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        # actions/checkout@v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        # actions/setup-python@v5.6.0
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install anthropic==0.52.0
+
+      - name: Run Renovate triage
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: python scripts/renovate_triage.py
