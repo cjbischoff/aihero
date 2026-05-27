@@ -1,0 +1,9 @@
+reviews:
+  auto_review:
+    # Skip automated review for Dependabot and Renovate PRs — these are
+    # handled by the AI triage workflow (renovate-triage.yml) for Renovate
+    # and have low review value for pure version bumps.
+    ignore_title_keywords:
+      - "[RENOVATE]"
+      - "chore(deps)"
+      - "Bump "
