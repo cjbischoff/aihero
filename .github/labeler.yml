@@ -1,0 +1,19 @@
+# Used by the renovate-review Claude skill to detect which sub-project
+# a PR touches. Each component-* label maps to one app root.
+# Non-component labels (ci-cd) are ignored by the skill's project detection.
+
+component-app:
+  - changed-files:
+      - any-glob-to-any-file: "app/**"
+
+component-course:
+  - changed-files:
+      - any-glob-to-any-file: "course/**"
+
+component-project:
+  - changed-files:
+      - any-glob-to-any-file: "project/**"
+
+ci-cd:
+  - changed-files:
+      - any-glob-to-any-file: ".github/**"

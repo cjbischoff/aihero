@@ -1,0 +1,72 @@
+{
+  // Docs: https://docs.renovatebot.com/configuration-options/
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+
+  // ---------------------------------------------------------------------------
+  // GENERAL CONFIG
+  // ---------------------------------------------------------------------------
+  baseBranchPatterns: ["main"],
+  schedule: ["at any time"], // Workflow controls when it runs
+  timezone: "UTC",
+
+  // PR settings
+  prConcurrentLimit: 10,   // Max open Renovate PRs at once (0 = no limit)
+  prHourlyLimit: 0,        // No per-hour cap (default is 2)
+  prCreation: "immediate", // Open PR as soon as branch is ready
+  automerge: false,
+  labels: ["dependencies"],
+  separateMajorMinor: false, // Group major+minor into one PR
+
+  // Supply chain protection — ignore packages published < 14 days ago
+  minimumReleaseAge: "14 days",
+  internalChecksFilter: "strict",
+
+  // ---------------------------------------------------------------------------
+  // INCLUDES — only scan these paths
+  // ---------------------------------------------------------------------------
+  includePaths: [
+    ".github/**",
+    "app/**",
+    "course/**",
+    "project/**",
+  ],
+
+  // ---------------------------------------------------------------------------
+  // PACKAGE RULES
+  // ---------------------------------------------------------------------------
+  packageRules: [
+    // GitHub Actions
+    {
+      matchManagers: ["github-actions"],
+      groupName: "github-actions",
+      commitMessagePrefix: "[RENOVATE] [CI] [DEPS]:",
+      commitMessageTopic: "GitHub Actions",
+    },
+    // Python — app/pyproject.toml
+    // Note: app/requirements.txt is 193KB — likely a lockfile. Remove the
+    // pip_requirements entry below if you don't want Renovate touching it.
+    {
+      matchFileNames: ["app/pyproject.toml", "app/requirements.txt"],
+      matchManagers: ["pep621", "pip_requirements"],
+      groupName: "python-app",
+      commitMessagePrefix: "[RENOVATE] [AIHERO] [DEPS]:",
+      commitMessageTopic: "Python app",
+    },
+    // Python — course/pyproject.toml
+    {
+      matchFileNames: ["course/pyproject.toml"],
+      matchManagers: ["pep621"],
+      groupName: "python-course",
+      commitMessagePrefix: "[RENOVATE] [AIHERO] [DEPS]:",
+      commitMessageTopic: "Python course",
+    },
+    // Python — project/pyproject.toml
+    {
+      matchFileNames: ["project/pyproject.toml"],
+      matchManagers: ["pep621"],
+      groupName: "python-project",
+      commitMessagePrefix: "[RENOVATE] [AIHERO] [DEPS]:",
+      commitMessageTopic: "Python project",
+    },
+  ],
+}
