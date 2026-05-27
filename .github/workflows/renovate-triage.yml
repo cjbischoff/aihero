@@ -2,14 +2,23 @@ name: '[AUTO] Renovate AI Triage'
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, reopened]
+
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to triage'
+        required: true
+        type: string
 
 # Deny everything at workflow level; grant only what each job needs.
 permissions: {}
 
 jobs:
   triage:
-    if: startsWith(github.event.pull_request.title, '[RENOVATE]')
+    if: >
+      startsWith(github.event.pull_request.title, '[RENOVATE]') ||
+      github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: ai-triage
 
@@ -37,6 +46,6 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_NUMBER: ${{ github.event.pull_request.number || inputs.pr_number }}
           REPO: ${{ github.repository }}
         run: python scripts/renovate_triage.py

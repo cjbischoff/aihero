@@ -112,6 +112,12 @@ def post_comment(repo: str, pr_number: str, body: str) -> None:
 def main() -> None:
     repo = os.environ["REPO"]
     pr_number = os.environ["PR_NUMBER"]
+
+    # Validate PR number is purely numeric before using in API calls.
+    if not pr_number.isdigit():
+        print(f"Invalid PR_NUMBER: {pr_number!r} — must be numeric", file=sys.stderr)
+        sys.exit(1)
+
     repo_root = Path(__file__).parent.parent
 
     print(f"Fetching PR #{pr_number} from {repo}...")
